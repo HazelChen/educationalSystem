@@ -2,7 +2,7 @@ package emsystem.logic;
 
 public enum MajorType {
 	DEPARTMENT_A("DepartmentA"),
-	DEPARTMENT_B("DepartmentB"),
+	DEPARTMENT_B("π„∏Ê—ß"),
 	DEPARTMENT_C("DepartmentC");
 	
 	

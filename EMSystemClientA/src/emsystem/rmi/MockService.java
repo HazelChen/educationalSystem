@@ -29,7 +29,7 @@ public class MockService implements StudentService{
 	 */
 	@Override
 	public Student getStudentInfo(String pId){
-		Student student = new Student("001", "¹þ¹þ", "Å®", MajorType.DEPARTMENT_A);
+		Student student = new Student("001", "¹þ¹þ", "Å®", MajorType.DEPARTMENT_A,"123");
 		return student;
 	}
 	
