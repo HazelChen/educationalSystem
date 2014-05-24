@@ -97,7 +97,7 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 	public void menuSelected(MenuEvent e) {
 		if (e.getSource().equals(mStudentInfoMenu)) {
 			contentPanel.removeAll();
-			AdminStudentInfoPanel studentInfoPanel = new AdminStudentInfoPanel();
+			ManageStudentInfoPanel studentInfoPanel = new ManageStudentInfoPanel(mFrame);
 			contentPanel.add(studentInfoPanel);
 			this.add(contentPanel, BorderLayout.CENTER);
 			repaint();
@@ -106,9 +106,8 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 
 		else if (e.getSource().equals(mCourseInfoMenu)) {
 			contentPanel.removeAll();
-			// StudentClassesPanel studentClassesPanel = new
-			// StudentClassesPanel(mAccount);
-			// contentPanel.add(studentClassesPanel);
+			ManageCourseInfoPanel courseInfoPanel = new ManageCourseInfoPanel(mFrame);
+			contentPanel.add(courseInfoPanel,BorderLayout.CENTER);
 			this.add(contentPanel, BorderLayout.CENTER);
 			repaint();
 			validate();
@@ -117,9 +116,7 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 
 		else if (e.getSource().equals(mChooseCourseInfoMenu)) {
 			contentPanel.removeAll();
-			// StudentChooseClassPanel chooseClassPanel = new
-			// StudentChooseClassPanel(mAccount);
-			// contentPanel.add(chooseClassPanel);
+			
 			this.add(contentPanel, BorderLayout.CENTER);
 			repaint();
 			validate();

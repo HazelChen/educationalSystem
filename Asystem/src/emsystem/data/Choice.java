@@ -1,12 +1,6 @@
 package emsystem.data;
 
-import java.io.Serializable;
-
-public class Choice implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4813298943714585426L;
+public class Choice {
 	private String studentId;
 	private String courseId;
 	private int score;
