@@ -1,8 +1,7 @@
-package data;
+package emsystem.data;
 
 import java.io.Serializable;
 
-import emsystem.logic.MajorType;
 
 public class Student implements Serializable{
 
@@ -14,11 +13,11 @@ public class Student implements Serializable{
 	private String mId;//学号
 	private String mName;//姓名
 	private String mSex;//性别
-	private MajorType mMajor;//专业
+	private String mMajor;//专业
 	
 	private String mPwd;//密码
 	
-	public Student(String pId, String PName, String pSex, MajorType pMajor,String pPwd){
+	public Student(String pId, String PName, String pSex, String pMajor,String pPwd){
 		mId = pId;
 		mName = PName;
 		mSex = pSex;
@@ -39,7 +38,7 @@ public class Student implements Serializable{
 	}
 	
 	public String getMajor(){
-		return mMajor.getDepartment();
+		return mMajor;
 	}
 	
 	public String getPwd(){

@@ -23,7 +23,9 @@ public interface StudentService extends Remote{
 	 */
 	public Student getStudentInfo(String pId) throws RemoteException;
 	
-	public Course[] getMyCourses(String pId) throws RemoteException;
+	public Course[] getMyCourses(String pCourseId) throws RemoteException;
+	
+	public int[] getScores(String pStudentId) throws RemoteException;
 
 	/**
 	 * 显示课程为未选课程。
@@ -36,6 +38,7 @@ public interface StudentService extends Remote{
 	public Course[] getCoursesFromC(String pId) throws RemoteException;
 	
 	public boolean[] chooseCourses(String pId, ArrayList<String> pCourseId) throws RemoteException;
+	
 	
 
 }

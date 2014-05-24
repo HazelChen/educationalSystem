@@ -2,9 +2,8 @@ package emsystem.rmi;
 
 import java.util.ArrayList;
 
-import emsystem.logic.Course;
-import emsystem.logic.MajorType;
-import emsystem.logic.Student;
+import emsystem.data.Course;
+import emsystem.data.Student;
 
 public class MockService implements StudentService{
 	
@@ -29,7 +28,7 @@ public class MockService implements StudentService{
 	 */
 	@Override
 	public Student getStudentInfo(String pId){
-		Student student = new Student("001", "哈哈", "女", MajorType.DEPARTMENT_A);
+		Student student = new Student("001", "哈哈", "女", "专业A");
 		return student;
 	}
 	
@@ -40,6 +39,12 @@ public class MockService implements StudentService{
 		
 		Course[] courses = new Course[]{course1, course2};
 		return courses;
+	}
+	
+	@Override
+	public int[] getScores(String pId){
+		int[] scores = new int[]{90, 100};
+		return scores;
 	}
 
 	/**

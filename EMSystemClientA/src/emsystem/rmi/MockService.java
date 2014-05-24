@@ -40,6 +40,12 @@ public class MockService implements StudentService{
 		Course[] courses = new Course[]{course1, course2};
 		return courses;
 	}
+	
+	@Override
+	public int[] getScores(String pId){
+		int[] scores = new int[]{90, 100};
+		return scores;
+	}
 
 	/**
 	 * 显示课程为未选课程。

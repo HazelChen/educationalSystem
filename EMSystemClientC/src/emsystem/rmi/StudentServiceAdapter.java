@@ -3,8 +3,8 @@ package emsystem.rmi;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import data.Course;
-import data.Student;
+import emsystem.data.Course;
+import emsystem.data.Student;
 
 public class StudentServiceAdapter{
 	
@@ -58,6 +58,16 @@ public class StudentServiceAdapter{
 		return courses;
 	}
 
+	public int[] getScores(String pStudentId){
+		int[] scores = null;
+		try {
+			scores = RMI.getService().getScores(pStudentId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return scores;
+	}
 	/**
 	 * 显示课程为未选课程。
 	 * @return

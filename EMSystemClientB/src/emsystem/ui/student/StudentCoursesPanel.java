@@ -5,11 +5,11 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import emsystem.logic.Course;
+import emsystem.data.Course;
 import emsystem.rmi.StudentServiceAdapter;
 import emsystem.ui.widget.CustomedTable;
 
-public class StudentClassesPanel extends JPanel {
+public class StudentCoursesPanel extends JPanel {
 
 	/**
 	 * 
@@ -18,14 +18,14 @@ public class StudentClassesPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	String[] classColumnName = new String[]{"课程编号","课程名称","课时","学分","授课老师","授课地点"};
+	String[] classColumnName = new String[]{"课程编号","课程名称","课时","学分","授课老师","授课地点","课程成绩"};
 	
-	private int idIndex = 0, nameIndex =1, timeIndex = 2, creditIndex = 3, teacherIndex = 4, addressIndex = 5;
-	private int tableColumnNums = 6;
+	private int idIndex = 0, nameIndex =1, timeIndex = 2, creditIndex = 3, teacherIndex = 4, addressIndex = 5, scoreIndex = 6;
+	private int tableColumnNums = 7;
 	private CustomedTable mInfoTable;
 	private String mAccount;
 	
-	public StudentClassesPanel(String pAccount) {
+	public StudentCoursesPanel(String pAccount) {
 		mAccount = pAccount;
 		
 		mInfoTable = new CustomedTable(getData(), classColumnName);
@@ -38,8 +38,9 @@ public class StudentClassesPanel extends JPanel {
 	private Object[][] getData(){
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
 		Course[] courses = adapter.getMyCourses(mAccount);
+		int[] scores = adapter.getScores(mAccount);
 		Object[][] data = new Object[][]{};
-		if (courses != null) {
+		if (courses != null && scores != null) {
 			data = new Object[courses.length][tableColumnNums];
 			for (int i = 0; i < courses.length; i++) {
 				data[i][idIndex] = courses[i].getId();
@@ -48,6 +49,7 @@ public class StudentClassesPanel extends JPanel {
 				data[i][creditIndex] = courses[i].getCredit();
 				data[i][teacherIndex] = courses[i].getTeacher();
 				data[i][addressIndex] = courses[i].getAddress();
+				data[i][scoreIndex] = scores[i];
 			}
 		}
 		return data;
