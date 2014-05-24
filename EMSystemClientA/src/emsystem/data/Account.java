@@ -9,7 +9,12 @@ public class Account implements Serializable{
 	private int jibie;
 	private String keti;
 	
-	
+	public Account(String name,String password,int jibie,String keti){
+		this.name=name;
+		this.password=password;
+		this.jibie=jibie;
+		this.keti=keti;
+	}
 	public String getName() {
 		return name;
 	}
