@@ -100,4 +100,13 @@ public class StudentServiceAdapter{
 		return results;
 	}
 
+	public boolean[] dropCourses(String pStudentId, ArrayList<String> pCourseId){
+		boolean[] results = null;
+		try {
+			results = RMI.getStudentService().dropCourses(pStudentId, pCourseId);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
 }

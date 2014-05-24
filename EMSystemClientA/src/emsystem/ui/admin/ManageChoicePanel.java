@@ -1,10 +1,12 @@
 package emsystem.ui.admin;
 
-import java.awt.Cursor;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,11 +20,6 @@ import emsystem.ui.MainFrame;
 public class ManageChoicePanel extends JPanel {
 
 	private static final long serialVersionUID = -2731729423693467706L;
-	/**
-	 * Create the panel.
-	 */
-	
-	private JLabel backLabel;
 	private JScrollPane courseScrollPane;
 	private JScrollPane studentScrollPane;
 	
@@ -32,46 +29,73 @@ public class ManageChoicePanel extends JPanel {
 	private String[] coursesColumnName = new String[]{"课程编号","课程名"};
 	private String[] studentColumnName = new String[]{"学生编号","姓名"};
 	
+	private int courseIdIndex = 0;
 	private MainFrame mFrame;
+	
 	public ManageChoicePanel(MainFrame pFrame) {
-		setLayout(null);
+		mFrame = pFrame;
+		setLayout(new BorderLayout());
 		
-		backLabel = new JLabel("<html><u>返回操作界面</u></html>");
-		backLabel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				AdminOperationPanel operationPanel = new AdminOperationPanel(
-						mFrame);
-				mFrame.setContentPane(operationPanel);
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			}
-		});
-		backLabel.setBounds(41, 34, 54, 15);
-		add(backLabel);
-		
+		JPanel coursePanel = new JPanel();
+		coursePanel.setLayout(new BoxLayout(coursePanel, BoxLayout.Y_AXIS));
 		JLabel courseLabel = new JLabel("课程");
-		courseLabel.setBounds(86, 82, 54, 15);
-		add(courseLabel);
-		
-		JLabel studentLabel = new JLabel("学生");
-		studentLabel.setBounds(470, 82, 54, 15);
-		add(studentLabel);
+		courseLabel.setBounds(83, 59, 54, 15);
+		coursePanel.add(courseLabel);
 		
 		courseScrollPane = new JScrollPane();
-		courseScrollPane.setBounds(274, 459, 252, 342);
-		add(courseScrollPane);
+		courseScrollPane.setPreferredSize(new Dimension(350, 400));
+		coursePanel.add(courseScrollPane);
+
+		JPanel studentPanel = new JPanel();
+		studentPanel.setLayout(new BoxLayout(studentPanel, BoxLayout.Y_AXIS));
+		JLabel studentLabel = new JLabel("学生");
+		studentLabel.setBounds(468, 59, 54, 15);
+		studentPanel.add(studentLabel);
 		
 		studentScrollPane = new JScrollPane();
-		studentScrollPane.setBounds(404, 448, 225,320);
-		add(studentScrollPane);
+		studentScrollPane.setPreferredSize(new Dimension(350, 400));
+		studentPanel.add(studentScrollPane);
+		
+		add(coursePanel, BorderLayout.WEST);
+		add(studentPanel, BorderLayout.EAST);
+		generateCourseTable();
 	}
 	
 	private void generateCourseTable(){
 		mCourseTable = new JTable(getCourseData(), coursesColumnName){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -6797344357042781916L;
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		mCourseTable.getTableHeader().setReorderingAllowed(false);
+		
+		mCourseTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int sr;
+                if ((sr = mCourseTable.getSelectedRow()) == -1) {
+                    return;
+                }
+                if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 1){
+                	String id = (String) mCourseTable.getValueAt(mCourseTable.getSelectedRow(), courseIdIndex);
+                	generateStudentTable(id);
+                	validate();
+                	repaint();
+                	
+                }
+            }
+        });
+		courseScrollPane.setViewportView(mCourseTable);
+	}
+	
+	private void generateStudentTable(String pCourseId){
+		mStudentTable = new JTable(getStudentData(pCourseId), coursesColumnName){
 			/**
 			 * 
 			 */
@@ -82,7 +106,8 @@ public class ManageChoicePanel extends JPanel {
 				return false;
 			}
 		};
-		mCourseTable.getTableHeader().setReorderingAllowed(false);
+		mStudentTable.getTableHeader().setReorderingAllowed(false);
+		studentScrollPane.setViewportView(mStudentTable);
 	}
 	
 	private Object[][] getCourseData(){

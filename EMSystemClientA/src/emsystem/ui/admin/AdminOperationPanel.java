@@ -106,7 +106,7 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 		else if (e.getSource().equals(mCourseInfoMenu)) {
 			contentPanel.removeAll();
 			ManageCourseInfoPanel courseInfoPanel = new ManageCourseInfoPanel(mFrame);
-			contentPanel.add(courseInfoPanel,BorderLayout.CENTER);
+			contentPanel.add(courseInfoPanel);
 			this.add(contentPanel, BorderLayout.CENTER);
 			repaint();
 			validate();
@@ -115,8 +115,10 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 
 		else if (e.getSource().equals(mChooseCourseInfoMenu)) {
 			contentPanel.removeAll();
-			
+			ManageChoicePanel choicePanel = new ManageChoicePanel(mFrame);
+			contentPanel.add(choicePanel);
 			this.add(contentPanel, BorderLayout.CENTER);
+//			mFrame.setContentPane(choicePanel);
 			repaint();
 			validate();
 		}

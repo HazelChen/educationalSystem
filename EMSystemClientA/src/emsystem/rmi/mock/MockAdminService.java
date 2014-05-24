@@ -78,12 +78,23 @@ public class MockAdminService implements AdminService {
 	@Override
 	public ArrayList<Student> getChoosedStudents(String pCourseId){
 		ArrayList<Student> students = new ArrayList<Student>();
-		Student student1 = new Student("001", "¹ş¹ş", "Å®", getMajorName(),
-				"12334");
-		Student student2 = new Student("002", "ºÇºÇ", "ÄĞ", getMajorName(), "11");
+		if (pCourseId.equals("001")) {
+			Student student1 = new Student("001", "¹ş¹ş", "Å®", getMajorName(),
+					"12334");
+			Student student2 = new Student("002", "ºÇºÇ", "ÄĞ", getMajorName(), "11");
+			
+			students.add(student1);
+			students.add(student2);
+		}
+		else {
+			Student student1 = new Student("003", "¹ş¹ş", "Å®", getMajorName(),
+					"12334");
+			Student student2 = new Student("004", "ºÇºÇ", "ÄĞ", getMajorName(), "11");
+			
+			students.add(student1);
+			students.add(student2);
+		}
 
-		students.add(student1);
-		students.add(student2);
 		return students;
 	}
 }

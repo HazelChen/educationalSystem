@@ -86,4 +86,11 @@ public class MockStudentService implements StudentService{
 		boolean[] results = new boolean[]{true,  false};
 		return results;
 	}
+	
+	@Override
+	public boolean[] dropCourses(String pStudentId, ArrayList<String> pCourseId){
+		boolean[] results = new boolean[]{true, false};
+		return results;
+		
+	}
 }
