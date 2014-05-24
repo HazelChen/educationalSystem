@@ -53,64 +53,32 @@ public class Course implements Serializable{
 		return mShareFlag;
 	}
 
-	public String getmId() {
-		return mId;
-	}
-
 	public void setmId(String mId) {
 		this.mId = mId;
-	}
-
-	public String getmCourseName() {
-		return mCourseName;
 	}
 
 	public void setmCourseName(String mCourseName) {
 		this.mCourseName = mCourseName;
 	}
 
-	public int getmCredit() {
-		return mCredit;
-	}
-
 	public void setmCredit(int mCredit) {
 		this.mCredit = mCredit;
-	}
-
-	public String getmCourseTime() {
-		return mCourseTime;
 	}
 
 	public void setmCourseTime(String mCourseTime) {
 		this.mCourseTime = mCourseTime;
 	}
 
-	public String getmTeacher() {
-		return mTeacher;
-	}
-
 	public void setmTeacher(String mTeacher) {
 		this.mTeacher = mTeacher;
-	}
-
-	public String getmAddress() {
-		return mAddress;
 	}
 
 	public void setmAddress(String mAddress) {
 		this.mAddress = mAddress;
 	}
 
-	public int getmShareFlag() {
-		return mShareFlag;
-	}
-
 	public void setmShareFlag(int mShareFlag) {
 		this.mShareFlag = mShareFlag;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
 }
