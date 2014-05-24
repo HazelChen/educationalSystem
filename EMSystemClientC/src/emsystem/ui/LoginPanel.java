@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import emsystem.rmi.AdminServiceAdapter;
 import emsystem.rmi.StudentServiceAdapter;
 import emsystem.ui.admin.AdminOperationPanel;
 import emsystem.ui.student.StudentOperationPanel;
@@ -22,7 +23,7 @@ public class LoginPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 7651119794013460637L;
-	private static String systemName = "教务系统C"; 
+	private static String systemName = "教务系统B"; 
 	private String mTypeString = "身份";
 	private String mAccountString = "账号";
 	private String mPasswordString = "密码";
@@ -86,7 +87,6 @@ public class LoginPanel extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			
-			StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -94,6 +94,7 @@ public class LoginPanel extends JPanel {
 				String password = new String(textField.getPassword());
 				
 				if (comboBox.getSelectedIndex() == 0) {
+					StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
 					if (adapter.studentLogin(account, password)) {
 						StudentOperationPanel studentOperationPanel = new StudentOperationPanel(mFrame, account);
 						mFrame.setContentPane(studentOperationPanel);
@@ -103,7 +104,7 @@ public class LoginPanel extends JPanel {
 						showMessage();
 				}
 				else if (comboBox.getSelectedIndex() == 1) {
-					System.err.println(account);
+					AdminServiceAdapter adapter = AdminServiceAdapter.getInstance();
 					if (adapter.adminLogin(account, password)) {
 						
 						AdminOperationPanel operationPanel = new AdminOperationPanel(mFrame);

@@ -199,36 +199,37 @@ public class StudentChooseCoursePanel extends JPanel {
 	private Object[][] getAData() {
 
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
-		Course[] courses = adapter.getCoursesFromA(mAccount);
+		ArrayList<Course> courses = adapter.getCoursesFromA(mAccount);
 		
 		return getInitData(courses);
 	}
 
 	private Object[][] getBData() {
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
-		Course[] courses = adapter.getCoursesFromB(mAccount);
+		ArrayList<Course> courses = adapter.getCoursesFromB(mAccount);
 		
 		return getInitData(courses);
 	}
 
 	private Object[][] getCData() {
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
-		Course[] courses = adapter.getCoursesFromC(mAccount);
+		ArrayList<Course> courses = adapter.getCoursesFromC(mAccount);
 		
 		return getInitData(courses);
 	}
 
-	private Object[][] getInitData(Course[] courses){
+	private Object[][] getInitData(ArrayList<Course> courses){
 		Object[][] data = new Object[][]{};
 		if (courses != null) {
-			data = new Object[courses.length][columnNums];
-			for (int i = 0; i < courses.length; i++) {
-				data[i][idIndex] = courses[i].getId();
-				data[i][nameIndex] = courses[i].getCourseName();
-				data[i][timeIndex] = courses[i].getCourseTime();
-				data[i][creditIndex] = courses[i].getCredit();
-				data[i][teacherIndex] = courses[i].getTeacher();
-				data[i][addressIndex] = courses[i].getAddress();
+			data = new Object[courses.size()][columnNums];
+			for (int i = 0; i < courses.size(); i++) {
+				Course course = courses.get(i);
+				data[i][idIndex] = course.getId();
+				data[i][nameIndex] = course.getCourseName();
+				data[i][timeIndex] = course.getCourseTime();
+				data[i][creditIndex] = course.getCredit();
+				data[i][teacherIndex] = course.getTeacher();
+				data[i][addressIndex] = course.getAddress();
 				data[i][chooseindex] = false;
 			}
 		}

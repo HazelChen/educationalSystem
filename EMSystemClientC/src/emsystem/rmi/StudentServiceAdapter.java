@@ -2,6 +2,7 @@ package emsystem.rmi;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import emsystem.data.Course;
 import emsystem.data.Student;
@@ -10,24 +11,18 @@ public class StudentServiceAdapter{
 	
 	private static StudentServiceAdapter mAdapter;
 	
+	private StudentServiceAdapter(){
+		
+	}
 	public static StudentServiceAdapter getInstance(){
 		return mAdapter == null? new StudentServiceAdapter() : mAdapter;
 	}
 	
-	public boolean adminLogin(String pAccount, String pPassword){
-		boolean isValid = false;
-		try {
-			isValid =  RMI.getService().adminLogin(pAccount, pPassword);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return isValid;
-	}
 	
 	public boolean studentLogin(String pId, String pPassword){
 		boolean isValid = false;
 		try {
-			isValid = RMI.getService().studentLogin(pId, pPassword);
+			isValid = RMI.getStudentService().studentLogin(pId, pPassword);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -41,76 +36,77 @@ public class StudentServiceAdapter{
 	public Student getStudentInfo(String pId){
 		Student student = null;
 		try {
-			student = RMI.getService().getStudentInfo(pId);
+			student = RMI.getStudentService().getStudentInfo(pId);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return student;
 	}
 	
-	public Course[] getMyCourses(String pId){
-		Course[] courses = null;
+	public HashMap<Course, Integer> getMyCourses(String pId){
+		HashMap<Course, Integer> courses = null;
 		try {
-			courses = RMI.getService().getMyCourses(pId);
+			courses = RMI.getStudentService().getMyCourses(pId);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return courses;
 	}
 
-	public int[] getScores(String pStudentId){
-		int[] scores = null;
-		try {
-			scores = RMI.getService().getScores(pStudentId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return scores;
-	}
 	/**
 	 * 显示课程为未选课程。
 	 * @return
 	 */
-	public Course[] getCoursesFromA(String pId){
-		Course[] courses = null;
+	public ArrayList<Course> getCoursesFromA(String pId){
+		ArrayList<Course> courses = null;
 		try {
-			courses = RMI.getService().getCoursesFromA(pId);
+			courses = RMI.getStudentService().getCoursesFromA(pId);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return courses;
 	}
 	
-	public Course[] getCoursesFromB(String pId){
-		Course[] courses = null;
+	
+	public ArrayList<Course> getCoursesFromB(String pId){
+		ArrayList<Course> courses = null;
 		try {
-			courses = RMI.getService().getCoursesFromB(pId);
+			courses = RMI.getStudentService().getCoursesFromB(pId);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return courses;
 	}
 	
-	public Course[] getCoursesFromC(String pId){
-		Course[] courses = null;
+	public ArrayList<Course> getCoursesFromC(String pId){
+		ArrayList<Course> courses = null;
 		try {
-			courses = RMI.getService().getCoursesFromC(pId);
+			courses = RMI.getStudentService().getCoursesFromC(pId);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return courses;
 	}
+	
 	
 	
 	public boolean[] chooseCourses(String pId, ArrayList<String> pCourseId){
 		boolean[] results = null;
 		try {
-			results = RMI.getService().chooseCourses(pId, pCourseId);
+			results = RMI.getStudentService().chooseCourses(pId, pCourseId);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return results;
 	}
 
+	public boolean[] dropCourses(String pStudentId, ArrayList<String> pCourseId){
+		boolean[] results = null;
+		try {
+			results = RMI.getStudentService().dropCourses(pStudentId, pCourseId);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
 }
