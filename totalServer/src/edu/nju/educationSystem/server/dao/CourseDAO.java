@@ -33,7 +33,7 @@ public class CourseDAO {
 		ResultSet resultSet = databaseUtils.getResultSetByWholeWord(TABLE_NAME,
 				COLUMNS[0], cid);
 		try {
-			if (!resultSet.next()) {
+			if (resultSet.next()) {
 				String id = resultSet.getString(COLUMNS[0]);
 				String name = resultSet.getString(COLUMNS[1]);
 				int time = resultSet.getInt(COLUMNS[2]);

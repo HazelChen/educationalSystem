@@ -14,6 +14,7 @@ public class ElectiveService {
 	
 	public ElectiveService() {
 		electiveDAO = new ElectiveDAO();
+		courseDAO = new CourseDAO();
 	}
 	
 	public ArrayList<Course> getStudentsCourse(String studentId) {

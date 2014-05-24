@@ -14,6 +14,17 @@ public class Course {
 	private String teacher = "";
 	private String location = "";
 	
+	public Course() {}
+	
+	public Course(String id, String name, int time, int score, String teacher, String location) {
+		this.id = id;
+		this.name = name;
+		this.time = time;
+		this.score = score;
+		this.teacher = teacher;
+		this.location = location;
+	}
+	
 	public String getId() {
 		return id;
 	}
