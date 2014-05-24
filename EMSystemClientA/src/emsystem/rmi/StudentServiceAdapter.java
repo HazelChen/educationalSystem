@@ -3,8 +3,8 @@ package emsystem.rmi;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import emsystem.logic.Course;
-import emsystem.logic.Student;
+import emsystem.data.Course;
+import emsystem.data.Student;
 
 public class StudentServiceAdapter{
 	

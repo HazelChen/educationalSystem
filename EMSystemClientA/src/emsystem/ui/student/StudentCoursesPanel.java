@@ -5,11 +5,11 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import emsystem.logic.Course;
+import emsystem.data.Course;
 import emsystem.rmi.StudentServiceAdapter;
 import emsystem.ui.widget.CustomedTable;
 
-public class StudentClassesPanel extends JPanel {
+public class StudentCoursesPanel extends JPanel {
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class StudentClassesPanel extends JPanel {
 	private CustomedTable mInfoTable;
 	private String mAccount;
 	
-	public StudentClassesPanel(String pAccount) {
+	public StudentCoursesPanel(String pAccount) {
 		mAccount = pAccount;
 		
 		mInfoTable = new CustomedTable(getData(), classColumnName);
