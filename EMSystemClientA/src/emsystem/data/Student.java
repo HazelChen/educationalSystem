@@ -44,9 +44,6 @@ public class Student implements Serializable{
 		this.mName = mName;
 	}
 
-	public String getmSex() {
-		return mSex;
-	}
 
 	public void setmSex(String mSex) {
 		this.mSex = mSex;
