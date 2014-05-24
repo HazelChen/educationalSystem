@@ -97,8 +97,8 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 	public void menuSelected(MenuEvent e) {
 		if (e.getSource().equals(mStudentInfoMenu)) {
 			contentPanel.removeAll();
-			// StudentInfoPanel panel = new StudentInfoPanel(mAccount);
-			// contentPanel.add(panel);
+			AdminStudentInfoPanel studentInfoPanel = new AdminStudentInfoPanel();
+			contentPanel.add(studentInfoPanel);
 			this.add(contentPanel, BorderLayout.CENTER);
 			repaint();
 			validate();

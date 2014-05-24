@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import emsystem.logic.Student;
+import emsystem.data.Student;
 import emsystem.rmi.StudentServiceAdapter;
 import emsystem.ui.widget.CustomedTable;
 
@@ -21,6 +21,7 @@ public class StudentInfoPanel extends JPanel {
 	String[] infoColumnsName = new String[]{"学号","姓名","性别","院系"};	
 	private CustomedTable table;
 	private String mAccount;
+	
 	public StudentInfoPanel(String pAccount) {
 		table = new CustomedTable(getData(), infoColumnsName);
 		mAccount = pAccount;

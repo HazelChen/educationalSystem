@@ -32,11 +32,13 @@ public class StudentOperationPanel extends JPanel implements MenuListener{
 	private String mPersonlInfoString = "个人信息";
 	private String mMyClassesString = "我的课程";
 	private String mAllClassesString = "学期选课";
+	private String mDropClassesString = "退选课程";
 	
 	private JMenuBar menuBar;
 	private JMenu personInfoMenu;
 	private JMenu myClassMenu;
 	private JMenu allClassMenu;
+	private JMenu dropClassMenu;
 	
 	private JPanel contentPanel;
 	
@@ -83,6 +85,12 @@ public class StudentOperationPanel extends JPanel implements MenuListener{
 		allClassMenu.setBounds(322, 41, 111, 22);
 		allClassMenu.addMenuListener(this);
 		menuBar.add(allClassMenu);
+		
+		dropClassMenu = new JMenu(mDropClassesString);
+		dropClassMenu.setBounds(433, 41, 111, 22);
+		dropClassMenu.addMenuListener(this);
+		menuBar.add(dropClassMenu);
+		
 		add(menuBar);
 		
 		contentPanel = new JPanel();
@@ -126,7 +134,7 @@ public class StudentOperationPanel extends JPanel implements MenuListener{
 		
 		else if (e.getSource().equals(myClassMenu)) {
 			contentPanel.removeAll();
-			StudentClassesPanel studentClassesPanel = new StudentClassesPanel(mAccount);
+			StudentCoursesPanel studentClassesPanel = new StudentCoursesPanel(mAccount);
 			contentPanel.add(studentClassesPanel);
 			this.add(contentPanel, BorderLayout.CENTER);
 			repaint();
@@ -136,13 +144,20 @@ public class StudentOperationPanel extends JPanel implements MenuListener{
 		
 		else if (e.getSource().equals(allClassMenu)) {
 			contentPanel.removeAll();
-			StudentChooseClassPanel chooseClassPanel = new StudentChooseClassPanel(mAccount);
+			StudentChooseCoursePanel chooseClassPanel = new StudentChooseCoursePanel(mAccount);
 			contentPanel.add(chooseClassPanel);
 			this.add(contentPanel, BorderLayout.CENTER);
 			repaint();
 			validate();
 		}
-			
+		else if (e.getSource().equals(dropClassMenu)) {
+			contentPanel.removeAll();
+			StudentDropCoursePanel dropCoursePanel = new StudentDropCoursePanel(mAccount);
+			contentPanel.add(dropCoursePanel);
+			this.add(contentPanel, BorderLayout.CENTER);
+			repaint();
+			validate();
+		}
 	}
 	
 	@Override

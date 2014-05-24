@@ -16,12 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableColumn;
 
-import emsystem.logic.Course;
+import emsystem.data.Course;
 import emsystem.logic.Inform;
 import emsystem.rmi.StudentServiceAdapter;
 import emsystem.ui.widget.CustomedTable;
 
-public class StudentChooseClassPanel extends JPanel {
+public class StudentChooseCoursePanel extends JPanel {
 	private static final long serialVersionUID = -6488970245233729067L;
 
 	private String chooseClassString = "х╥хоя║©н";
@@ -45,7 +45,7 @@ public class StudentChooseClassPanel extends JPanel {
 	 */
 	private String mAccount;
 
-	public StudentChooseClassPanel(String pAccount) {
+	public StudentChooseCoursePanel(String pAccount) {
 		mAccount = pAccount;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 

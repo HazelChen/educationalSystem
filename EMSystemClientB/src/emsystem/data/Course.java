@@ -1,4 +1,4 @@
-package emsystem.logic;
+package emsystem.data;
 
 import java.io.Serializable;
 

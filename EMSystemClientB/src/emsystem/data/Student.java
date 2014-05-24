@@ -1,4 +1,4 @@
-package emsystem.logic;
+package emsystem.data;
 
 import java.io.Serializable;
 
@@ -12,9 +12,9 @@ public class Student implements Serializable{
 	private String mId;
 	private String mName;
 	private String mSex;
-	private MajorType mMajor;
+	private String mMajor;
 	
-	public Student(String pId, String PName, String pSex, MajorType pMajor){
+	public Student(String pId, String PName, String pSex, String pMajor){
 		mId = pId;
 		mName = PName;
 		mSex = pSex;
@@ -35,6 +35,6 @@ public class Student implements Serializable{
 	}
 	
 	public String getMajor(){
-		return mMajor.getDepartment();
+		return mMajor;
 	}
 }
