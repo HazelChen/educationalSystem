@@ -1,6 +1,7 @@
 package emsystem.rmi;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import emsystem.data.Course;
 import emsystem.data.Student;
@@ -27,8 +28,8 @@ public class AdminServiceAdapter {
 		return isValid;
 	}
 
-	public Student[] getStudents() {
-		Student[] students = null;
+	public ArrayList<Student> getStudents() {
+		ArrayList<Student> students = new ArrayList<Student>();
 		try {
 			students = RMI.getAdminService().getStudents();
 		} catch (RemoteException e) {
@@ -68,8 +69,8 @@ public class AdminServiceAdapter {
 		return isSuccess;
 	}
 	
-	public Course[] getCourses() {
-		Course[] courses = null;
+	public ArrayList<Course> getCourses() {
+		ArrayList<Course> courses = null;
 		try {
 			courses = RMI.getAdminService().getCourses();
 		} catch (RemoteException e) {

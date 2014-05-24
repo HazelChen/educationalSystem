@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -88,16 +89,17 @@ public class ManageStudentInfoPanel extends JPanel {
 
 	private Object[][] getData() {
 		AdminServiceAdapter adapter = AdminServiceAdapter.getInstance();
-		Student[] students = adapter.getStudents();
+		ArrayList<Student> students = adapter.getStudents();
 		Object[][] data = new Object[][]{};
 		if (students != null) {
-			data = new Object[students.length][columnNums];
+			data = new Object[students.size()][columnNums];
 			for (int i = 0; i < data.length; i++) {
-				data[i][idIndex] = students[i].getId();
-				data[i][nameIndex] = students[i].getName();
-				data[i][passwordIndex] = students[i].getmPassword();
-				data[i][sexIndex] = students[i].getSex();
-				data[i][majorIndex] = students[i].getMajor();
+				Student student = students.get(i);
+				data[i][idIndex] = student.getId();
+				data[i][nameIndex] = student.getName();
+				data[i][passwordIndex] = student.getmPassword();
+				data[i][sexIndex] = student.getSex();
+				data[i][majorIndex] = student.getMajor();
 			}
 		}
 		return data;

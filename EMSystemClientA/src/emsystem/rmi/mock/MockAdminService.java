@@ -1,5 +1,7 @@
 package emsystem.rmi.mock;
 
+import java.util.ArrayList;
+
 import emsystem.data.Course;
 import emsystem.data.Student;
 import emsystem.rmi.AdminService;
@@ -14,12 +16,14 @@ public class MockAdminService implements AdminService {
 	}
 
 	@Override
-	public Student[] getStudents() {
+	public ArrayList<Student> getStudents() {
+		ArrayList<Student> students = new ArrayList<Student>();
 		Student student1 = new Student("001", "¹ş¹ş", "Å®", getMajorName(),
 				"12334");
 		Student student2 = new Student("002", "ºÇºÇ", "ÄĞ", getMajorName(), "11");
 
-		Student[] students = new Student[] { student1, student2 };
+		students.add(student1);
+		students.add(student2);
 		return students;
 	}
 
@@ -39,11 +43,13 @@ public class MockAdminService implements AdminService {
 	}
 
 	@Override
-	public Course[] getCourses() {
+	public ArrayList<Course> getCourses() {
+		ArrayList<Course> courses = new ArrayList<>();
 		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china", "ÊÇ");
 		Course course2 = new Course("002", "art", 2, "1-2", "Tom", "China", "·ñ");
 
-		Course[] courses = new Course[] { course1, course2 };
+		courses.add(course1);
+		courses.add(course2);
 		return courses;
 	}
 

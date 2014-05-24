@@ -2,6 +2,7 @@ package emsystem.rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import emsystem.data.Course;
 import emsystem.data.Student;
@@ -21,7 +22,7 @@ public interface AdminService extends Remote{
 	 * 
 	 *对学生的操作
 	 */
-	public Student[] getStudents() throws RemoteException;
+	public ArrayList<Student> getStudents() throws RemoteException;
 	
 	public boolean addStudent(Student pStudent) throws RemoteException;
 	
@@ -29,7 +30,7 @@ public interface AdminService extends Remote{
 	
 	public boolean deleteStudent(String pStudentId) throws RemoteException;
 	
-	public Course[] getCourses() throws RemoteException;
+	public ArrayList<Course> getCourses() throws RemoteException;
 	
 	public String getMajorName() throws RemoteException;
 }

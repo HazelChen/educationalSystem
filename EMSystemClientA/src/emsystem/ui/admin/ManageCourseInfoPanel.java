@@ -3,6 +3,7 @@ package emsystem.ui.admin;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -77,18 +78,19 @@ public class ManageCourseInfoPanel extends JPanel{
 
 	private Object[][] getData() {
 		AdminServiceAdapter adapter = AdminServiceAdapter.getInstance();
-		Course[] courses = adapter.getCourses();
+		ArrayList<Course> courses = adapter.getCourses();
 		Object[][] data = new Object[][]{};
 		if (courses != null) {
-			data = new Object[courses.length][columnNums];
+			data = new Object[courses.size()][columnNums];
 			for (int i = 0; i < data.length; i++) {
-				data[i][idIndex] = courses[i].getId();
-				data[i][nameIndex] = courses[i].getCourseName();
-				data[i][timeIndex] = courses[i].getCourseTime();
-				data[i][creditIndex] = courses[i].getCredit();
-				data[i][teacherIndex] = courses[i].getTeacher();
-				data[i][addressIndex] = courses[i].getAddress();
-				data[i][shareIndex] = courses[i].getShareFlag();
+				Course course = courses.get(i);
+				data[i][idIndex] = course.getId();
+				data[i][nameIndex] = course.getCourseName();
+				data[i][timeIndex] = course.getCourseTime();
+				data[i][creditIndex] = course.getCredit();
+				data[i][teacherIndex] = course.getTeacher();
+				data[i][addressIndex] = course.getAddress();
+				data[i][shareIndex] = course.getShareFlag();
 			}
 		}
 		return data;

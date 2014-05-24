@@ -1,6 +1,9 @@
 package emsystem.ui.student;
 
 import java.awt.Dimension;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -37,20 +40,27 @@ public class StudentCoursesPanel extends JPanel {
 	
 	private Object[][] getData(){
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
-		Course[] courses = adapter.getMyCourses(mAccount);
-		int[] scores = adapter.getScores(mAccount);
+		HashMap<Course, Integer>  coursesMap= adapter.getMyCourses(mAccount);
+//		int[] scores = adapter.getScores(mAccount);
 		Object[][] data = new Object[][]{};
-		if (courses != null && scores != null) {
-			data = new Object[courses.length][tableColumnNums];
-			for (int i = 0; i < courses.length; i++) {
-				data[i][idIndex] = courses[i].getId();
-				data[i][nameIndex] = courses[i].getCourseName();
-				data[i][timeIndex] = courses[i].getCourseTime();
-				data[i][creditIndex] = courses[i].getCredit();
-				data[i][teacherIndex] = courses[i].getTeacher();
-				data[i][addressIndex] = courses[i].getAddress();
-				data[i][scoreIndex] = scores[i];
+		if (coursesMap != null) {
+			Set<Course> courses = coursesMap.keySet();
+			data = new Object[courses.size()][tableColumnNums];
+			int i = 0;
+			Iterator<Course> iterator = courses.iterator();
+			while (iterator.hasNext()) {
+				Course course = iterator.next();
+				data[i][idIndex] = course.getId();
+				data[i][nameIndex] = course.getCourseName();
+				data[i][timeIndex] = course.getCourseTime();
+				data[i][creditIndex] = course.getCredit();
+				data[i][teacherIndex] = course.getTeacher();
+				data[i][addressIndex] = course.getAddress();
+				data[i][scoreIndex] = coursesMap.get(course);
+				
+				i++;
 			}
+				
 		}
 		return data;
 	}

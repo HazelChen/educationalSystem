@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -106,20 +109,26 @@ public class StudentDropCoursePanel extends JPanel {
 	}
 
 	private Object[][] getData() {
-		Object[][] data = new Object[][] {};
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
-		Course[] courses = adapter.getMyCourses(mAccount);
-		if (courses != null) {
-			data = new Object[courses.length][columnNums];
-			for (int i = 0; i < courses.length; i++) {
-				data[i][idIndex] = courses[i].getId();
-				data[i][nameIndex] = courses[i].getCourseName();
-				data[i][timeIndex] = courses[i].getCourseTime();
-				data[i][creditIndex] = courses[i].getCredit();
-				data[i][teacherIndex] = courses[i].getTeacher();
-				data[i][addressIndex] = courses[i].getAddress();
-				data[i][dropIndex] = false;
+		HashMap<Course, Integer>  coursesMap= adapter.getMyCourses(mAccount);
+		Object[][] data = new Object[][]{};
+		if (coursesMap != null) {
+			Set<Course> courses = coursesMap.keySet();
+			data = new Object[courses.size()][columnNums];
+			int i = 0;
+			Iterator<Course> iterator = courses.iterator();
+			while (iterator.hasNext()) {
+				Course course = iterator.next();
+				data[i][idIndex] = course.getId();
+				data[i][nameIndex] = course.getCourseName();
+				data[i][timeIndex] = course.getCourseTime();
+				data[i][creditIndex] = course.getCredit();
+				data[i][teacherIndex] = course.getTeacher();
+				data[i][addressIndex] = course.getAddress();
+				
+				i++;
 			}
+				
 		}
 		return data;
 	}
