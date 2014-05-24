@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class DatabaseUtils {
 
@@ -37,7 +35,6 @@ public class DatabaseUtils {
 			Connection connection = ConnectionFactory.getInstance().getConnection();
 			String sql = "select * from " + pTableName + " where " + keyword
 					+ "='" + matchword + "'";
-			System.out.println(sql);
 			PreparedStatement pstm = connection.prepareStatement(sql);
 			rs = pstm.executeQuery();
 		} catch (SQLException e) {

@@ -2,9 +2,15 @@ package edu.nju.educationSystem.server.service;
 
 import java.util.ArrayList;
 
+import edu.nju.educationSystem.server.dao.StudentDAO;
 import edu.nju.educationSystem.server.model.Student;
 
 public class StudentService {
+	private StudentDAO studentDAO;
+	
+	public StudentService() {
+		studentDAO = new StudentDAO();
+	}
 	
 	public String getStudentId(String studentXml) {
 		//TODO
@@ -17,6 +23,8 @@ public class StudentService {
 	}
 	
 	public void addStudents(ArrayList<Student> students) {
-		//TODO
+		for (Student student : students) {
+			studentDAO.add(student);
+		}
 	}
 }
