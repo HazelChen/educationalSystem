@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import edu.nju.educationSystem.server.factory.FacadeFactory;
+import edu.nju.educationSystem.server.service.ServiceFacade;
+
 public class ServerRun implements Runnable{
 	
 	public BufferedReader input;
@@ -18,10 +21,10 @@ public class ServerRun implements Runnable{
 	public void run() {
 		try {
 			while (true) {
-				String option = input.readLine();
-				//TODO
+				String command = input.readLine();
 				String xml = input.readLine();
-				//TODO
+				ServiceFacade serviceFacade = FacadeFactory.getInstance().getServiceFacade();
+				serviceFacade.networkCommandExecute(command, xml);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -32,6 +35,15 @@ public class ServerRun implements Runnable{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	public void close() {
+		try {
+			input.close();
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

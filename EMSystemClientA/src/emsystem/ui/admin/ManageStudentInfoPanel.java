@@ -94,9 +94,9 @@ public class ManageStudentInfoPanel extends JPanel {
 			data = new Object[students.length][columnNums];
 			for (int i = 0; i < data.length; i++) {
 				data[i][idIndex] = students[i].getId();
-				data[i][nameIndex] = students[i].getmName();
+				data[i][nameIndex] = students[i].getName();
 				data[i][passwordIndex] = students[i].getmPassword();
-				data[i][sexIndex] = students[i].getmSex();
+				data[i][sexIndex] = students[i].getSex();
 				data[i][majorIndex] = students[i].getMajor();
 			}
 		}

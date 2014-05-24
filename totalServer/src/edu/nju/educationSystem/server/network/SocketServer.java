@@ -8,35 +8,31 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class SocketServer {
-	private BufferedReader[] input;
-	private PrintWriter[] output;
+	private ServerRun[] serverRuns;
 	
 	public void run() {
 		clientAccepted();
 	}
 	
 	public void close() {
-		for (int i = 0; i < input.length; i++) {
-			try {
-				input[i].close();
-				output[i].close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		for (int i = 0; i < serverRuns.length; i++) {
+			serverRuns[i].close();
 		}
 	}
+	
+	
 	
 	private void clientAccepted() {
 		try {
 			@SuppressWarnings("resource")
 			ServerSocket serverSocket = new ServerSocket(8000);
 			int acceptedIndex = 0;
-			while (acceptedIndex < input.length) {
+			while (acceptedIndex < serverRuns.length) {
 				Socket socket = serverSocket.accept();
-				input[acceptedIndex] = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				output[acceptedIndex] = new PrintWriter(socket.getOutputStream());
+				BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				PrintWriter output = new PrintWriter(socket.getOutputStream());
 				
-				ServerRun serverRun = new ServerRun(input[acceptedIndex], output[acceptedIndex]);
+				ServerRun serverRun = new ServerRun(input, output);
 				Thread thread = new Thread(serverRun);
 				thread.start();
 			}

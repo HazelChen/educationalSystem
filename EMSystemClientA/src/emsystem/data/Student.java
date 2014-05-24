@@ -39,31 +39,15 @@ public class Student implements Serializable{
 		return mMajor;
 	}
 
-	public String getmId() {
-		return mId;
-	}
-
-	public void setmId(String mId) {
-		this.mId = mId;
-	}
-
-	public String getmName() {
-		return mName;
-	}
-
+	
 	public void setmName(String mName) {
 		this.mName = mName;
 	}
 
-	public String getmSex() {
-		return mSex;
-	}
 
 	public void setmSex(String mSex) {
 		this.mSex = mSex;
 	}
-
-	
 
 	public void setmMajor(String mMajor) {
 		this.mMajor = mMajor;
