@@ -29,14 +29,14 @@ public class MockService implements StudentService{
 	 */
 	@Override
 	public Student getStudentInfo(String pId){
-		Student student = new Student("001", "¹þ¹þ", "Å®", MajorType.DEPARTMENT_A);
+		Student student = new Student("001", "¹þ¹þ", "Å®", MajorType.DEPARTMENT_A,"");
 		return student;
 	}
 	
 	@Override
 	public Course[] getMyCourses(String pId){
-		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china",1);
-		Course course2 = new Course("002", "art", 2, "1-2", "Tom", "China",1);
+		Course course1 = new Course("003", "math", 3, 2, "mike", "china","");
+		Course course2 = new Course("004", "art", 2, 2, "Tom", "China","");
 		
 		Course[] courses = new Course[]{course1, course2};
 		return courses;
@@ -48,8 +48,8 @@ public class MockService implements StudentService{
 	 */
 	@Override
 	public Course[] getCoursesFromA(String pId){
-		Course course1 = new Course("003", "math", 3, "5-6", "mike", "china",1);
-		Course course2 = new Course("004", "art", 2, "1-2", "Tom", "China",1);
+		Course course1 = new Course("003", "math", 3, 2, "mike", "china","");
+		Course course2 = new Course("004", "art", 2, 2, "Tom", "China","");
 		
 		Course[] courses = new Course[]{course1, course2};
 		return courses;
@@ -57,17 +57,16 @@ public class MockService implements StudentService{
 	
 	@Override
 	public Course[] getCoursesFromB(String pId){
-		Course course1 = new Course("005", "math", 3, "5-6", "mike", "china",1);
-		Course course2 = new Course("006", "art", 2, "1-2", "Tom", "China",1);
-		
+		Course course1 = new Course("003", "math", 3, 2, "mike", "china","");
+		Course course2 = new Course("004", "art", 2, 2, "Tom", "China","");
 		Course[] courses = new Course[]{course1, course2};
 		return courses;
 	}
 	
 	@Override
 	public Course[] getCoursesFromC(String pId){
-		Course course1 = new Course("007", "math", 3, "5-6", "mike", "china",1);
-		Course course2 = new Course("008", "art", 2, "1-2", "Tom", "China",1);
+		Course course1 = new Course("003", "math", 3, 2, "mike", "china","");
+		Course course2 = new Course("004", "art", 2, 2, "Tom", "China","");
 		
 		Course[] courses = new Course[]{course1, course2};
 		return courses;
