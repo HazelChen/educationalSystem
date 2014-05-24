@@ -32,6 +32,8 @@ public class ManageStudentInfoPanel extends JPanel {
 	private JButton mEditButton;
 	private JButton mDeleteButton;
 	private JButton mAddButton;
+	
+	private JScrollPane scrollPane;
 
 	private String[] infoColumnsName = new String[] { "学号", "姓名","密码", "性别", "院系" };
 
@@ -68,7 +70,7 @@ public class ManageStudentInfoPanel extends JPanel {
 			}
 		});
 
-		JScrollPane scrollPane = new JScrollPane(mTable);
+		scrollPane = new JScrollPane(mTable);
 		add(scrollPane);
 
 		JPanel operatePanel = new JPanel();
@@ -130,8 +132,8 @@ public class ManageStudentInfoPanel extends JPanel {
 					String sex = (String) mTable.getValueAt(row, sexIndex);
 					String major = (String) mTable.getValueAt(row, majorIndex);
 					
-					String[] info = new String[]{id, name, password, sex, major};
-					EditStudentInfoPanel editStudentInfoPanel = new EditStudentInfoPanel(mFrame,info);
+					Student student = new Student(id, name, sex, major, password);
+					EditStudentInfoPanel editStudentInfoPanel = new EditStudentInfoPanel(mFrame,student);
 					mFrame.setContentPane(editStudentInfoPanel);
 					mFrame.validate();
 					mFrame.repaint();
@@ -154,14 +156,32 @@ public class ManageStudentInfoPanel extends JPanel {
 	private void delete(){
 		String pId = (String) mTable.getValueAt(mTable.getSelectedRow(), idIndex);
 		AdminServiceAdapter adapter = AdminServiceAdapter.getInstance();
-		if (adapter.deleteStudent(pId)) 
+		if (adapter.deleteStudent(pId)) {
 			JOptionPane.showMessageDialog(null, "操作成功");
+			refresh();
+		}
 		else
 			JOptionPane.showMessageDialog(null, "删除失败");
 	}
 	
 	private void showAlertMessage(){
 		JOptionPane.showMessageDialog(null, "请选择要操作的行!");
+	}
+	
+	private void refresh(){
+		mTable = new JTable(getData(), infoColumnsName){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -4155819880040959665L;
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		mTable.getTableHeader().setReorderingAllowed(false);
+		scrollPane.setViewportView(mTable);
 	}
 	
 }

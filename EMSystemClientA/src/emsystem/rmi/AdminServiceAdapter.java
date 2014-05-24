@@ -87,5 +87,45 @@ public class AdminServiceAdapter {
 		}
 		return name;
 	}
+	
+	public boolean addCourse(Course course){
+		boolean isSucess = false;
+		try {
+			isSucess = RMI.getAdminService().addCourse(course);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return isSucess;
+	}
+	
+	public boolean modifyCourse(Course course){
+		boolean isSucess = false;
+		try {
+			isSucess = RMI.getAdminService().modifyCourse(course);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return isSucess;
+	}
+	
+	public boolean deleteCourse(String pCourseId){
+		boolean isSucess = false;
+		try {
+			isSucess = RMI.getAdminService().deleteCourse(pCourseId);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return isSucess;
+	}
+	
+	public ArrayList<Student> getChoosedStudents(String pCourseId){
+		ArrayList<Student> students = null;
+		try {
+			students = RMI.getAdminService().getChoosedStudents(pCourseId);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return students;
+	}
 
 }

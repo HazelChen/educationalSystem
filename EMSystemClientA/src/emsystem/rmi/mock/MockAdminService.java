@@ -45,7 +45,8 @@ public class MockAdminService implements AdminService {
 	@Override
 	public ArrayList<Course> getCourses() {
 		ArrayList<Course> courses = new ArrayList<>();
-		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china", "是");
+		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china",
+				"是");
 		Course course2 = new Course("002", "art", 2, "1-2", "Tom", "China", "否");
 
 		courses.add(course1);
@@ -55,7 +56,34 @@ public class MockAdminService implements AdminService {
 
 	@Override
 	public String getMajorName() {
+
 		return "专业A";
 	}
 
+	@Override
+	public boolean addCourse(Course course) {
+		return true;
+	}
+
+	@Override
+	public boolean modifyCourse(Course course) {
+		return true;
+	}
+
+	@Override
+	public boolean deleteCourse(String pCourseId) {
+		return true;
+	}
+
+	@Override
+	public ArrayList<Student> getChoosedStudents(String pCourseId){
+		ArrayList<Student> students = new ArrayList<Student>();
+		Student student1 = new Student("001", "哈哈", "女", getMajorName(),
+				"12334");
+		Student student2 = new Student("002", "呵呵", "男", getMajorName(), "11");
+
+		students.add(student1);
+		students.add(student2);
+		return students;
+	}
 }

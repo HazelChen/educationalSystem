@@ -1,8 +1,11 @@
 package emsystem.ui.admin;
 
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -13,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import emsystem.data.Course;
+import emsystem.rmi.AdminServiceAdapter;
 import emsystem.ui.MainFrame;
 
 public class EditCourseInfoPanel extends JPanel {
@@ -43,10 +47,21 @@ public class EditCourseInfoPanel extends JPanel {
 	 * Create the panel.
 	 */
 	private MainFrame mFrame;
-	private String[] mOriginData;
+	private Course mCourse;
 
 	public EditCourseInfoPanel(MainFrame pFrame) {
 		mFrame = pFrame;
+		initAdd();
+		
+	}
+
+	public EditCourseInfoPanel(MainFrame pFrame, Course pCourse) {
+		mFrame = pFrame;
+		mCourse = pCourse;
+		initEdit();
+	}
+
+	private void init(){
 		setLayout(null);
 
 		JLabel idLable = new JLabel(idString);
@@ -120,40 +135,82 @@ public class EditCourseInfoPanel extends JPanel {
 		add(shareCheck);
 
 		JLabel backLabel = new JLabel(backString);
+		backLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AdminOperationPanel operationPanel = new AdminOperationPanel(
+						mFrame);
+				mFrame.setContentPane(operationPanel);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+		});
 		backLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		backLabel.setBounds(35, 24, 103, 29);
 		add(backLabel);
-
-		initAdd();
+		
+		
 
 	}
-
-	public EditCourseInfoPanel(MainFrame pFrame, String[] pOriginData) {
-		this(pFrame);
-		mOriginData = pOriginData;
-		initEdit();
-	}
-
 	private void initAdd() {
+		init();
 		okButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				if (getCourseInfo() != null) {
+
+					AdminServiceAdapter adapter = AdminServiceAdapter
+							.getInstance();
+					if (adapter.addCourse(getCourseInfo())) {
+						showSuccessMessage();
+						clear();
+					} else
+						showFailMessage();
+				}
 			}
 		});
 	}
 
 	private void initEdit() {
+		init();
 		idTextField.setEditable(false);
+		if (mCourse.getmShareFlag().equals("是")) {
+			shareCheck.setEnabled(false);
+		}
 
+		idTextField.setText(mCourse.getId());
+		nameTextField.setText(mCourse.getCourseName());
+		timeTextField.setText(mCourse.getCourseTime());
+		teacherTextField.setText(mCourse.getTeacher());
+		addressTextField.setText(mCourse.getAddress());
+		creditTextField.setText(mCourse.getCredit()+"");
+		shareCheck.setSelected(mCourse.getShareFlag().equals("是"));
+		
+		okButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (getCourseInfo() != null) {
+					AdminServiceAdapter adapter = AdminServiceAdapter.getInstance();
+
+					if (adapter.modifyCourse(getCourseInfo())) {
+						showSuccessMessage();
+					} else
+						showFailMessage();
+				}
+			}
+		});
 	}
 
 	private Course getCourseInfo() {
 		Course course = null;
 		String courseId = idTextField.getText().trim();
 		String courseName = nameTextField.getText().trim();
-		String time = nameTextField.getText().trim();
+		String time = timeTextField.getText().trim();
 		String teacher = teacherTextField.getText().trim();
 		String address = addressTextField.getText().trim();
 		String creditString = creditTextField.getText().trim();
@@ -176,12 +233,32 @@ public class EditCourseInfoPanel extends JPanel {
 		return course;
 	}
 
+	private void clear() {
+		idTextField.setText("");
+		nameTextField.setText("");
+		nameTextField.setText("");
+		timeTextField.setText("");
+		teacherTextField.setText("");
+		addressTextField.setText("");
+		creditTextField.setText("");
+		shareCheck.setSelected(false);
+
+	}
+
 	private void showAlertMessage() {
 		JOptionPane.showMessageDialog(null, "信息填写不完全");
 	}
 
 	private void showCreditError() {
 		JOptionPane.showMessageDialog(null, "学分务必为数字");
+	}
+
+	private void showSuccessMessage() {
+		JOptionPane.showMessageDialog(null, "操作成功");
+	}
+
+	private void showFailMessage() {
+		JOptionPane.showMessageDialog(null, "操作失败");
 	}
 
 	private boolean isDigit(String credit) {

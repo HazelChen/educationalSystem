@@ -38,7 +38,6 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 	private JPanel contentPanel;
 
 	private MainFrame mFrame;
-	private JLabel label;
 
 
 	public AdminOperationPanel(MainFrame pFrame) {

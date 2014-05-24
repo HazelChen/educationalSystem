@@ -40,6 +40,7 @@ public class RMI {
 		
 		return new MockAdminService();
 	}
+	
 	public static void setIp(String pIp) {
 		ip = pIp;
 		isDirty = true;

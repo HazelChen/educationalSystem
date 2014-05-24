@@ -41,7 +41,6 @@ public class StudentCoursesPanel extends JPanel {
 	private Object[][] getData(){
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
 		HashMap<Course, Integer>  coursesMap= adapter.getMyCourses(mAccount);
-//		int[] scores = adapter.getScores(mAccount);
 		Object[][] data = new Object[][]{};
 		if (coursesMap != null) {
 			Set<Course> courses = coursesMap.keySet();
