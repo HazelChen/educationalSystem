@@ -2,9 +2,9 @@ package emsystem.rmi;
 
 import java.util.ArrayList;
 
-import emsystem.logic.Course;
+import data.Course;
+import data.Student;
 import emsystem.logic.MajorType;
-import emsystem.logic.Student;
 
 public class MockService implements StudentService{
 	

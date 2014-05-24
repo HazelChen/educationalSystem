@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import emsystem.logic.Course;
+import data.Course;
 import emsystem.rmi.StudentServiceAdapter;
 import emsystem.ui.widget.CustomedTable;
 

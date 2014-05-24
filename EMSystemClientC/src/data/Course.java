@@ -1,4 +1,4 @@
-package emsystem.logic;
+package data;
 
 import java.io.Serializable;
 
@@ -7,15 +7,16 @@ public class Course implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 8076731434972170530L;
-	private String mId;
-	private String mCourseName;
-	private int mCredit;
-	private String mCourseTime;
-	private String mTeacher;
-	private String mAddress;
-	private int mShareFlag;
+	private String mId;//编号
+	private String mCourseName;//名称
 	
-	public Course(String pId, String pCourseName, int pCredit,String pCourseTime, String pTeacher, String pAddress, int pShareFlag){
+	private int mCredit;//学分
+	private int mCourseTime;//课时
+	private String mTeacher;//老师
+	private String mAddress;//地点
+	private String mShareFlag;//共享
+	
+	public Course(String pId, String pCourseName, int pCredit,int pCourseTime, String pTeacher, String pAddress, String pShareFlag){
 		mId = pId;
 		mCourseName = pCourseName;
 		mCredit = pCredit;
@@ -37,7 +38,7 @@ public class Course implements Serializable{
 		return mCredit;
 	}
 	
-	public String getCourseTime(){
+	public int getCourseTime(){
 		return mCourseTime;
 	}
 	
@@ -49,7 +50,7 @@ public class Course implements Serializable{
 		return mAddress;
 	}
 	
-	public int getShareFlag(){
+	public String getShareFlag(){
 		return mShareFlag;
 	}
 }

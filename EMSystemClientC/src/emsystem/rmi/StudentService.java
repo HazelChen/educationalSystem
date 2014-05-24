@@ -5,8 +5,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import emsystem.logic.Course;
-import emsystem.logic.Student;
+import data.Course;
+import data.Student;
 
 public interface StudentService extends Remote{
 	/**
