@@ -49,8 +49,6 @@ public class Student implements Serializable{
 		this.mSex = mSex;
 	}
 
-	
-
 	public void setmMajor(String mMajor) {
 		this.mMajor = mMajor;
 	}
