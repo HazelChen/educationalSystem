@@ -2,9 +2,15 @@ package edu.nju.educationSystem.server.service;
 
 import java.util.ArrayList;
 
+import edu.nju.educationSystem.server.dao.CourseDAO;
 import edu.nju.educationSystem.server.model.Course;
 
 public class CourseService {
+	private CourseDAO courseDAO;
+	
+	public CourseService() {
+		courseDAO = new CourseDAO();
+	}
 	
 	public String toCourseXml(ArrayList<Course> courses) {
 		//TODO
@@ -17,7 +23,9 @@ public class CourseService {
 	}
 	
 	public void addCourses(ArrayList<Course> courses) {
-		//TODO
+		for (Course course : courses) {
+			courseDAO.addCourse(course);
+		}
 	}
 	
 }
