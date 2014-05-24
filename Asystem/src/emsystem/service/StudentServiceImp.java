@@ -106,6 +106,23 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 		return result;
 	}
 
+
+	@Override
+	public boolean[] dropCourses(String pStudentId, ArrayList<String> pCourseIdlist){
+		boolean[] result=new boolean[pCourseIdlist.size()];
+		for(int i=0;i<pCourseIdlist.size();i++){
+			String cid=pCourseIdlist.get(i);
+			if(cid.startsWith("1")){
+				//退选A系统的课
+				boolean b=dwchoice.delete(cid, pStudentId);
+				result[i]=b;
+			}else{
+				//选择外院的课
+			}
+		}
+		return result;
+	}
+
 	
 
 }
