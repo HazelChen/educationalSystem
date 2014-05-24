@@ -13,9 +13,9 @@ public class Course implements Serializable{
 	private String mCourseTime;//¿ÎÊ±
 	private String mTeacher;
 	private String mAddress;
-	private int mShareFlag;
+	private String mShareFlag;
 	
-	public Course(String pId, String pCourseName, int pCredit,String pCourseTime, String pTeacher, String pAddress, int pShareFlag){
+	public Course(String pId, String pCourseName, int pCredit,String pCourseTime, String pTeacher, String pAddress, String pShareFlag){
 		mId = pId;
 		mCourseName = pCourseName;
 		mCredit = pCredit;
@@ -49,7 +49,7 @@ public class Course implements Serializable{
 		return mAddress;
 	}
 	
-	public int getShareFlag(){
+	public String getShareFlag(){
 		return mShareFlag;
 	}
 
@@ -101,11 +101,11 @@ public class Course implements Serializable{
 		this.mAddress = mAddress;
 	}
 
-	public int getmShareFlag() {
+	public String getmShareFlag() {
 		return mShareFlag;
 	}
 
-	public void setmShareFlag(int mShareFlag) {
+	public void setmShareFlag(String mShareFlag) {
 		this.mShareFlag = mShareFlag;
 	}
 

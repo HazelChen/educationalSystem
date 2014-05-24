@@ -1,5 +1,8 @@
 package emsystem.rmi;
 
+import emsystem.rmi.mock.MockAdminService;
+import emsystem.rmi.mock.MockStudentService;
+
 
 
 public class RMI {
@@ -15,7 +18,7 @@ public class RMI {
 		return ip;
 	}
 	
-	public static StudentService getService() {
+	public static StudentService getStudentService() {
 //		if (service == null || isDirty) {
 //			try {
 //				service = (IBusinessService) Naming.lookup("rmi://" + ip + "/Service");
@@ -30,9 +33,13 @@ public class RMI {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		return new MockService();
+		return new MockStudentService();
 	}
 
+	public static AdminService getAdminService(){
+		
+		return new MockAdminService();
+	}
 	public static void setIp(String pIp) {
 		ip = pIp;
 		isDirty = true;

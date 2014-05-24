@@ -1,101 +1,191 @@
 package emsystem.ui.admin;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class EditCourseInfoPanel extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+import emsystem.data.Course;
+import emsystem.ui.MainFrame;
 
+public class EditCourseInfoPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4741102403219896539L;
+	private JTextField idTextField;
+	private JTextField nameTextField;
+	private JTextField timeTextField;
+	private JTextField creditTextField;
+	private JTextField teacherTextField;
+	private JTextField addressTextField;
+
+	private JCheckBox shareCheck;
+	JButton okButton;
+
+	private String idString = "¿Î³Ì±àºÅ";
+	private String nameString = "¿Î³ÌÃû³Æ";
+	private String timeString = "¿ÎÊ±";
+	private String creditString = "Ñ§·Ö";
+	private String teacherString = "ÀÏÊ¦";
+	private String addressString = "µØµã";
+	private String shareString = "¹²Ïí";
+
+	private String backString = "<html><u>·µ»Ø²Ù×÷½çÃæ</u></html>";
 	/**
 	 * Create the panel.
 	 */
-	public EditCourseInfoPanel() {
+	private MainFrame mFrame;
+	private String[] mOriginData;
+
+	public EditCourseInfoPanel(MainFrame pFrame) {
+		mFrame = pFrame;
 		setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		lblNewLabel.setBounds(58, 37, 89, 36);
-		add(lblNewLabel);
-		
-		textField = new JTextField();
-		textField.setBounds(159, 39, 136, 36);
-		add(textField);
-		textField.setColumns(10);
-		
-		JLabel label = new JLabel("New label");
-		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		label.setBounds(58, 97, 89, 36);
-		add(label);
-		
-		JLabel label_1 = new JLabel("New label");
-		label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		label_1.setBounds(58, 152, 89, 36);
-		add(label_1);
-		
-		JLabel label_2 = new JLabel("New label");
-		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		label_2.setBounds(58, 208, 89, 36);
-		add(label_2);
-		
-		JLabel label_3 = new JLabel("New label");
-		label_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		label_3.setBounds(352, 152, 89, 36);
-		add(label_3);
-		
-		JLabel label_4 = new JLabel("New label");
-		label_4.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		label_4.setBounds(352, 97, 89, 36);
-		add(label_4);
-		
-		JLabel label_5 = new JLabel("New label");
-		label_5.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		label_5.setBounds(352, 208, 89, 36);
-		add(label_5);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(159, 106, 136, 36);
-		add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(159, 161, 136, 36);
-		add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(159, 217, 136, 36);
-		add(textField_3);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(461, 106, 136, 36);
-		add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(461, 161, 136, 36);
-		add(textField_5);
-		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(461, 217, 136, 36);
-		add(textField_6);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(284, 315, 93, 23);
-		add(btnNewButton);
+
+		JLabel idLable = new JLabel(idString);
+		idLable.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+		idLable.setBounds(163, 107, 89, 36);
+		add(idLable);
+
+		idTextField = new JTextField();
+		idTextField.setBounds(262, 109, 136, 36);
+		add(idTextField);
+		idTextField.setColumns(10);
+
+		JLabel nameLabel = new JLabel(nameString);
+		nameLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+		nameLabel.setBounds(163, 170, 89, 36);
+		add(nameLabel);
+
+		JLabel timeLabel = new JLabel(timeString);
+		timeLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+		timeLabel.setBounds(192, 225, 89, 36);
+		add(timeLabel);
+
+		JLabel creditLabel = new JLabel(creditString);
+		creditLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+		creditLabel.setBounds(192, 285, 89, 36);
+		add(creditLabel);
+
+		JLabel addressLlabel = new JLabel(addressString);
+		addressLlabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+		addressLlabel.setBounds(468, 225, 89, 36);
+		add(addressLlabel);
+
+		JLabel teacherLabel = new JLabel(teacherString);
+		teacherLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+		teacherLabel.setBounds(468, 170, 89, 36);
+		add(teacherLabel);
+
+		nameTextField = new JTextField();
+		nameTextField.setColumns(10);
+		nameTextField.setBounds(262, 172, 136, 36);
+		add(nameTextField);
+
+		timeTextField = new JTextField();
+		timeTextField.setColumns(10);
+		timeTextField.setBounds(262, 227, 136, 36);
+		add(timeTextField);
+
+		creditTextField = new JTextField();
+		creditTextField.setColumns(10);
+		creditTextField.setBounds(262, 287, 136, 36);
+		add(creditTextField);
+
+		teacherTextField = new JTextField();
+		teacherTextField.setColumns(10);
+		teacherTextField.setBounds(514, 172, 136, 36);
+		add(teacherTextField);
+
+		addressTextField = new JTextField();
+		addressTextField.setColumns(10);
+		addressTextField.setBounds(514, 227, 136, 36);
+		add(addressTextField);
+
+		okButton = new JButton("È·ÈÏ");
+		okButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		okButton.setBounds(387, 382, 93, 36);
+		add(okButton);
+
+		shareCheck = new JCheckBox(shareString);
+		shareCheck.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
+		shareCheck.setBounds(474, 293, 103, 23);
+		add(shareCheck);
+
+		JLabel backLabel = new JLabel(backString);
+		backLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+		backLabel.setBounds(35, 24, 103, 29);
+		add(backLabel);
+
+		initAdd();
 
 	}
 
+	public EditCourseInfoPanel(MainFrame pFrame, String[] pOriginData) {
+		this(pFrame);
+		mOriginData = pOriginData;
+		initEdit();
+	}
+
+	private void initAdd() {
+		okButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+	}
+
+	private void initEdit() {
+		idTextField.setEditable(false);
+
+	}
+
+	private Course getCourseInfo() {
+		Course course = null;
+		String courseId = idTextField.getText().trim();
+		String courseName = nameTextField.getText().trim();
+		String time = nameTextField.getText().trim();
+		String teacher = teacherTextField.getText().trim();
+		String address = addressTextField.getText().trim();
+		String creditString = creditTextField.getText().trim();
+
+		if (courseId.equals("") || courseName.equals("") || time.equals("")
+				|| teacher.equals("") || address.equals("")
+				|| creditString.equals("")) {
+			showAlertMessage();
+		} else if (!isDigit(creditString)) {
+			showCreditError();
+		} else {
+			int credit;
+			credit = Integer.valueOf(creditString);
+
+			String shareFlag = shareCheck.isSelected() ? "ÊÇ" : "·ñ";
+
+			course = new Course(courseId, courseName, credit, time, teacher,
+					address, shareFlag);
+		}
+		return course;
+	}
+
+	private void showAlertMessage() {
+		JOptionPane.showMessageDialog(null, "ÐÅÏ¢ÌîÐ´²»ÍêÈ«");
+	}
+
+	private void showCreditError() {
+		JOptionPane.showMessageDialog(null, "Ñ§·ÖÎñ±ØÎªÊý×Ö");
+	}
+
+	private boolean isDigit(String credit) {
+		Pattern pattern = Pattern.compile("[0-9]*");
+		return pattern.matcher(credit).matches();
+	}
 }

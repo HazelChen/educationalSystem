@@ -13,9 +13,6 @@ public interface StudentService extends Remote{
 	 * 
 	 * µÇÂ¼·þÎñ
 	 */
-	public boolean adminLogin(String pAccount, String pPassword) throws RemoteException;
-	
-	
 	public boolean studentLogin(String pId, String pPassword) throws RemoteException;
 	
 	/**
