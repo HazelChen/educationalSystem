@@ -28,8 +28,8 @@ public class MockStudentService implements StudentService{
 	
 	@Override
 	public HashMap<Course, Integer> getMyCourses(String pId){
-		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china","是");
-		Course course2 = new Course("002", "art", 2, "1-2", "Tom", "China","否");
+		Course course1 = new Course("001", "math", 3, 3, "mike", "china","是");
+		Course course2 = new Course("002", "art", 2, 3, "Tom", "China","否");
 		
 		HashMap<Course, Integer> courses = new HashMap<Course, Integer>();
 		courses.put(course1, new Integer(90));
@@ -50,8 +50,8 @@ public class MockStudentService implements StudentService{
 	@Override
 	public ArrayList<Course> getCoursesFromA(String pId){
 		ArrayList<Course> courses = new ArrayList<Course>();
-		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china","是");
-		Course course2 = new Course("002", "art", 2, "1-2", "Tom", "China","否");
+		Course course1 = new Course("001", "math", 3, 3, "mike", "china","是");
+		Course course2 = new Course("002", "art", 2, 3, "Tom", "China","否");
 		
 		courses.add(course1);
 		courses.add(course2);
@@ -61,8 +61,8 @@ public class MockStudentService implements StudentService{
 	@Override
 	public ArrayList<Course> getCoursesFromB(String pId){
 		ArrayList<Course> courses = new ArrayList<Course>();
-		Course course1 = new Course("003", "math", 3, "5-6", "mike", "china","是");
-		Course course2 = new Course("004", "art", 2, "1-2", "Tom", "China","否");
+		Course course1 = new Course("003", "math", 3, 2, "mike", "china","是");
+		Course course2 = new Course("004", "art", 2, 2, "Tom", "China","否");
 		
 		courses.add(course1);
 		courses.add(course2);
@@ -72,8 +72,8 @@ public class MockStudentService implements StudentService{
 	@Override
 	public ArrayList<Course> getCoursesFromC(String pId){
 		ArrayList<Course> courses = new ArrayList<Course>();
-		Course course1 = new Course("005", "math", 3, "5-6", "mike", "china","是");
-		Course course2 = new Course("006", "art", 2, "1-2", "Tom", "China","否");
+		Course course1 = new Course("005", "math", 3, 2, "mike", "china","是");
+		Course course2 = new Course("006", "art", 2, 2, "Tom", "China","否");
 		
 		courses.add(course1);
 		courses.add(course2);
@@ -97,8 +97,8 @@ public class MockStudentService implements StudentService{
 	@Override
 	public ArrayList<Course> getCoursesToDrop(String pStudentId){
 		ArrayList<Course> courses = new ArrayList<Course>();
-		Course course1 = new Course("005", "math", 3, "5-6", "mike", "china","是");
-		Course course2 = new Course("006", "art", 2, "1-2", "Tom", "China","否");
+		Course course1 = new Course("005", "math", 3, 1, "mike", "china","是");
+		Course course2 = new Course("006", "art", 2, 1, "Tom", "China","否");
 		
 		courses.add(course1);
 		courses.add(course2);

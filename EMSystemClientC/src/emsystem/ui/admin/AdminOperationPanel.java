@@ -38,7 +38,6 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 	private JPanel contentPanel;
 
 	private MainFrame mFrame;
-	private JLabel label;
 
 
 	public AdminOperationPanel(MainFrame pFrame) {
@@ -97,8 +96,8 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 	public void menuSelected(MenuEvent e) {
 		if (e.getSource().equals(mStudentInfoMenu)) {
 			contentPanel.removeAll();
-			// StudentInfoPanel panel = new StudentInfoPanel(mAccount);
-			// contentPanel.add(panel);
+			ManageStudentInfoPanel studentInfoPanel = new ManageStudentInfoPanel(mFrame);
+			contentPanel.add(studentInfoPanel);
 			this.add(contentPanel, BorderLayout.CENTER);
 			repaint();
 			validate();
@@ -106,9 +105,8 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 
 		else if (e.getSource().equals(mCourseInfoMenu)) {
 			contentPanel.removeAll();
-			// StudentClassesPanel studentClassesPanel = new
-			// StudentClassesPanel(mAccount);
-			// contentPanel.add(studentClassesPanel);
+			ManageCourseInfoPanel courseInfoPanel = new ManageCourseInfoPanel(mFrame);
+			contentPanel.add(courseInfoPanel);
 			this.add(contentPanel, BorderLayout.CENTER);
 			repaint();
 			validate();
@@ -117,10 +115,10 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 
 		else if (e.getSource().equals(mChooseCourseInfoMenu)) {
 			contentPanel.removeAll();
-			// StudentChooseClassPanel chooseClassPanel = new
-			// StudentChooseClassPanel(mAccount);
-			// contentPanel.add(chooseClassPanel);
+			ManageChoicePanel choicePanel = new ManageChoicePanel(mFrame);
+			contentPanel.add(choicePanel);
 			this.add(contentPanel, BorderLayout.CENTER);
+//			mFrame.setContentPane(choicePanel);
 			repaint();
 			validate();
 		}

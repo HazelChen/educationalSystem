@@ -166,10 +166,8 @@ public class EditStudentInfoPanel extends JPanel {
 				if (getNewInfo() != null) {
 					AdminServiceAdapter adapter = AdminServiceAdapter
 							.getInstance();
-					if (adapter.addStudent(getNewInfo())){
+					if (adapter.addStudent(getNewInfo()))
 						showSuccessMessage();
-						clear();
-					}
 					else
 						showFailMessage();
 				}
@@ -182,7 +180,7 @@ public class EditStudentInfoPanel extends JPanel {
 
 		idTextField.setText(mStudent.getId());
 		nameTextField.setText(mStudent.getName());
-		passwrodField.setText(mStudent.getmPassword());
+		passwrodField.setText(mStudent.getPwd());
 		if (mStudent.getSex().equals("ÄÐ")) {
 			maleButton.setSelected(true);
 		} else {
@@ -191,6 +189,7 @@ public class EditStudentInfoPanel extends JPanel {
 		majorTextField.setText(mStudent.getMajor());
 
 		idTextField.setEditable(false);
+		majorTextField.setEditable(false);
 		okButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -198,8 +197,10 @@ public class EditStudentInfoPanel extends JPanel {
 				if (getNewInfo() != null) {
 					AdminServiceAdapter adapter = AdminServiceAdapter
 							.getInstance();
-					if (adapter.modifyStudent(getNewInfo()))
+					if (adapter.modifyStudent(getNewInfo())){
 						showSuccessMessage();
+						clear();
+					}
 					else
 						showFailMessage();
 				}

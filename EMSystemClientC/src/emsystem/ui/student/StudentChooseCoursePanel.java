@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -199,36 +198,37 @@ public class StudentChooseCoursePanel extends JPanel {
 	private Object[][] getAData() {
 
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
-		Course[] courses = adapter.getCoursesFromA(mAccount);
+		ArrayList<Course> courses = adapter.getCoursesFromA(mAccount);
 		
 		return getInitData(courses);
 	}
 
 	private Object[][] getBData() {
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
-		Course[] courses = adapter.getCoursesFromB(mAccount);
+		ArrayList<Course> courses = adapter.getCoursesFromB(mAccount);
 		
 		return getInitData(courses);
 	}
 
 	private Object[][] getCData() {
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
-		Course[] courses = adapter.getCoursesFromC(mAccount);
+		ArrayList<Course> courses = adapter.getCoursesFromC(mAccount);
 		
 		return getInitData(courses);
 	}
 
-	private Object[][] getInitData(Course[] courses){
+	private Object[][] getInitData(ArrayList<Course> courses){
 		Object[][] data = new Object[][]{};
 		if (courses != null) {
-			data = new Object[courses.length][columnNums];
-			for (int i = 0; i < courses.length; i++) {
-				data[i][idIndex] = courses[i].getId();
-				data[i][nameIndex] = courses[i].getCourseName();
-				data[i][timeIndex] = courses[i].getCourseTime();
-				data[i][creditIndex] = courses[i].getCredit();
-				data[i][teacherIndex] = courses[i].getTeacher();
-				data[i][addressIndex] = courses[i].getAddress();
+			data = new Object[courses.size()][columnNums];
+			for (int i = 0; i < courses.size(); i++) {
+				Course course = courses.get(i);
+				data[i][idIndex] = course.getId();
+				data[i][nameIndex] = course.getCourseName();
+				data[i][timeIndex] = course.getCourseTime();
+				data[i][creditIndex] = course.getCredit();
+				data[i][teacherIndex] = course.getTeacher();
+				data[i][addressIndex] = course.getAddress();
 				data[i][chooseindex] = false;
 			}
 		}
@@ -248,9 +248,7 @@ public class StudentChooseCoursePanel extends JPanel {
 	
 	private void doPost(){
 		JOptionPane.showMessageDialog(null, "已提交选课请求，稍后查看选课结果通知:D");
-		HashMap<String, ArrayList<String>> messages = new HashMap<String, ArrayList<String>>();
-		messages.put(mAccount, getCheckedIds());
-		Inform.setMessages(messages);
+		Inform.addMessages(mAccount, getCheckedIds());
 	}
 
 }

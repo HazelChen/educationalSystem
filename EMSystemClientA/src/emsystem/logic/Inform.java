@@ -19,4 +19,16 @@ public class Inform {
 	public static void setMessages(HashMap<String, ArrayList<String>> pInformMessages){
 		mInformMessages = pInformMessages;
 	}
+	
+	public static void addMessages(String pAccount, ArrayList<String> pCourseIds){
+		if (mInformMessages == null) {
+			mInformMessages = new HashMap<String, ArrayList<String>>();
+			mInformMessages.put(pAccount, pCourseIds);
+			return;
+		}
+		for (int i = 0; i < pCourseIds.size(); i++) {
+			mInformMessages.get(pAccount).add(pCourseIds.get(i));
+		}
+		
+	}
 }
