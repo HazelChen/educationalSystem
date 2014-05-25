@@ -20,7 +20,7 @@ public class ServiceFacade {
 	}
 	
 	public String networkCommandExecute(String major, String command, String xml) {
-		//TODO xml转换
+		//TODO xml转换 return 之前也要转换
 		
 		switch (command) {
 		
