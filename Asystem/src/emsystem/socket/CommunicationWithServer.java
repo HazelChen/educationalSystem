@@ -22,20 +22,13 @@ public class CommunicationWithServer {
 		return self;
 	}
 	
-	public void write(String command, String xml) {
+	public String communicate(String command, String xml) {
 		init();
+		
+		output.print("A");
 		output.println(command);
 		output.println(xml);
-	}
-	
-	public void write(String command) {
-		init();
-		output.println(command);
-	}
-	
-	public String read(String command, String xml) {
-		init();
-		write(command, xml);
+		
 		String resultXml = "";
 		try {
 			resultXml = input.readLine();
@@ -45,9 +38,12 @@ public class CommunicationWithServer {
 		return resultXml;
 	}
 	
-	public String read(String command) {
+	public String communicate(String command) {
 		init();
-		write(command);
+		
+		output.println("A");
+		output.println(command);
+		
 		String resultXml = "";
 		try {
 			resultXml = input.readLine();

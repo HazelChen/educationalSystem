@@ -25,7 +25,8 @@ public class ServerRun implements Runnable{
 				String command = input.readLine();
 				String xml = input.readLine();
 				ServiceFacade serviceFacade = FacadeFactory.getInstance().getServiceFacade();
-				serviceFacade.networkCommandExecute(major, command, xml);
+				String returned = serviceFacade.networkCommandExecute(major, command, xml);
+				output.println(returned);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

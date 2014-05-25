@@ -20,6 +20,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 	DealWithChoice dwchoice=new DealWithChoice();
 	DealWithCourse dwcourse=new DealWithCourse();
 	DealWithAccount dwaccount=new DealWithAccount();
+	DealWithTotalServer dwTotalServer = new DealWithTotalServer();
 	
 	public AdminServiceImp() throws RemoteException {
 		super();
@@ -111,20 +112,23 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 
 	@Override
 	public void postFinishChooseAction(){
-		// TODO Auto-generated method stub
-		
+		ArrayList<Choice> choices = dwTotalServer.getAllChoices();
+		// TODO 写入数据库
 	}
 
 	@Override
 	public void postShareStudentAction(){
-		// TODO Auto-generated method stub
+		// TODO 从数据库得到所有学生信息
+		ArrayList<Student> students = null;
+		dwTotalServer.shareStudents(students);
 		
 	}
 
 	@Override
 	public void postShareCourseAction(ArrayList<String> pCourseIds){
-		// TODO Auto-generated method stub
-		
+		// TODO 从数据库得到课程信息
+		ArrayList<Course> courses = null;
+		dwTotalServer.shareCourse(courses);
 	}
 
 }
