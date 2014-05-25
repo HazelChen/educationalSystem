@@ -237,7 +237,7 @@ public class StudentChooseCoursePanel extends JPanel {
 	
 	private ArrayList<String> getCheckedIds() {
 		ArrayList<String> indexes = new ArrayList<>();
-		for (int i = 0; i < getAData().length; i++) {
+		for (int i = 0; i < mInfoTable.getRowCount(); i++) {
 			if (((Boolean) mInfoTable.getValueAt(i, checkPosition))
 					.booleanValue()) {// бЁжа
 				indexes.add((String) mInfoTable.getValueAt(i, idIndex));
