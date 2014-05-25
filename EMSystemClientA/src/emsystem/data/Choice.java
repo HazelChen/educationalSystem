@@ -6,7 +6,10 @@ public class Choice implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4813298943714585426L;
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private String studentId;
 	private String courseId;
 	private int score;

@@ -32,6 +32,7 @@ public class DealWithChoice {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return list;
 	}
@@ -40,13 +41,15 @@ public class DealWithChoice {
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
 		String sql="insert into choice(课程编号,学号,得分) values('"+choice.getCourseId()+"','"
-				+choice.getStudentId()+"',"+choice.getScore()+");";
+				+choice.getStudentId()+"',"+choice.getScore()+")";
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return b;
 	}
@@ -57,10 +60,12 @@ public class DealWithChoice {
 		String sql="delete from choice where 学号="+sid +"and 课程编号="+cid;
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return b;
 	}
@@ -80,6 +85,7 @@ public class DealWithChoice {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return choice;
 	}
@@ -100,6 +106,7 @@ public class DealWithChoice {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return list;
 	}

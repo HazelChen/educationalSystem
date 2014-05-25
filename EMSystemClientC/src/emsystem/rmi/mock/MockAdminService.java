@@ -1,5 +1,6 @@
 package emsystem.rmi.mock;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import emsystem.data.Course;
@@ -45,7 +46,7 @@ public class MockAdminService implements AdminService {
 	@Override
 	public ArrayList<Course> getCourses() {
 		ArrayList<Course> courses = new ArrayList<>();
-		Course course1 = new Course("001", "math", 3, 1, "mike", "china",
+		Course course1 = new Course("001", "math", 3, 2, "mike", "china",
 				"是");
 		Course course2 = new Course("002", "art", 2, 2, "Tom", "China", "否");
 
@@ -97,4 +98,45 @@ public class MockAdminService implements AdminService {
 
 		return students;
 	}
+	
+	
+	@Override
+	public ArrayList<Course> getUnsharedCourses(){
+		ArrayList<Course> courses = new ArrayList<>();
+		Course course1 = new Course("001", "math", 3, 2, "mike", "china",
+				"否");
+		Course course2 = new Course("002", "art", 2, 2, "Tom", "China", "否");
+
+		courses.add(course1);
+		courses.add(course2);
+		return courses;
+	}
+	
+	/**
+	 * 向总服务器提交结束跨专业选课请求
+	 */
+	@Override
+	public void postFinishChooseAction(){
+		
+	}
+	
+	/**
+	 * 提交共享学生信息请求
+	 * @throws RemoteException
+	 */
+	@Override
+	public void postShareStudentAction(){
+		
+	}
+	
+	/**
+	 * 提交共享课程信息请求
+	 * @throws RemoteException
+	 */
+	
+	@Override
+	public void postShareCourseAction(ArrayList<String> pCourseIds) {
+		
+	}
+	
 }

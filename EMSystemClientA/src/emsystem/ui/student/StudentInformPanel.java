@@ -54,7 +54,6 @@ public class StudentInformPanel extends JPanel {
 			StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
 			boolean[] results = adapter.chooseCourses(mAccount, messages);
 			for (int i = 0; i < messages.size(); i++) {
-//				String message = adapter.get
 				String result = results[i] ? "成功":"失败";
 				JLabel label = new JLabel("课程编号为" + messages.get(i) + "选课" + result);
 				contentPanel.add(label);

@@ -40,7 +40,7 @@ public class EditCourseInfoPanel extends JPanel {
 	private String creditString = "—ß∑÷";
 	private String teacherString = "¿œ ¶";
 	private String addressString = "µÿµ„";
-	private String shareString = "π≤œÌ";
+//	private String shareString = "π≤œÌ";
 
 	private String backString = "<html><u>∑µªÿ≤Ÿ◊˜ΩÁ√Ê</u></html>";
 	/**
@@ -76,22 +76,22 @@ public class EditCourseInfoPanel extends JPanel {
 
 		JLabel nameLabel = new JLabel(nameString);
 		nameLabel.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 16));
-		nameLabel.setBounds(163, 170, 89, 36);
+		nameLabel.setBounds(428, 107, 89, 36);
 		add(nameLabel);
 
 		JLabel timeLabel = new JLabel(timeString);
 		timeLabel.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 16));
-		timeLabel.setBounds(192, 225, 89, 36);
+		timeLabel.setBounds(192, 170, 89, 36);
 		add(timeLabel);
 
 		JLabel creditLabel = new JLabel(creditString);
 		creditLabel.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 16));
-		creditLabel.setBounds(192, 285, 89, 36);
+		creditLabel.setBounds(192, 236, 89, 36);
 		add(creditLabel);
 
 		JLabel addressLlabel = new JLabel(addressString);
 		addressLlabel.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 16));
-		addressLlabel.setBounds(468, 225, 89, 36);
+		addressLlabel.setBounds(468, 236, 89, 36);
 		add(addressLlabel);
 
 		JLabel teacherLabel = new JLabel(teacherString);
@@ -101,17 +101,17 @@ public class EditCourseInfoPanel extends JPanel {
 
 		nameTextField = new JTextField();
 		nameTextField.setColumns(10);
-		nameTextField.setBounds(262, 172, 136, 36);
+		nameTextField.setBounds(514, 109, 136, 36);
 		add(nameTextField);
 
 		timeTextField = new JTextField();
 		timeTextField.setColumns(10);
-		timeTextField.setBounds(262, 227, 136, 36);
+		timeTextField.setBounds(262, 172, 136, 36);
 		add(timeTextField);
 
 		creditTextField = new JTextField();
 		creditTextField.setColumns(10);
-		creditTextField.setBounds(262, 287, 136, 36);
+		creditTextField.setBounds(262, 238, 136, 36);
 		add(creditTextField);
 
 		teacherTextField = new JTextField();
@@ -121,18 +121,18 @@ public class EditCourseInfoPanel extends JPanel {
 
 		addressTextField = new JTextField();
 		addressTextField.setColumns(10);
-		addressTextField.setBounds(514, 227, 136, 36);
+		addressTextField.setBounds(514, 238, 136, 36);
 		add(addressTextField);
 
 		okButton = new JButton("»∑»œ");
 		okButton.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 12));
-		okButton.setBounds(387, 382, 93, 36);
+		okButton.setBounds(381, 341, 93, 36);
 		add(okButton);
 
-		shareCheck = new JCheckBox(shareString);
-		shareCheck.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 13));
-		shareCheck.setBounds(474, 293, 103, 23);
-		add(shareCheck);
+//		shareCheck = new JCheckBox(shareString);
+//		shareCheck.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 13));
+//		shareCheck.setBounds(474, 293, 103, 23);
+//		add(shareCheck);
 
 		JLabel backLabel = new JLabel(backString);
 		backLabel.addMouseListener(new MouseAdapter() {
@@ -188,7 +188,7 @@ public class EditCourseInfoPanel extends JPanel {
 		teacherTextField.setText(mCourse.getTeacher());
 		addressTextField.setText(mCourse.getAddress());
 		creditTextField.setText(mCourse.getCredit()+"");
-		shareCheck.setSelected(mCourse.getShareFlag().equals(" «"));
+//		shareCheck.setSelected(mCourse.getShareFlag().equals(" «"));
 		
 		okButton.addActionListener(new ActionListener() {
 
@@ -224,12 +224,12 @@ public class EditCourseInfoPanel extends JPanel {
 		} else {
 			int credit, time;
 			credit = Integer.valueOf(creditString);
-			time  = Integer.valueOf(timeString);
-			
-			String shareFlag = shareCheck.isSelected() ? " «" : "∑Ò";
+			time = Integer.valueOf(timeString);
+
+//			String shareFlag = shareCheck.isSelected() ? " «" : "∑Ò";
 
 			course = new Course(courseId, courseName, credit, time, teacher,
-					address, shareFlag);
+					address, "∑Ò");
 		}
 		return course;
 	}

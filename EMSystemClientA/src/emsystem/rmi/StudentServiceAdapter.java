@@ -109,4 +109,14 @@ public class StudentServiceAdapter{
 		}
 		return results;
 	}
+	
+	public ArrayList<Course> getCoursesToDrop(String pStudentId){
+		ArrayList<Course> courses = null;
+		try {
+			courses = RMI.getStudentService().getCoursesToDrop(pStudentId);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return courses;
+	}
 }

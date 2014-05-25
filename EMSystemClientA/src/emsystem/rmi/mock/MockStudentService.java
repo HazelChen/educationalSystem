@@ -22,12 +22,18 @@ public class MockStudentService implements StudentService{
 	 */
 	@Override
 	public Student getStudentInfo(String pId){
+		if (pId != "001") {
+			return null;
+		}
 		Student student = new Student("001", "哈哈", "女", "专业A","123");
 		return student;
 	}
 	
 	@Override
 	public HashMap<Course, Integer> getMyCourses(String pId){
+		if ( pId == null) {
+			return null;
+		}
 		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china","是");
 		Course course2 = new Course("002", "art", 2, "1-2", "Tom", "China","否");
 		
@@ -91,6 +97,18 @@ public class MockStudentService implements StudentService{
 	public boolean[] dropCourses(String pStudentId, ArrayList<String> pCourseId){
 		boolean[] results = new boolean[]{true, false};
 		return results;
+		
+	}
+	
+	@Override
+	public ArrayList<Course> getCoursesToDrop(String pStudentId){
+		ArrayList<Course> courses = new ArrayList<Course>();
+		Course course1 = new Course("005", "math", 3, "5-6", "mike", "china","是");
+		Course course2 = new Course("006", "art", 2, "1-2", "Tom", "China","否");
+		
+		courses.add(course1);
+		courses.add(course2);
+		return courses;
 		
 	}
 }

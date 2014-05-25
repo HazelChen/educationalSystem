@@ -6,7 +6,10 @@ public class Course implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8076731434972170530L;
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private String mId;
 	private String mCourseName;
 	private int mCredit;

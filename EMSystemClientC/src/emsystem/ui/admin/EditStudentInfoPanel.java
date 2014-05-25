@@ -111,6 +111,7 @@ public class EditStudentInfoPanel extends JPanel {
 
 		majorTextField = new JTextField();
 		majorTextField.setColumns(10);
+		majorTextField.setEditable(false);
 		majorTextField.setBounds(303, 306, 206, 35);
 		add(majorTextField);
 
@@ -157,6 +158,7 @@ public class EditStudentInfoPanel extends JPanel {
 	private void initAdd() {
 		init();
 		maleButton.setSelected(true);
+		majorTextField.setText(AdminServiceAdapter.getInstance().getMajorName());
 		okButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -164,8 +166,10 @@ public class EditStudentInfoPanel extends JPanel {
 				if (getNewInfo() != null) {
 					AdminServiceAdapter adapter = AdminServiceAdapter
 							.getInstance();
-					if (adapter.addStudent(getNewInfo()))
+					if (adapter.addStudent(getNewInfo())){
 						showSuccessMessage();
+						clear();
+					}
 					else
 						showFailMessage();
 				}
@@ -187,7 +191,6 @@ public class EditStudentInfoPanel extends JPanel {
 		majorTextField.setText(mStudent.getMajor());
 
 		idTextField.setEditable(false);
-		majorTextField.setEditable(false);
 		okButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -232,5 +235,12 @@ public class EditStudentInfoPanel extends JPanel {
 
 	private void showFailMessage() {
 		JOptionPane.showMessageDialog(null, "²Ù×÷Ê§°Ü");
+	}
+	
+	private void clear(){
+		idTextField.setText("");
+		passwrodField.setText("");
+		maleButton.setSelected(true);
+		femaleButton.setSelected(false);
 	}
 }

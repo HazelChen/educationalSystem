@@ -23,8 +23,8 @@ public class StudentInfoPanel extends JPanel {
 	private String mAccount;
 	
 	public StudentInfoPanel(String pAccount) {
-		table = new CustomedTable(getData(), infoColumnsName);
 		mAccount = pAccount;
+		table = new CustomedTable(getData(), infoColumnsName);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(500, 350));
@@ -35,7 +35,6 @@ public class StudentInfoPanel extends JPanel {
 	private String[][] getData(){
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
 		Student student = adapter.getStudentInfo(mAccount);
-		
 		String[][] data = new String[][]{};
 		if (student != null) {
 			data = new String[][]{{student.getId(), student.getName(), student.getSex(), student.getMajor()}};
