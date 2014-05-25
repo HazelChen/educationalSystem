@@ -3,7 +3,10 @@ package edu.nju.educationSystem.server.service;
 import java.util.ArrayList;
 
 import edu.nju.educationSystem.server.dao.StudentDAO;
+import edu.nju.educationSystem.server.model.Major;
+import edu.nju.educationSystem.server.model.Sex;
 import edu.nju.educationSystem.server.model.Student;
+import edu.nju.educationSystem.server.xmlHandler.XMLAnalyzer;
 
 public class StudentService {
 	private StudentDAO studentDAO;
@@ -13,13 +16,23 @@ public class StudentService {
 	}
 	
 	public String getStudentId(String studentXml) {
-		//TODO
-		return "123";
+		XMLAnalyzer analyzer = new XMLAnalyzer(studentXml);
+		ArrayList<String> values = analyzer.next();
+		String id = values.get(0); 
+		return id;
 	}
 	
 	public ArrayList<Student> getStudents(String studentXml) {
-		//TODO
-		return new ArrayList<>();
+		ArrayList<Student> students = new ArrayList<>();
+		
+		XMLAnalyzer analyzer = new XMLAnalyzer(studentXml);
+		while (analyzer.hasNext()) {
+			ArrayList<String> values = analyzer.next();
+			Student student = new Student(values.get(0), values.get(1), 
+					Sex.valueOf(values.get(2)), Major.valueOf(values.get(3)));
+			students.add(student);
+		}
+		return students;
 	}
 	
 	public void addStudents(ArrayList<Student> students) {

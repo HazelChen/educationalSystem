@@ -12,16 +12,16 @@ public class ServiceFacade {
 	private StudentService studentService;
 	private CourseService courseService;
 	private ElectiveService electiveService;
-	private MajorService majorService;
 	
 	public ServiceFacade() {
 		studentService = new StudentService();
 		courseService = new CourseService();
 		electiveService = new ElectiveService();
-		majorService = new MajorService();
 	}
 	
-	public String networkCommandExecute(String command, String xml) {
+	public String networkCommandExecute(String major, String command, String xml) {
+		//TODO xml×ª»»
+		
 		switch (command) {
 		
 		case CommandConstants.ASK_FOR_COURSE_INFORMATION:
@@ -31,7 +31,7 @@ public class ServiceFacade {
 			return courseWithdraw(xml);
 			
 		case CommandConstants.ELECTIVE_RECORD:
-			return getElectiveRecord(xml);
+			return getElectiveRecord(major);
 			
 		case CommandConstants.SHARE_COURSE:
 			return addCourse(xml);
@@ -62,8 +62,8 @@ public class ServiceFacade {
 		return "useless return";
 	}
 	
-	private String getElectiveRecord(String majorXml) {
-		Major major = majorService.getMajor(majorXml);
+	private String getElectiveRecord(String majorString) {
+		Major major = Major.valueOf(majorString);
 		ArrayList<Elective> electives = electiveService.getAllElective(major);
 		String electivesXml = electiveService.getElectivesXml(electives);
 		return electivesXml;

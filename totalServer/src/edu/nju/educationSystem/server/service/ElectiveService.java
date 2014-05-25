@@ -8,6 +8,7 @@ import edu.nju.educationSystem.server.model.Course;
 import edu.nju.educationSystem.server.model.Elective;
 import edu.nju.educationSystem.server.model.Major;
 import edu.nju.educationSystem.server.xmlHandler.ConfigConstant;
+import edu.nju.educationSystem.server.xmlHandler.XMLAnalyzer;
 import edu.nju.educationSystem.server.xmlHandler.XMLGenerater;
 
 public class ElectiveService {
@@ -38,8 +39,15 @@ public class ElectiveService {
 	}
 	
 	public ArrayList<Elective> getElectives(String electiveXml) {
-		//TODO
-		return new ArrayList<>();
+		ArrayList<Elective> electives = new ArrayList<>();
+		
+		XMLAnalyzer analyzer = new XMLAnalyzer(electiveXml);
+		while (analyzer.hasNext()) {
+			ArrayList<String> values = analyzer.next();
+			Elective elective = new Elective(values.get(0), values.get(1), Integer.parseInt(values.get(2)));
+			electives.add(elective);
+		}
+		return electives;
 	}
 	
 	public ArrayList<Elective> getAllElective(Major major) {

@@ -21,10 +21,11 @@ public class ServerRun implements Runnable{
 	public void run() {
 		try {
 			while (true) {
+				String major = input.readLine();
 				String command = input.readLine();
 				String xml = input.readLine();
 				ServiceFacade serviceFacade = FacadeFactory.getInstance().getServiceFacade();
-				serviceFacade.networkCommandExecute(command, xml);
+				serviceFacade.networkCommandExecute(major, command, xml);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

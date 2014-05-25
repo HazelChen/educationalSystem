@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import edu.nju.educationSystem.server.dao.CourseDAO;
 import edu.nju.educationSystem.server.model.Course;
 import edu.nju.educationSystem.server.xmlHandler.ConfigConstant;
+import edu.nju.educationSystem.server.xmlHandler.XMLAnalyzer;
 import edu.nju.educationSystem.server.xmlHandler.XMLGenerater;
 
 public class CourseService {
@@ -24,8 +25,17 @@ public class CourseService {
 	}
 	
 	public ArrayList<Course> getCourses(String courseXml) {
-		//TODO
-		return new ArrayList<>();
+		ArrayList<Course> courses = new ArrayList<>();
+		
+		XMLAnalyzer analyzer = new XMLAnalyzer(courseXml);
+		while (analyzer.hasNext()) {
+			ArrayList<String> values = analyzer.next();
+			Course course = new Course(values.get(0), values.get(1), 
+					Integer.parseInt(values.get(2)), Integer.parseInt(values.get(3)), 
+					values.get(4), values.get(5));
+			courses.add(course);
+		}
+		return courses;
 	}
 	
 	public void addCourses(ArrayList<Course> courses) {
