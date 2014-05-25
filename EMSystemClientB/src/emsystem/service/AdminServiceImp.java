@@ -14,7 +14,7 @@ public class AdminServiceImp  implements AdminService{
 	
 	public AdminServiceImp() {
 		try {
-		as=(AdminService) Naming.lookup(RMI.getIp()+":8888/admin");
+		as=(AdminService) Naming.lookup(RMI.getIp()+":1099/admin");
 		}catch(Exception e){
 		e.printStackTrace();
 		}

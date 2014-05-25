@@ -2,15 +2,11 @@ package emsystem.service;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import emsystem.model.Account;
-import emsystem.model.Choice;
 import emsystem.model.Course;
 import emsystem.model.Student;
-import emsystem.rmi.AdminService;
 import emsystem.rmi.RMI;
 import emsystem.rmi.StudentService;
 
@@ -20,7 +16,7 @@ public class StudentServiceImp  implements StudentService{
 	StudentService ss;
 	public StudentServiceImp() throws RemoteException {
 		try {
-			ss= (StudentService) Naming.lookup(RMI.getIp()+":8888/student");
+			ss= (StudentService) Naming.lookup(RMI.getIp()+":1099/student");
 			}catch(Exception e){
 			e.printStackTrace();
 			}
