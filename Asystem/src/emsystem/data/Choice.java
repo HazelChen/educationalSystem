@@ -16,6 +16,8 @@ public class Choice implements Serializable,ModelSpecification{
 	private String courseId;
 	private int score;
 	
+	public Choice(){}
+	
 	public Choice(String studentId, String courseId, int score){
 		this.studentId = studentId;
 		this.courseId = courseId;
