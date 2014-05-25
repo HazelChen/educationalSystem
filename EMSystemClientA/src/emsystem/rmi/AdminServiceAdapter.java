@@ -128,4 +128,38 @@ public class AdminServiceAdapter {
 		return students;
 	}
 
+	public ArrayList<Course> getUnsharedCourses(){
+		ArrayList<Course> courses = null;
+		try {
+			courses = RMI.getAdminService().getUnsharedCourses();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return courses;
+	}
+
+	public void postFinishChooseAction(){
+		try {
+			RMI.getAdminService().postFinishChooseAction();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void postShareStudentAction(){
+		try {
+			RMI.getAdminService().postShareStudentAction();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void postShareCourseAction(ArrayList<String> pCourseIds){
+		try {
+			RMI.getAdminService().postShareCourseAction(pCourseIds);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

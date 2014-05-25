@@ -22,12 +22,18 @@ public class MockStudentService implements StudentService{
 	 */
 	@Override
 	public Student getStudentInfo(String pId){
+		if (pId != "001") {
+			return null;
+		}
 		Student student = new Student("001", "哈哈", "女", "专业A","123");
 		return student;
 	}
 	
 	@Override
 	public HashMap<Course, Integer> getMyCourses(String pId){
+		if ( pId == null) {
+			return null;
+		}
 		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china","是");
 		Course course2 = new Course("002", "art", 2, "1-2", "Tom", "China","否");
 		

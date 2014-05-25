@@ -2,11 +2,14 @@ package emsystem.ui.admin;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -26,15 +29,20 @@ public class ManageChoicePanel extends JPanel {
 	private JTable mCourseTable;
 	private JTable mStudentTable;
 	
+	private JButton mButton;
+	
 	private String[] coursesColumnName = new String[]{"课程编号","课程名"};
-	private String[] studentColumnName = new String[]{"学生编号","姓名"};
+	private String[] studentColumnName = new String[]{"学生编号","姓名","所属院系"};
 	
 	private int courseIdIndex = 0;
 	private MainFrame mFrame;
 	
 	public ManageChoicePanel(MainFrame pFrame) {
 		mFrame = pFrame;
-		setLayout(new BorderLayout());
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		JPanel infoTablePanel = new JPanel();
+		infoTablePanel.setLayout(new BorderLayout());
 		
 		JPanel coursePanel = new JPanel();
 		coursePanel.setLayout(new BoxLayout(coursePanel, BoxLayout.Y_AXIS));
@@ -56,8 +64,21 @@ public class ManageChoicePanel extends JPanel {
 		studentScrollPane.setPreferredSize(new Dimension(350, 400));
 		studentPanel.add(studentScrollPane);
 		
-		add(coursePanel, BorderLayout.WEST);
-		add(studentPanel, BorderLayout.EAST);
+		infoTablePanel.add(coursePanel, BorderLayout.WEST);
+		infoTablePanel.add(studentPanel, BorderLayout.EAST);
+		
+		add(infoTablePanel);
+		
+		mButton = new JButton("点击结束选课");
+		mButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		add(mButton);
+		
 		generateCourseTable();
 	}
 	
@@ -95,7 +116,7 @@ public class ManageChoicePanel extends JPanel {
 	}
 	
 	private void generateStudentTable(String pCourseId){
-		mStudentTable = new JTable(getStudentData(pCourseId), coursesColumnName){
+		mStudentTable = new JTable(getStudentData(pCourseId), studentColumnName){
 			/**
 			 * 
 			 */
@@ -132,6 +153,7 @@ public class ManageChoicePanel extends JPanel {
 		for (int i = 0; i < data.length; i++) {
 			data[i][0] = students.get(i).getId();
 			data[i][1] = students.get(i).getName();
+			data[i][2] = students.get(i).getMajor();
 		}
 		return data;
 	}

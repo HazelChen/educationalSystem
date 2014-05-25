@@ -249,6 +249,8 @@ public class StudentChooseCoursePanel extends JPanel {
 	private void doPost(){
 		JOptionPane.showMessageDialog(null, "已提交选课请求，稍后查看选课结果通知:D");
 		Inform.addMessages(mAccount, getCheckedIds());
+		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
+		adapter.chooseCourses(mAccount, getCheckedIds());
 	}
 
 }
