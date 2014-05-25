@@ -1,8 +1,10 @@
 package emsystem.data;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Choice implements Serializable{
+public class Choice implements Serializable,ModelSpecification{
 	/**
 	 * 
 	 */
@@ -42,6 +44,15 @@ public class Choice implements Serializable{
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	@Override
+	public Map<String, String> getFieldCorrespondence() {
+		Map<String,String> map=new HashMap<String, String>();
+		map.put("studentId","课程编号");
+		map.put("courseId", "学号");
+		map.put("score", "得分");
+		return map;
 	}
 
 }

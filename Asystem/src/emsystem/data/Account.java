@@ -1,8 +1,10 @@
 package emsystem.data;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Account implements Serializable{
+public class Account implements Serializable,ModelSpecification{
 	/**
 	 * 
 	 */
@@ -44,6 +46,15 @@ public class Account implements Serializable{
 	}
 	public void setKeti(String keti) {
 		this.keti = keti;
+	}
+	@Override
+	public Map<String, String> getFieldCorrespondence() {
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("name", "账户名");
+		map.put("password", "密码");
+		map.put("jibie", "级别");
+		map.put("keti", "客体");
+		return map;
 	}
 	
 	

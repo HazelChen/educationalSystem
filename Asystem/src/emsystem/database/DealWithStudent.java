@@ -43,7 +43,7 @@ public class DealWithStudent {
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
 		String sql="insert into student(学号,姓名,性别,专业,密码) values('"+stu.getId()+"','"
-				+stu.getName()+"','"+stu.getSex()+"','"+stu.getMajor()+"','"+stu.getmPassword()+"')";
+				+stu.getName()+"','"+stu.getSex()+"','"+stu.getMajor()+"','"+stu.getPassword()+"')";
 		try {
 			s=c.createStatement();
 			s.execute(sql);
@@ -53,7 +53,7 @@ public class DealWithStudent {
 			e.printStackTrace();
 			close();
 		}
-		Account acc=new Account(stu.getId(), stu.getmPassword(), 0, stu.getId());
+		Account acc=new Account(stu.getId(), stu.getPassword(), 0, stu.getId());
 		DealWithAccount dc=new DealWithAccount();
 		dc.insert(acc);
 		System.out.println(b);
@@ -104,7 +104,7 @@ public class DealWithStudent {
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
 		String sql="update student set 姓名='"+stu.getName()
-				+"',性别='"+stu.getSex()+"',密码='"+stu.getmPassword()+"' where 学号="+stu.getId();
+				+"',性别='"+stu.getSex()+"',密码='"+stu.getPassword()+"' where 学号="+stu.getId();
 		try {
 			s=c.createStatement();
 			s.execute(sql);
