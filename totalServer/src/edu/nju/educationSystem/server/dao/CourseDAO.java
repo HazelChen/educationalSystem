@@ -72,4 +72,10 @@ public class CourseDAO {
 		
 		return courseIds;
 	}
+	
+	public ResultSet getAllCourseResultSet () {
+		String order = "SELECT * FROM " + TABLE_NAME;
+		ResultSet resultSet = databaseUtils.searchResultSet(order);
+		return resultSet;
+	}
 }
