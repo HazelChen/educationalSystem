@@ -111,6 +111,7 @@ public class EditStudentInfoPanel extends JPanel {
 
 		majorTextField = new JTextField();
 		majorTextField.setColumns(10);
+		majorTextField.setEditable(false);
 		majorTextField.setBounds(303, 306, 206, 35);
 		add(majorTextField);
 
@@ -157,6 +158,7 @@ public class EditStudentInfoPanel extends JPanel {
 	private void initAdd() {
 		init();
 		maleButton.setSelected(true);
+		majorTextField.setText(AdminServiceAdapter.getInstance().getMajorName());
 		okButton.addActionListener(new ActionListener() {
 
 			@Override

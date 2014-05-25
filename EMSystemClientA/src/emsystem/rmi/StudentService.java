@@ -37,5 +37,16 @@ public interface StudentService extends Remote{
 	
 	public boolean[] chooseCourses(String pId, ArrayList<String> pCourseId) throws RemoteException;
 	
+	/**
+	 * ÍËÑ¡¿Î³Ì
+	 * @param pStudentId
+	 * @param pCourseId
+	 * @return
+	 * @throws RemoteException
+	 */
 	public boolean[] dropCourses(String pStudentId, ArrayList<String> pCourseId) throws RemoteException;
+	
+	public ArrayList<Course> getCoursesToDrop(String pStudentId) throws RemoteException;
+		
+	
 }

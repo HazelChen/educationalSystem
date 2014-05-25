@@ -100,7 +100,7 @@ public class StudentDropCoursePanel extends JPanel {
 					JOptionPane.showMessageDialog(null, "未选择任何课程");
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "退课请求已发送，请等待通知");
+					JOptionPane.showMessageDialog(null, "退选成功");
 					doPost();
 				}
 			}
@@ -144,6 +144,10 @@ public class StudentDropCoursePanel extends JPanel {
 	}
 	
 	private void doPost(){
+		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
+		adapter.dropCourses(mAccount, getCheckedIds());
 		
+		//refresh
+		showTable();
 	}
 }

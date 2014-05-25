@@ -93,4 +93,16 @@ public class MockStudentService implements StudentService{
 		return results;
 		
 	}
+	
+	@Override
+	public ArrayList<Course> getCoursesToDrop(String pStudentId){
+		ArrayList<Course> courses = new ArrayList<Course>();
+		Course course1 = new Course("005", "math", 3, "5-6", "mike", "china","ÊÇ");
+		Course course2 = new Course("006", "art", 2, "1-2", "Tom", "China","·ñ");
+		
+		courses.add(course1);
+		courses.add(course2);
+		return courses;
+		
+	}
 }
