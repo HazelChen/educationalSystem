@@ -148,28 +148,45 @@ public class AdminServiceImp  implements AdminService{
 	}
 
 	@Override
-	public ArrayList<Course> getUnsharedCourses() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Course> getUnsharedCourses(){
+		ArrayList<Course> result=null;
+		try {
+			result=as.getUnsharedCourses();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
-	public void postFinishChooseAction() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+	public void postFinishChooseAction(){
+		try {
+			as.postFinishChooseAction();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public void postShareStudentAction() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+	public void postShareStudentAction(){
+		try {
+			as.postShareStudentAction();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public void postShareCourseAction(ArrayList<String> pCourseIds)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		
+	public void postShareCourseAction(ArrayList<String> pCourseIds){
+		try {
+			as.postShareCourseAction(pCourseIds);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

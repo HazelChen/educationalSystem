@@ -45,8 +45,29 @@ public interface AdminService extends Remote{
 	public boolean deleteCourse(String pCourseId) throws RemoteException;
 	
 	/**
-	 * 对选课信息
+	 * 对选课信息的操作
 	 */
 	public ArrayList<Student> getChoosedStudents(String pCourseId) throws RemoteException;
+	
+	public ArrayList<Course> getUnsharedCourses() throws RemoteException;
+	/**
+	 * 向总服务器提交结束跨专业选课请求
+	 */
+	public void postFinishChooseAction() throws RemoteException;
+	
+	/**
+	 * 提交共享学生信息请求
+	 * @throws RemoteException
+	 */
+	public void postShareStudentAction() throws RemoteException;
+	
+	/**
+	 * 提交共享课程信息请求
+	 * @throws RemoteException
+	 */
+	
+	public void postShareCourseAction(ArrayList<String> pCourseIds) throws RemoteException;
+	
+	
 	
 }
