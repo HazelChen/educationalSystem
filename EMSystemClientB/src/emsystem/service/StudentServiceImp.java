@@ -6,10 +6,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import emsystem.data.Account;
-import emsystem.data.Choice;
-import emsystem.data.Course;
-import emsystem.data.Student;
+import emsystem.model.Account;
+import emsystem.model.Choice;
+import emsystem.model.Course;
+import emsystem.model.Student;
 import emsystem.rmi.AdminService;
 import emsystem.rmi.RMI;
 import emsystem.rmi.StudentService;

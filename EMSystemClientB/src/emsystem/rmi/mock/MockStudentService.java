@@ -3,8 +3,8 @@ package emsystem.rmi.mock;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import emsystem.data.Course;
-import emsystem.data.Student;
+import emsystem.model.Course;
+import emsystem.model.Student;
 import emsystem.rmi.StudentService;
 
 public class MockStudentService implements StudentService{

@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import emsystem.data.Course;
+import emsystem.model.Course;
 import emsystem.rmi.AdminServiceAdapter;
 import emsystem.ui.MainFrame;
 

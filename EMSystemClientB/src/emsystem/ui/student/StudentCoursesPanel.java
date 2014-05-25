@@ -8,7 +8,7 @@ import java.util.Set;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import emsystem.data.Course;
+import emsystem.model.Course;
 import emsystem.rmi.StudentServiceAdapter;
 import emsystem.ui.widget.CustomedTable;
 

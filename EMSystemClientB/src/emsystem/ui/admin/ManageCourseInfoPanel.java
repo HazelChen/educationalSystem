@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import emsystem.data.Course;
+import emsystem.model.Course;
 import emsystem.rmi.AdminServiceAdapter;
 import emsystem.ui.MainFrame;
 

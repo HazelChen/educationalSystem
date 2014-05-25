@@ -1,4 +1,4 @@
-package emsystem.data;
+package emsystem.model;
 
 import java.io.Serializable;
 

@@ -4,8 +4,8 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import emsystem.data.Course;
-import emsystem.data.Student;
+import emsystem.model.Course;
+import emsystem.model.Student;
 import emsystem.rmi.AdminService;
 import emsystem.rmi.RMI;
 

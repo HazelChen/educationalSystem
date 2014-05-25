@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import emsystem.data.Student;
+import emsystem.model.Student;
 import emsystem.rmi.AdminServiceAdapter;
 import emsystem.ui.MainFrame;
 

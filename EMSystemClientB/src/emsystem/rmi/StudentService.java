@@ -6,8 +6,8 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import emsystem.data.Course;
-import emsystem.data.Student;
+import emsystem.model.Course;
+import emsystem.model.Student;
 
 public interface StudentService extends Remote{
 	/**

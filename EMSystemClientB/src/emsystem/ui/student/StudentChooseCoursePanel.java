@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableColumn;
 
-import emsystem.data.Course;
 import emsystem.logic.Inform;
+import emsystem.model.Course;
 import emsystem.rmi.StudentServiceAdapter;
 import emsystem.ui.widget.CustomedTable;
 
