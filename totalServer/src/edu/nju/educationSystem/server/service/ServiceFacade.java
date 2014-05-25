@@ -7,6 +7,8 @@ import edu.nju.educationSystem.server.model.Elective;
 import edu.nju.educationSystem.server.model.Major;
 import edu.nju.educationSystem.server.model.Student;
 import edu.nju.educationSystem.server.network.CommandConstants;
+import edu.nju.educationSystem.server.xmlHandler.ConfigConstant;
+import edu.nju.educationSystem.server.xmlHandler.XMLGenerater;
 
 public class ServiceFacade {
 	private StudentService studentService;
@@ -49,11 +51,12 @@ public class ServiceFacade {
 		
 	}
 	
-	private String askForCourse(String studentXml) {
-		String studentId = studentService.getStudentId(studentXml);
-		ArrayList<Course> courses = electiveService.getStudentsCourse(studentId);
-		String courseXml = courseService.toCourseXml(courses);
-		return courseXml;
+	private String askForCourse(String cid) {
+		Course course = courseService.getCourse(cid);
+		
+		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
+				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
+		return xmlGenerater.getXmlString();
 	}
 	
 	private String courseWithdraw(String electiveXml) {

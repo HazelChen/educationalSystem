@@ -44,4 +44,9 @@ public class CourseService {
 		}
 	}
 	
+	public Course getCourse(String cid) {
+		Course course = courseDAO.getCoursesById(cid);
+		return course;
+	}
+	
 }
