@@ -22,6 +22,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 	DealWithChoice dwchoice=new DealWithChoice();
 	DealWithCourse dwcourse=new DealWithCourse();
 	DealWithAccount dwaccount=new DealWithAccount();
+	DealWithTotalServer dwTotalServer = new DealWithTotalServer();
 	
 	public StudentServiceImp() throws RemoteException {
 		super();
@@ -77,6 +78,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 
 	@Override
 	public ArrayList<Course> getCoursesFromB(String pId){
+		ArrayList<Course> allSharedCourses = dwTotalServer.getShareCourses();
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -84,6 +86,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 
 	@Override
 	public ArrayList<Course> getCoursesFromC(String pId){
+		ArrayList<Course> allSharedCourses = dwTotalServer.getShareCourses();
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -99,6 +102,8 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 				dwchoice.insert(choice);
 			}else{
 				//选择外院的课
+				Choice choice=new Choice(pId, cid, 0);
+				dwTotalServer.choiceOtherMajor(choice);
 			}
 		}
 		return null;
