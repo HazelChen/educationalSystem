@@ -28,6 +28,11 @@ public class DealWithCourse {
 			String  pTeacher=rs.getString("老师");
 			String  pAddress=rs.getString("地点");
 			String   pShareFlag=rs.getString("共享");
+			if(pShareFlag.equals("1")){
+				pShareFlag="是";
+			}else{
+				pShareFlag="否";
+			}
 			Course course=new Course(pId, pCourseName, pCredit, pCourseTime, pTeacher, pAddress, pShareFlag);
 			list.add(course);
 			}
@@ -42,9 +47,13 @@ public class DealWithCourse {
 	public boolean insert(Course course){
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
+		int flag=0;
+		if(course.getShareFlag().equals("是")){
+			flag=1;
+		}
 		String sql="insert into course(编号,名称,课时,学分,老师,地点,共享) values('"+course.getId()+"','"
 				+course.getCourseName()+"','"+course.getCourseTime()+"','"+course.getCredit()+"','"
-				+course.getTeacher()+"','"+course.getAddress()+"','"+course.getShareFlag()+"');";
+				+course.getTeacher()+"','"+course.getAddress()+"','"+flag+"');";
 		try {
 			s=c.createStatement();
 			s.execute(sql);
@@ -87,6 +96,11 @@ public class DealWithCourse {
 				String pCourseTime=rs.getString("课时");
 				String pAddress=rs.getString("地点");
 				String pShareFlag=rs.getString("共享");
+				if(pShareFlag.equals("1")){
+					pShareFlag="是";
+				}else{
+					pShareFlag="否";
+				}
 				course=new Course(pId, pCourseName, pCredit, pCourseTime, pTeacher, pAddress, pShareFlag);
 			}
 			close();
@@ -99,9 +113,13 @@ public class DealWithCourse {
 	public boolean  modify(Course course){
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
+		int flag=0;
+		if(course.getShareFlag().equals("是")){
+			flag=1;
+		}
 		String sql="update course set 名称='"+course.getCourseName()
 				+"',课时='"+course.getCourseTime()+"',学分="+course.getCredit()+",老师='"+course.getTeacher()
-				+"',地点='"+course.getAddress()+"',共享='"+course.getShareFlag()+"' where 学号="+course.getId();
+				+"',地点='"+course.getAddress()+"',共享='"+flag+"' where 学号="+course.getId();
 		try {
 			s=c.createStatement();
 			s.execute(sql);

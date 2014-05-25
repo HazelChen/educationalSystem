@@ -96,4 +96,35 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 		return result;
 	}
 
+	@Override
+	public ArrayList<Course> getUnsharedCourses(){
+		ArrayList<Course> list=dwcourse.getAllCourse();
+		ArrayList<Course> result=new ArrayList<Course>();
+		for(int i=0;i<list.size();i++){
+			Course c=list.get(i);
+			if(c.getShareFlag().equals("·ñ")){
+				result.add(c);
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public void postFinishChooseAction(){
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void postShareStudentAction(){
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void postShareCourseAction(ArrayList<String> pCourseIds){
+		// TODO Auto-generated method stub
+		
+	}
+
 }
