@@ -27,7 +27,7 @@ public class DealWithCourse {
 			int  pCredit=Integer.parseInt(rs.getString("学分"));
 			String  pTeacher=rs.getString("老师");
 			String  pAddress=rs.getString("地点");
-			int   pShareFlag=Integer.parseInt(rs.getString("共享"));
+			String   pShareFlag=rs.getString("共享");
 			Course course=new Course(pId, pCourseName, pCredit, pCourseTime, pTeacher, pAddress, pShareFlag);
 			list.add(course);
 			}
@@ -81,7 +81,7 @@ public class DealWithCourse {
 				String pTeacher=rs.getString("老师");
 				String pCourseTime=rs.getString("课时");
 				String pAddress=rs.getString("地点");
-				int pShareFlag=Integer.parseInt(rs.getString("共享"));
+				String pShareFlag=rs.getString("共享");
 				course=new Course(pId, pCourseName, pCredit, pCourseTime, pTeacher, pAddress, pShareFlag);
 			}
 			close();
@@ -95,7 +95,7 @@ public class DealWithCourse {
 		c=DatabaseHelper.getConnection();
 		String sql="update course set 名称='"+course.getCourseName()
 				+"',课时='"+course.getCourseTime()+"',学分="+course.getCredit()+",老师='"+course.getTeacher()
-				+"',地点='"+course.getAddress()+"',共享="+course.getShareFlag()+" where 学号="+course.getId();
+				+"',地点='"+course.getAddress()+"',共享='"+course.getShareFlag()+"' where 学号="+course.getId();
 		try {
 			s=c.createStatement();
 			b=s.execute(sql);

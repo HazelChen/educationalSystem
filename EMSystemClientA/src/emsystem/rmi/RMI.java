@@ -1,7 +1,11 @@
 package emsystem.rmi;
 
+import java.rmi.RemoteException;
+
 import emsystem.rmi.mock.MockAdminService;
 import emsystem.rmi.mock.MockStudentService;
+import emsystem.service.AdminServiceImp;
+import emsystem.service.StudentServiceImp;
 
 
 
@@ -11,7 +15,7 @@ public class RMI {
 	
 	static{
 		// TODO 从配置文件中读取IP.初始化ip
-		ip = "127.0.0.1";
+		ip = "rmi://localhost";
 	}
 
 	public static String getIp() {
@@ -19,26 +23,20 @@ public class RMI {
 	}
 	
 	public static StudentService getStudentService() {
-//		if (service == null || isDirty) {
-//			try {
-//				service = (IBusinessService) Naming.lookup("rmi://" + ip + "/Service");
-//				isDirty = false;
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		try {
-//			return (StudentService) Naming.lookup("rmi://" + ip + "/Service");
-//		} catch (MalformedURLException | RemoteException | NotBoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		return new MockStudentService();
+			StudentService s = null;
+			try {
+				s= new StudentServiceImp();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return s;
 	}
 
 	public static AdminService getAdminService(){
-		
-		return new MockAdminService();
+		AdminService as=null;
+		as=new AdminServiceImp();
+		return as;
 	}
 	
 	public static void setIp(String pIp) {

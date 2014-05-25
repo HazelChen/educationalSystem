@@ -40,7 +40,7 @@ public class DealWithChoice {
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
 		String sql="insert into choice(课程编号,学号,得分) values('"+choice.getCourseId()+"','"
-				+choice.getStudentId()+"',"+choice.getScore()+");";
+				+choice.getStudentId()+"',"+choice.getScore()+")";
 		try {
 			s=c.createStatement();
 			b=s.execute(sql);

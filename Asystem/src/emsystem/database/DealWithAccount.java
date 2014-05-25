@@ -73,11 +73,11 @@ public class DealWithAccount {
 			s=c.createStatement();
 			rs=s.executeQuery(sql);
 			while(rs.next()){
-				String keti=rs.getString("客体");
+//				String keti=rs.getString("客体");
 				int jibie=rs.getInt("级别");
 				String name=rs.getString("账户名");
 				String password=rs.getString("密码");
-				account=new Account(name, password, jibie, keti);
+				account=new Account(name, password, jibie, name);
 			}
 			close();
 		} catch (SQLException e) {
