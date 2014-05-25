@@ -53,7 +53,12 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 		ArrayList<Choice> list=dwchoice.getMyChoice(pStudentId);
 		for(int i=0;i<list.size();i++){
 				Choice choice=list.get(i);
-				Course c=dwcourse.search(choice.getCourseId());
+				Course c=null;
+				if(choice.getCourseId().startsWith("1")){
+				c=dwcourse.search(choice.getCourseId());
+				}else{
+					//外院课程
+				}
 				map.put(c, choice.getScore());
 			
 		}
@@ -79,16 +84,28 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 	@Override
 	public ArrayList<Course> getCoursesFromB(String pId){
 		ArrayList<Course> allSharedCourses = dwTotalServer.getShareCourses();
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Course> result=new ArrayList<Course>();
+		for(int i=0;i<allSharedCourses.size();i++){
+			Course c=allSharedCourses.get(i);
+			if(c.getId().startsWith("2")){
+				result.add(c);
+			}
+		}
+		return result;
 	}
 
 
 	@Override
 	public ArrayList<Course> getCoursesFromC(String pId){
 		ArrayList<Course> allSharedCourses = dwTotalServer.getShareCourses();
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Course> result=new ArrayList<Course>();
+		for(int i=0;i<allSharedCourses.size();i++){
+			Course c=allSharedCourses.get(i);
+			if(c.getId().startsWith("3")){
+				result.add(c);
+			}
+		}
+		return result;
 	}
 
 
@@ -135,8 +152,13 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 		ArrayList<Course> result=new ArrayList<Course>();
 		for(int i=0;i<list.size();i++){
 		   String cid=list.get(i).getCourseId();
+		   Course c=null;
 		   if(list.get(i).getScore()==0){
-			   Course c=dwcourse.search(cid);
+			   if(cid.startsWith("1")){
+			   c=dwcourse.search(cid);
+			   }else{
+			   //外院的课程
+			   }
 			   result.add(c);
 		   }
 		}
