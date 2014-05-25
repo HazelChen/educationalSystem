@@ -5,7 +5,7 @@ import edu.nju.educationSystem.server.model.Major;
 public class MajorService {
 
 	public Major getMajor(String majorXml) {
-		//TODO
-		return Major.A;
+		Major major = Major.valueOf(majorXml);
+		return major;
 	}
 }

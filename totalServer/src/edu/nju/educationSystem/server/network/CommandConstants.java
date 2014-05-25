@@ -3,6 +3,10 @@ package edu.nju.educationSystem.server.network;
 public class CommandConstants {
 	
 	/**
+	 * 专业
+	 */
+	public final static String MAJOR = "major";
+	/**
 	 * 初始学生数据提交到总服务器
 	 */
 	public final static String STUDENT_DATA = "student_data";

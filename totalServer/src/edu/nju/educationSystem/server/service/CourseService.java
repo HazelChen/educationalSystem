@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import edu.nju.educationSystem.server.dao.CourseDAO;
 import edu.nju.educationSystem.server.model.Course;
+import edu.nju.educationSystem.server.xmlHandler.ConfigConstant;
+import edu.nju.educationSystem.server.xmlHandler.XMLGenerater;
 
 public class CourseService {
 	private CourseDAO courseDAO;
@@ -13,8 +15,12 @@ public class CourseService {
 	}
 	
 	public String toCourseXml(ArrayList<Course> courses) {
-		//TODO
-		return "";
+		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.COURSE_ROOT, ConfigConstant.COURSE_ELEMENT);
+		xmlGenerater.generateDocumentBaseInfo(Course.class);
+		for(Course course : courses) {
+			xmlGenerater.addElement(course);
+		}
+		return xmlGenerater.getXmlString();
 	}
 	
 	public ArrayList<Course> getCourses(String courseXml) {

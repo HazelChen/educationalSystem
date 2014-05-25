@@ -7,6 +7,8 @@ import edu.nju.educationSystem.server.dao.ElectiveDAO;
 import edu.nju.educationSystem.server.model.Course;
 import edu.nju.educationSystem.server.model.Elective;
 import edu.nju.educationSystem.server.model.Major;
+import edu.nju.educationSystem.server.xmlHandler.ConfigConstant;
+import edu.nju.educationSystem.server.xmlHandler.XMLGenerater;
 
 public class ElectiveService {
 	private ElectiveDAO electiveDAO;
@@ -52,8 +54,11 @@ public class ElectiveService {
 	}
 	
 	public String getElectivesXml(ArrayList<Elective> electives) {
-		//TODO
-		return "";
+		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.ELECTIVE_ROOT, ConfigConstant.ELECTIVE_ELEMENT);
+		for (Elective elective : electives) {
+			xmlGenerater.addElement(elective);
+		}
+		return xmlGenerater.getXmlString();
 	}
 	
 	public void addElectives(ArrayList<Elective> electives) {

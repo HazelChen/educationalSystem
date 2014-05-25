@@ -63,11 +63,13 @@ public class DatabaseUtils {
 		return rs;
 	}
 	
-/*
-	public ResultSet pdSearch(String sql) {
+	/**
+	 * ·µ»ØresultSetµÄsearch
+	 */
+	public ResultSet searchResultSet(String sql) {
 		ResultSet rs = null;
 		try {
-			Connection connection = ConnectionFactory.getConnection();
+			Connection connection = ConnectionFactory.getInstance().getConnection();
 
 			PreparedStatement pstm = connection.prepareStatement(sql);
 			rs = pstm.executeQuery();
@@ -79,7 +81,7 @@ public class DatabaseUtils {
 	}
 	
 	
-
+/*
 	public static PreparedStatement pd(String sql) {
 		Connection connection = ConnectionFactory.getConnection();
 		PreparedStatement pd = null;
