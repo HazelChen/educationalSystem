@@ -197,8 +197,10 @@ public class EditStudentInfoPanel extends JPanel {
 				if (getNewInfo() != null) {
 					AdminServiceAdapter adapter = AdminServiceAdapter
 							.getInstance();
-					if (adapter.modifyStudent(getNewInfo()))
+					if (adapter.modifyStudent(getNewInfo())){
 						showSuccessMessage();
+						clear();
+					}
 					else
 						showFailMessage();
 				}
@@ -234,5 +236,12 @@ public class EditStudentInfoPanel extends JPanel {
 
 	private void showFailMessage() {
 		JOptionPane.showMessageDialog(null, "²Ù×÷Ê§°Ü");
+	}
+	
+	private void clear(){
+		idTextField.setText("");
+		passwrodField.setText("");
+		maleButton.setSelected(true);
+		femaleButton.setSelected(false);
 	}
 }
