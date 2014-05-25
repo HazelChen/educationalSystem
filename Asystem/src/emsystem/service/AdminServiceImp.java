@@ -113,7 +113,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 	@Override
 	public void postFinishChooseAction(){
 		ArrayList<Choice> choices = dwTotalServer.getAllChoices();
-		// TODO 写入数据库
+		
 		for(int i=0;i<choices.size();i++){
 			Choice c=choices.get(i);
 			dwchoice.insert(c);
@@ -122,14 +122,12 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 
 	@Override
 	public void postShareStudentAction(){
-		// TODO 从数据库得到所有学生信息
 		ArrayList<Student> students = dwstudent.getAllStudent();
 		dwTotalServer.shareStudents(students);
 	}
 
 	@Override
 	public void postShareCourseAction(ArrayList<String> pCourseIds){
-		// TODO 从数据库得到课程信息
 		ArrayList<Course> courses = dwcourse.getAllCourse();
 		dwTotalServer.shareCourse(courses);
 	}
