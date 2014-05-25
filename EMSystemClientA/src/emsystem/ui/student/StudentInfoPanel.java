@@ -35,8 +35,8 @@ public class StudentInfoPanel extends JPanel {
 	private String[][] getData(){
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
 		Student student = adapter.getStudentInfo(mAccount);
-		
-		String[][] data = null;
+
+		String[][] data = new String[][]{};
 		if (student != null) {
 			data = new String[][]{{student.getId(), student.getName(), student.getSex(), student.getMajor()}};
 		}

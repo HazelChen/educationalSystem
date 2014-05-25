@@ -10,7 +10,6 @@ import emsystem.data.Account;
 import emsystem.data.Choice;
 import emsystem.data.Course;
 import emsystem.data.Student;
-
 import emsystem.rmi.AdminService;
 import emsystem.rmi.RMI;
 import emsystem.rmi.StudentService;
@@ -123,6 +122,19 @@ public class StudentServiceImp  implements StudentService{
 		boolean[] result=null;
 		try {
 			result=ss.dropCourses(pStudentId, pCourseId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public ArrayList<Course> getCoursesToDrop(String pStudentId){
+		ArrayList<Course> result=null;
+		try {
+			result=ss.getCoursesToDrop(pStudentId);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

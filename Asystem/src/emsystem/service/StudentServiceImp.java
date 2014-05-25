@@ -123,6 +123,18 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 		return result;
 	}
 
-	
 
+	@Override
+	public ArrayList<Course> getCoursesToDrop(String pStudentId){
+		ArrayList<Choice> list=dwchoice.getMyChoice(pStudentId);
+		ArrayList<Course> result=new ArrayList<Course>();
+		for(int i=0;i<list.size();i++){
+		   String cid=list.get(i).getCourseId();
+		   if(list.get(i).getScore()==0){
+			   Course c=dwcourse.search(cid);
+			   result.add(c);
+		   }
+		}
+		return result;
+	}
 }

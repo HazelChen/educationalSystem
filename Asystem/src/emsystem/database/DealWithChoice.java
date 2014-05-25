@@ -32,6 +32,7 @@ public class DealWithChoice {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return list;
 	}
@@ -43,10 +44,12 @@ public class DealWithChoice {
 				+choice.getStudentId()+"',"+choice.getScore()+")";
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return b;
 	}
@@ -57,10 +60,12 @@ public class DealWithChoice {
 		String sql="delete from choice where Ñ§ºÅ="+sid +"and ¿Î³Ì±àºÅ="+cid;
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return b;
 	}
@@ -80,6 +85,7 @@ public class DealWithChoice {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return choice;
 	}
@@ -100,6 +106,7 @@ public class DealWithChoice {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return list;
 	}

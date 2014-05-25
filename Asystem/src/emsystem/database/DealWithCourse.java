@@ -34,6 +34,7 @@ public class DealWithCourse {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return list;
 	}
@@ -46,10 +47,12 @@ public class DealWithCourse {
 				+course.getTeacher()+"','"+course.getAddress()+"','"+course.getShareFlag()+"');";
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return b;
 	}
@@ -60,10 +63,12 @@ public class DealWithCourse {
 		String sql="delete from course where 编号="+cid;
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return b;
 	}
@@ -87,6 +92,7 @@ public class DealWithCourse {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return course;
 	}
@@ -98,10 +104,12 @@ public class DealWithCourse {
 				+"',地点='"+course.getAddress()+"',共享='"+course.getShareFlag()+"' where 学号="+course.getId();
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) { 
 			e.printStackTrace();
+			close();
 		}
 		return b;
 	}
