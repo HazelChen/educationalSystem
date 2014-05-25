@@ -18,6 +18,8 @@ public class Course implements Serializable{
 	private String mAddress;
 	private String mShareFlag;
 	
+	public Course(){}
+	
 	public Course(String pId, String pCourseName, int pCredit,String pCourseTime, String pTeacher, String pAddress, String pShareFlag){
 		mId = pId;
 		mCourseName = pCourseName;

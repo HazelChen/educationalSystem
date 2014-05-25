@@ -29,4 +29,11 @@ public class DealWithTotalServer {
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
 		communicationWithServer.write(CommandConstants.COURSE_WITHDRAWAL, xml);
 	}
+	
+	public Course getOtherMajorCourse(String id) {
+		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
+		String xml = communicationWithServer.read(CommandConstants.ASK_FOR_COURSE_INFORMATION, id);
+		//TODO
+		return new Course();
+	}
 }
