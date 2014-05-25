@@ -32,6 +32,7 @@ public class DealWithAccount {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return list;
 	}
@@ -40,13 +41,15 @@ public class DealWithAccount {
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
 		String sql="insert into account(账户名,密码,级别,客体) values('"+acc.getName()+"','"
-				+acc.getPassword()+"',"+acc.getJibie()+",'"+acc.getKeti()+"');";
+				+acc.getPassword()+"','"+acc.getJibie()+"','"+acc.getKeti()+"')";
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return b;
 	}
@@ -54,34 +57,37 @@ public class DealWithAccount {
 	public boolean delete(String aid){
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
-		String sql="delete from account where 账户名="+aid;
+		String sql="delete from account where 账户名='"+aid+"'";
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return b;
 	}
 	
 	public Account search(String aid){
 		c=DatabaseHelper.getConnection();
-		String sql="select * from account where 账户名="+aid;
+		String sql="select * from account where 账户名='"+aid+"'";
 		Account account=null;
 		try {
 			s=c.createStatement();
 			rs=s.executeQuery(sql);
 			while(rs.next()){
-				String keti=rs.getString("客体");
+//				String keti=rs.getString("客体");
 				int jibie=rs.getInt("级别");
 				String name=rs.getString("账户名");
 				String password=rs.getString("密码");
-				account=new Account(name, password, jibie, keti);
+				account=new Account(name, password, jibie, name);
 			}
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return account;
 	}

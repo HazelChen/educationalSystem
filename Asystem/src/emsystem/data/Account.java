@@ -3,7 +3,13 @@ package emsystem.data;
 import java.io.Serializable;
 
 public class Account implements Serializable{
-	private static final long serialVersionUID = -7958527394040623442L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private String name;
 	private String password;
 	private int jibie;

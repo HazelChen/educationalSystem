@@ -34,6 +34,7 @@ public class DealWithStudent {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return list;
 	}
@@ -42,30 +43,35 @@ public class DealWithStudent {
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
 		String sql="insert into student(学号,姓名,性别,专业,密码) values('"+stu.getId()+"','"
-				+stu.getName()+"','"+stu.getSex()+"','"+stu.getMajor()+"','"+stu.getmPassword()+"');";
+				+stu.getName()+"','"+stu.getSex()+"','"+stu.getMajor()+"','"+stu.getmPassword()+"')";
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		Account acc=new Account(stu.getId(), stu.getmPassword(), 0, stu.getId());
 		DealWithAccount dc=new DealWithAccount();
 		dc.insert(acc);
+		System.out.println(b);
 		return b;
 	}
 	
 	public boolean delete(String sid){
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
-		String sql="delete from student where 学号="+sid;
+		String sql="delete from student where 学号='"+sid+"'";
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		DealWithAccount dc=new DealWithAccount();
 		dc.delete(sid);
@@ -74,7 +80,7 @@ public class DealWithStudent {
 	
 	public Student search(String sid){
 		c=DatabaseHelper.getConnection();
-		String sql="select * from student where 学号="+sid;
+		String sql="select * from student where 学号='"+sid+"'";
 		Student stu = null;
 		try {
 			s=c.createStatement();
@@ -90,20 +96,23 @@ public class DealWithStudent {
 			close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return stu;
 	}
 	public boolean  modify(Student stu){
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
-		String sql="update student set 姓名="+stu.getName()
-				+",性别="+stu.getSex()+",密码="+stu.getmPassword()+" where 学号="+stu.getId();
+		String sql="update student set 姓名='"+stu.getName()
+				+"',性别='"+stu.getSex()+"',密码='"+stu.getmPassword()+"' where 学号="+stu.getId();
 		try {
 			s=c.createStatement();
-			b=s.execute(sql);
+			s.execute(sql);
 			close();
+			b=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			close();
 		}
 		return b;
 	}

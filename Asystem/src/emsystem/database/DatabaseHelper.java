@@ -15,30 +15,12 @@ public class DatabaseHelper {
 	private static Connection c;
 	
 	public  static Connection getConnection(){
-		if(c==null){
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
 			 c= DriverManager.getConnection(dbUrl, user, password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		}
 		return c;
-	}
-	public static void main(String[] args){
-		DatabaseHelper helper=new DatabaseHelper();
-	    Connection c=helper.getConnection();
-		ResultSet r;
-		try {
-			Statement s = c.createStatement();
-			r = s.executeQuery("SELECT * from account");
-		while(r.next()) {
-		// 打印字段信息
-		System.out.println(r.getInt("级别"));
-		}
-		s.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }

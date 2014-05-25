@@ -7,7 +7,10 @@ public class Student implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3965165557955422153L;
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	
 	private String mId;
 	private String mName;
