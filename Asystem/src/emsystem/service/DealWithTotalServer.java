@@ -22,4 +22,11 @@ public class DealWithTotalServer {
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
 		communicationWithServer.write(CommandConstants.STUDENT_ELECTIVE, xml);
 	}
+	
+	public void dropOtherMajor(Choice choice) {
+		//TODO
+		String xml  = "";
+		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
+		communicationWithServer.write(CommandConstants.COURSE_WITHDRAWAL, xml);
+	}
 }

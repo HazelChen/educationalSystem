@@ -139,7 +139,9 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 				boolean b=dwchoice.delete(cid, pStudentId);
 				result[i]=b;
 			}else{
-				//选择外院的课
+				//退选外院的课
+				Choice choice = new Choice(pStudentId, cid, 0);
+				dwTotalServer.dropOtherMajor(choice);
 			}
 		}
 		return result;
