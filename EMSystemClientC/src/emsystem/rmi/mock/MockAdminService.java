@@ -45,9 +45,9 @@ public class MockAdminService implements AdminService {
 	@Override
 	public ArrayList<Course> getCourses() {
 		ArrayList<Course> courses = new ArrayList<>();
-		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china",
+		Course course1 = new Course("001", "math", 3, 3, "mike", "china",
 				"ÊÇ");
-		Course course2 = new Course("002", "art", 2, "1-2", "Tom", "China", "·ñ");
+		Course course2 = new Course("002", "art", 2, 3, "Tom", "China", "·ñ");
 
 		courses.add(course1);
 		courses.add(course2);

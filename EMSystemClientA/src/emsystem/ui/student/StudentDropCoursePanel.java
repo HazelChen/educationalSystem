@@ -4,9 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -51,7 +49,6 @@ public class StudentDropCoursePanel extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		scrollPane = new JScrollPane();
-		// scrollPane.setPreferredSize(new Dimension(500, 350));
 
 		showTable();
 
@@ -98,10 +95,9 @@ public class StudentDropCoursePanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				if (getCheckedIds().size() == 0) {
 					JOptionPane.showMessageDialog(null, "未选择任何课程");
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "退课请求已发送，请等待通知");
+				} else {
 					doPost();
+					JOptionPane.showMessageDialog(null, "退课成功");
 				}
 			}
 		});
@@ -110,10 +106,9 @@ public class StudentDropCoursePanel extends JPanel {
 
 	private Object[][] getData() {
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
-		HashMap<Course, Integer>  coursesMap= adapter.getMyCourses(mAccount);
-		Object[][] data = new Object[][]{};
-		if (coursesMap != null) {
-			Set<Course> courses = coursesMap.keySet();
+		ArrayList<Course> courses = adapter.getCoursesToDrop(mAccount);
+		Object[][] data = new Object[][] {};
+		if (courses != null) {
 			data = new Object[courses.size()][columnNums];
 			int i = 0;
 			Iterator<Course> iterator = courses.iterator();
@@ -125,13 +120,14 @@ public class StudentDropCoursePanel extends JPanel {
 				data[i][creditIndex] = course.getCredit();
 				data[i][teacherIndex] = course.getTeacher();
 				data[i][addressIndex] = course.getAddress();
-				
+
 				i++;
 			}
-				
+
 		}
 		return data;
 	}
+
 	private ArrayList<String> getCheckedIds() {
 		ArrayList<String> indexes = new ArrayList<>();
 		for (int i = 0; i < getData().length; i++) {
@@ -142,8 +138,12 @@ public class StudentDropCoursePanel extends JPanel {
 		}
 		return indexes;
 	}
-	
-	private void doPost(){
+
+	private void doPost() {
+		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
+		adapter.dropCourses(mAccount, getCheckedIds());
 		
+		//refresh
+		showTable();
 	}
 }

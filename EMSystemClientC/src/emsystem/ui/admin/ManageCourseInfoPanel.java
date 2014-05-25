@@ -3,8 +3,6 @@ package emsystem.ui.admin;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -14,17 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import emsystem.data.Student;
+import emsystem.data.Course;
 import emsystem.rmi.AdminServiceAdapter;
 import emsystem.ui.MainFrame;
 
-public class ManageStudentInfoPanel extends JPanel {
-
+public class ManageCourseInfoPanel extends JPanel{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7844157562610687848L;
-
+	private static final long serialVersionUID = -5382239487717069420L;
 	/**
 	 * Create the panel.
 	 */
@@ -35,13 +31,13 @@ public class ManageStudentInfoPanel extends JPanel {
 	
 	private JScrollPane scrollPane;
 
-	private String[] infoColumnsName = new String[] { "学号", "姓名","密码", "性别", "院系" };
+	String[] infoColumnsName = new String[]{"课程编号","课程名称","课时","学分","授课老师","授课地点","是否共享"};
 
-	private int columnNums = 5;
-	private int idIndex = 0, nameIndex =1, passwordIndex = 2, sexIndex = 3, majorIndex = 4 ;
+	private int columnNums = 7;
+	private int idIndex = 0, nameIndex =1, timeIndex = 2, creditIndex = 3, teacherIndex = 4 , addressIndex = 5, shareIndex = 6;
 	
 	private MainFrame mFrame;
-	public ManageStudentInfoPanel(MainFrame pFrame) {
+	public ManageCourseInfoPanel(MainFrame pFrame) {
 		mFrame = pFrame;
 		initView();
 		setListeners();
@@ -62,13 +58,6 @@ public class ManageStudentInfoPanel extends JPanel {
 			}
 		};
 		mTable.getTableHeader().setReorderingAllowed(false);
-
-		mTable.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-			}
-		});
 
 		scrollPane = new JScrollPane(mTable);
 		add(scrollPane);
@@ -91,17 +80,19 @@ public class ManageStudentInfoPanel extends JPanel {
 
 	private Object[][] getData() {
 		AdminServiceAdapter adapter = AdminServiceAdapter.getInstance();
-		ArrayList<Student> students = adapter.getStudents();
+		ArrayList<Course> courses = adapter.getCourses();
 		Object[][] data = new Object[][]{};
-		if (students != null) {
-			data = new Object[students.size()][columnNums];
+		if (courses != null) {
+			data = new Object[courses.size()][columnNums];
 			for (int i = 0; i < data.length; i++) {
-				Student student = students.get(i);
-				data[i][idIndex] = student.getId();
-				data[i][nameIndex] = student.getName();
-				data[i][passwordIndex] = student.getmPassword();
-				data[i][sexIndex] = student.getSex();
-				data[i][majorIndex] = student.getMajor();
+				Course course = courses.get(i);
+				data[i][idIndex] = course.getId();
+				data[i][nameIndex] = course.getCourseName();
+				data[i][timeIndex] = course.getCourseTime();
+				data[i][creditIndex] = course.getCredit();
+				data[i][teacherIndex] = course.getTeacher();
+				data[i][addressIndex] = course.getAddress();
+				data[i][shareIndex] = course.getShareFlag();
 			}
 		}
 		return data;
@@ -112,8 +103,8 @@ public class ManageStudentInfoPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				EditStudentInfoPanel editStudentInfoPanel = new EditStudentInfoPanel(mFrame);
-				mFrame.setContentPane(editStudentInfoPanel);
+				EditCourseInfoPanel editCourseInfoPanel = new EditCourseInfoPanel(mFrame);
+				mFrame.setContentPane(editCourseInfoPanel);
 				mFrame.validate();
 				mFrame.repaint();
 			}
@@ -128,13 +119,16 @@ public class ManageStudentInfoPanel extends JPanel {
 					int row = mTable.getSelectedRow();
 					String id = (String) mTable.getValueAt(row, idIndex);
 					String name = (String) mTable.getValueAt(row, nameIndex);
-					String password = (String) mTable.getValueAt(row, passwordIndex);
-					String sex = (String) mTable.getValueAt(row, sexIndex);
-					String major = (String) mTable.getValueAt(row, majorIndex);
-					
-					Student student = new Student(id, name, sex, major, password);
-					EditStudentInfoPanel editStudentInfoPanel = new EditStudentInfoPanel(mFrame,student);
-					mFrame.setContentPane(editStudentInfoPanel);
+					String teacher = (String) mTable.getValueAt(row, teacherIndex);
+					String address = (String) mTable.getValueAt(row, addressIndex);
+					int credit = (int) mTable.getValueAt(row, creditIndex);
+					int time = (int) mTable.getValueAt(row, timeIndex);
+					String shareFlag = (String)mTable.getValueAt(row, shareIndex);
+
+					Course course = new Course(id, name, credit, time, teacher, address, shareFlag);
+
+					EditCourseInfoPanel editCourseInfoPanel = new EditCourseInfoPanel(mFrame, course);
+					mFrame.setContentPane(editCourseInfoPanel);
 					mFrame.validate();
 					mFrame.repaint();
 				}
@@ -156,7 +150,7 @@ public class ManageStudentInfoPanel extends JPanel {
 	private void delete(){
 		String pId = (String) mTable.getValueAt(mTable.getSelectedRow(), idIndex);
 		AdminServiceAdapter adapter = AdminServiceAdapter.getInstance();
-		if (adapter.deleteStudent(pId)) {
+		if (adapter.deleteCourse(pId)) {
 			JOptionPane.showMessageDialog(null, "操作成功");
 			refresh();
 		}
@@ -183,5 +177,4 @@ public class ManageStudentInfoPanel extends JPanel {
 		mTable.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(mTable);
 	}
-	
 }

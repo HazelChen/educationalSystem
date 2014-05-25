@@ -178,13 +178,13 @@ public class EditCourseInfoPanel extends JPanel {
 	private void initEdit() {
 		init();
 		idTextField.setEditable(false);
-		if (mCourse.getmShareFlag().equals("ÊÇ")) {
+		if (mCourse.getShareFlag().equals("ÊÇ")) {
 			shareCheck.setEnabled(false);
 		}
 
 		idTextField.setText(mCourse.getId());
 		nameTextField.setText(mCourse.getCourseName());
-		timeTextField.setText(mCourse.getCourseTime());
+		timeTextField.setText(mCourse.getCourseTime()+"");
 		teacherTextField.setText(mCourse.getTeacher());
 		addressTextField.setText(mCourse.getAddress());
 		creditTextField.setText(mCourse.getCredit()+"");
@@ -210,21 +210,22 @@ public class EditCourseInfoPanel extends JPanel {
 		Course course = null;
 		String courseId = idTextField.getText().trim();
 		String courseName = nameTextField.getText().trim();
-		String time = timeTextField.getText().trim();
+		String timeString = timeTextField.getText().trim();
 		String teacher = teacherTextField.getText().trim();
 		String address = addressTextField.getText().trim();
 		String creditString = creditTextField.getText().trim();
 
-		if (courseId.equals("") || courseName.equals("") || time.equals("")
+		if (courseId.equals("") || courseName.equals("") || timeString.equals("")
 				|| teacher.equals("") || address.equals("")
 				|| creditString.equals("")) {
 			showAlertMessage();
-		} else if (!isDigit(creditString)) {
+		} else if (!isDigit(creditString) || !isDigit(timeString)) {
 			showCreditError();
 		} else {
-			int credit;
+			int credit, time;
 			credit = Integer.valueOf(creditString);
-
+			time  = Integer.valueOf(timeString);
+			
 			String shareFlag = shareCheck.isSelected() ? "ÊÇ" : "·ñ";
 
 			course = new Course(courseId, courseName, credit, time, teacher,

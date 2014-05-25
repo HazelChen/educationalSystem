@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import emsystem.data.Choice;
+import emsystem.data.Student;
 
 public class DealWithChoice {
 
@@ -113,6 +114,8 @@ public class DealWithChoice {
 		}
 		return b;
 	}
+	
+	
 	public  void close(){
 			try {
 				if(c!=null) {

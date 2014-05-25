@@ -94,19 +94,21 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 
 	@Override
 	public boolean[] chooseCourses(String pId, ArrayList<String> pCourseIdlist){
+		boolean[] result=new boolean[pCourseIdlist.size()];
 		for(int i=0;i<pCourseIdlist.size();i++){
 			String cid=pCourseIdlist.get(i);
 			if(cid.startsWith("1")){
 				//选A系统的课
 				Choice choice=new Choice(pId, cid, 0);
-				dwchoice.insert(choice);
+				boolean b=dwchoice.insert(choice);
+				result[i]=b;
 			}else{
 				//选择外院的课
 				Choice choice=new Choice(pId, cid, 0);
 				dwTotalServer.choiceOtherMajor(choice);
 			}
 		}
-		return null;
+		return result;
 	}
 
 	

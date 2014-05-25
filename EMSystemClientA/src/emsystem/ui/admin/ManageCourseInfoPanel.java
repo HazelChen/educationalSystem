@@ -28,6 +28,8 @@ public class ManageCourseInfoPanel extends JPanel{
 	private JButton mEditButton;
 	private JButton mDeleteButton;
 	private JButton mAddButton;
+	
+	private JScrollPane scrollPane;
 
 	String[] infoColumnsName = new String[]{"课程编号","课程名称","课时","学分","授课老师","授课地点","是否共享"};
 
@@ -57,7 +59,7 @@ public class ManageCourseInfoPanel extends JPanel{
 		};
 		mTable.getTableHeader().setReorderingAllowed(false);
 
-		JScrollPane scrollPane = new JScrollPane(mTable);
+		scrollPane = new JScrollPane(mTable);
 		add(scrollPane);
 
 		JPanel operatePanel = new JPanel();
@@ -117,13 +119,16 @@ public class ManageCourseInfoPanel extends JPanel{
 					int row = mTable.getSelectedRow();
 					String id = (String) mTable.getValueAt(row, idIndex);
 					String name = (String) mTable.getValueAt(row, nameIndex);
-//					String password = (String) mTable.getValueAt(row, passwordIndex);
-//					String sex = (String) mTable.getValueAt(row, sexIndex);
-//					String major = (String) mTable.getValueAt(row, majorIndex);
-					
-//					String[] info = new String[]{id, name, password, sex, major};
-//					EditStudentInfoPanel editStudentInfoPanel = new EditStudentInfoPanel(mFrame,info);
-//					mFrame.setContentPane(editStudentInfoPanel);
+					String teacher = (String) mTable.getValueAt(row, teacherIndex);
+					String address = (String) mTable.getValueAt(row, addressIndex);
+					int credit = (int) mTable.getValueAt(row, creditIndex);
+					String time = (String) mTable.getValueAt(row, timeIndex);
+					String shareFlag = (String)mTable.getValueAt(row, shareIndex);
+
+					Course course = new Course(id, name, credit, time, teacher, address, shareFlag);
+
+					EditCourseInfoPanel editCourseInfoPanel = new EditCourseInfoPanel(mFrame, course);
+					mFrame.setContentPane(editCourseInfoPanel);
 					mFrame.validate();
 					mFrame.repaint();
 				}
@@ -145,8 +150,10 @@ public class ManageCourseInfoPanel extends JPanel{
 	private void delete(){
 		String pId = (String) mTable.getValueAt(mTable.getSelectedRow(), idIndex);
 		AdminServiceAdapter adapter = AdminServiceAdapter.getInstance();
-		if (adapter.deleteStudent(pId)) 
+		if (adapter.deleteCourse(pId)) {
 			JOptionPane.showMessageDialog(null, "操作成功");
+			refresh();
+		}
 		else
 			JOptionPane.showMessageDialog(null, "删除失败");
 	}
@@ -155,4 +162,19 @@ public class ManageCourseInfoPanel extends JPanel{
 		JOptionPane.showMessageDialog(null, "请选择要操作的行!");
 	}
 	
+	private void refresh(){
+		mTable = new JTable(getData(), infoColumnsName){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -4155819880040959665L;
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		mTable.getTableHeader().setReorderingAllowed(false);
+		scrollPane.setViewportView(mTable);
+	}
 }
