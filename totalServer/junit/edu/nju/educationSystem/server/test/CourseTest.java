@@ -37,8 +37,7 @@ public class CourseTest {
 		Course course1 = new Course("0000000", "广告学", 37, 3, "刘峰", "仙一");
 		Course course2 = new Course("0000001", "心理学", 40, 5, "赵志宏", "仙二");
 		
-		XMLGenerater xmlGenerater = new XMLGenerater("courses", "course");
-		xmlGenerater.generateDocumentBaseInfo(Course.class);
+		XMLGenerater xmlGenerater = new XMLGenerater("courses", "course", Course.class, new Course());
 		xmlGenerater.addElement(course1);
 		xmlGenerater.addElement(course2);
 		System.out.println(xmlGenerater.getXmlString());

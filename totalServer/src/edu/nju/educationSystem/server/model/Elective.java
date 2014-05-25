@@ -1,6 +1,10 @@
 package edu.nju.educationSystem.server.model;
 
-public class Elective {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Elective implements ModelSpecification{
+	
 	private String studentId = "";
 	private String courseId = "";
 	private int score;
@@ -29,6 +33,14 @@ public class Elective {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
+
+	@Override
+	public Map<String, String> getFieldCorrespondence() {
+		Map<String, String> maps = new HashMap<String, String>();
+		maps.put("studentId", "sid");
+		maps.put("courseId", "cid");
+		maps.put("score", "score");
+		return maps;
+	}
 	
 }

@@ -1,6 +1,9 @@
 package edu.nju.educationSystem.server.model;
 
-public class Student {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Student implements ModelSpecification{
 	private String id;
 	private String name;
 	private Sex sex;
@@ -36,6 +39,16 @@ public class Student {
 	}
 	public void setMajor(Major major) {
 		this.major = major;
+	}
+
+	@Override
+	public Map<String, String> getFieldCorrespondence() {
+		Map<String, String> maps = new HashMap<String, String>();
+		maps.put("id", "id");
+		maps.put("name", "name");
+		maps.put("sex", "sex");
+		maps.put("major", "major");
+		return maps;
 	}
 	
 	

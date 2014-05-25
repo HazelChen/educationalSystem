@@ -16,8 +16,8 @@ public class CourseService {
 	}
 	
 	public String toCourseXml(ArrayList<Course> courses) {
-		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.COURSE_ROOT, ConfigConstant.COURSE_ELEMENT);
-		xmlGenerater.generateDocumentBaseInfo(Course.class);
+		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
+				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
 		for(Course course : courses) {
 			xmlGenerater.addElement(course);
 		}

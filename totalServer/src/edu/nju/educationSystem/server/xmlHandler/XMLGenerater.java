@@ -2,12 +2,14 @@ package edu.nju.educationSystem.server.xmlHandler;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
@@ -15,12 +17,14 @@ import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
+import edu.nju.educationSystem.server.model.ModelSpecification;
+
 public class XMLGenerater {
 	private Class<?> objectClass;
 	private String rootString;
 	private String elementString;
 	
-	private String[] columnNames;
+	private Map<String, String> attributeAndColumns;
 
 	private Document document;
 	private Element rootElement;
@@ -30,6 +34,12 @@ public class XMLGenerater {
 		this.elementString = element;
 		this.document = DocumentHelper.createDocument();
 		this.rootElement = document.addElement(rootString);
+	}
+	
+	public XMLGenerater(String root, String element, Class<?> objectClass, ModelSpecification modelSpecification) {
+		this(root, element);
+		this.objectClass = objectClass;
+		this.attributeAndColumns = modelSpecification.getFieldCorrespondence();
 	}
 
 	public void generateDocument(ResultSet resultSet) {
@@ -59,27 +69,20 @@ public class XMLGenerater {
 		}
 	}
 	
-	public void generateDocumentBaseInfo(Class<?> objectClass) {
-		this.objectClass = objectClass;
-		Field[] fields = objectClass.getDeclaredFields();
-		columnNames = new String[fields.length];
-		for (int i = 0; i < fields.length; i++) {
-			columnNames[i] = fields[i].getName();
-		}
-	}
-	
 	public void addElement(Object object) {
 		object = objectClass.cast(object);
 		Element singleObject = rootElement.addElement(elementString);
 		
-		for (int i = 0; i < columnNames.length; i++) {
-			String columnString = columnNames[i];
+		Iterator<Entry<String, String>> iterator = attributeAndColumns.entrySet().iterator();
+		while (iterator.hasNext()) {
+			Entry<String, String> entry = iterator.next();
+			String columnString = entry.getValue();
 			Element column = singleObject.addElement(columnString);
 			String methodName = "";
 			if (methodName.length() == 1) {
-				methodName = "get" + Character.toUpperCase(columnNames[i].charAt(0));
+				methodName = "get" + Character.toUpperCase(entry.getKey().charAt(0));
 			} else {
-				methodName = "get" + Character.toUpperCase(columnNames[i].charAt(0)) + columnNames[i].substring(1);
+				methodName = "get" + Character.toUpperCase(entry.getKey().charAt(0)) + entry.getKey().substring(1);
 			}
 			String value = "";
 			try {
@@ -90,6 +93,8 @@ public class XMLGenerater {
 				e.printStackTrace();
 			}
 			column.setText(value);
+		}
+		for (int i = 0; i < attributeAndColumns.size(); i++) {
 		}
 	}
 
@@ -107,5 +112,5 @@ public class XMLGenerater {
 		}
 		return writer.toString();
 	}
-	
+
 }
