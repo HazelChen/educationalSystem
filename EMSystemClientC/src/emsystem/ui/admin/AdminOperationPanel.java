@@ -28,12 +28,14 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 	private String mTitle = "教务系统";
 	private String mStudentInfoString = "学生信息";
 	private String mCourseInfoString = "课程信息";
-	 private String mChooseCourseInfo = "选课信息";
+	private String mChooseCourseInfo = "选课信息";
+	private String mCrossChooseString = "跨专业选课管理"; 
 
 	private JMenuBar menuBar;
 	private JMenu mStudentInfoMenu;
 	private JMenu mCourseInfoMenu;
 	private JMenu mChooseCourseInfoMenu;
+	private JMenu mCrossChooseManageMenu;
 
 	private JPanel contentPanel;
 
@@ -79,6 +81,12 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 		 mChooseCourseInfoMenu.setBounds(322, 41, 111, 22);
 		 mChooseCourseInfoMenu.addMenuListener(this);
 		 menuBar.add(mChooseCourseInfoMenu);
+		 
+		 mCrossChooseManageMenu = new JMenu(mCrossChooseString);
+		 mCrossChooseManageMenu.setBounds(440, 41, 111, 22);
+		 mCrossChooseManageMenu.addMenuListener(this);
+		 menuBar.add(mCrossChooseManageMenu);
+		 
 		 add(menuBar);
 
 		contentPanel = new JPanel();
@@ -118,7 +126,14 @@ public class AdminOperationPanel extends JPanel implements MenuListener {
 			ManageChoicePanel choicePanel = new ManageChoicePanel(mFrame);
 			contentPanel.add(choicePanel);
 			this.add(contentPanel, BorderLayout.CENTER);
-//			mFrame.setContentPane(choicePanel);
+			repaint();
+			validate();
+		}
+		else if (e.getSource().equals(mCrossChooseManageMenu)) {
+			contentPanel.removeAll();
+			ManageCrossChoosePanel choicePanel = new ManageCrossChoosePanel();
+			contentPanel.add(choicePanel);
+			this.add(contentPanel, BorderLayout.CENTER);
 			repaint();
 			validate();
 		}

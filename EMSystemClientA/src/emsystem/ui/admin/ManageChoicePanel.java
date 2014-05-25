@@ -2,14 +2,11 @@ package emsystem.ui.admin;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -29,7 +26,7 @@ public class ManageChoicePanel extends JPanel {
 	private JTable mCourseTable;
 	private JTable mStudentTable;
 	
-	private JButton mButton;
+//	private JButton mButton;
 	
 	private String[] coursesColumnName = new String[]{"课程编号","课程名"};
 	private String[] studentColumnName = new String[]{"学生编号","姓名","所属院系"};
@@ -68,16 +65,6 @@ public class ManageChoicePanel extends JPanel {
 		infoTablePanel.add(studentPanel, BorderLayout.EAST);
 		
 		add(infoTablePanel);
-		
-		mButton = new JButton("点击结束选课");
-		mButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		add(mButton);
 		
 		generateCourseTable();
 	}

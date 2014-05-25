@@ -120,7 +120,7 @@ public class StudentDropCoursePanel extends JPanel {
 				data[i][creditIndex] = course.getCredit();
 				data[i][teacherIndex] = course.getTeacher();
 				data[i][addressIndex] = course.getAddress();
-
+				data[i][dropIndex] = false;
 				i++;
 			}
 
