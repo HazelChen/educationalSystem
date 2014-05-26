@@ -54,7 +54,7 @@ public class CourseRAO {
 		String xml = xmlGenerater.getXmlString();
 				
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
-		communicationWithServer.communicate(CommandConstants.SHARED_COURSE, xml);
+		communicationWithServer.communicate(CommandConstants.SHARE_COURSE, xml);
 	}
 	
 	private ArrayList<Course> manyCourseXmlAnalyze(String xml) {

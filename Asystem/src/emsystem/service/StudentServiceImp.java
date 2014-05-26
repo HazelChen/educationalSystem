@@ -81,28 +81,12 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 
 	@Override
 	public ArrayList<Course> getCoursesFromB(String pId) {
-		ArrayList<Course> allSharedCourses = dwTotalServer.getShareCourses();
-		ArrayList<Course> result = new ArrayList<Course>();
-		for (int i = 0; i < allSharedCourses.size(); i++) {
-			Course c = allSharedCourses.get(i);
-			if (c.getId().startsWith("2")) {
-				result.add(c);
-			}
-		}
-		return result;
+		return dwTotalServer.getNotSelectedInB(pId);
 	}
 
 	@Override
 	public ArrayList<Course> getCoursesFromC(String pId) {
-		ArrayList<Course> allSharedCourses = dwTotalServer.getShareCourses();
-		ArrayList<Course> result = new ArrayList<Course>();
-		for (int i = 0; i < allSharedCourses.size(); i++) {
-			Course c = allSharedCourses.get(i);
-			if (c.getId().startsWith("3")) {
-				result.add(c);
-			}
-		}
-		return result;
+		return dwTotalServer.getNotSelectedInC(pId);
 	}
 
 	@Override

@@ -78,4 +78,25 @@ public class CourseDAO {
 		ResultSet resultSet = databaseUtils.searchResultSet(order);
 		return resultSet;
 	}
+	
+	public ArrayList<Course> getNotSelectedCourse(String prefix, String sid) {
+		String sql = "select * from course where id like '" + prefix + "%'id not in("
+				+ "select cid from choice where sid='" + sid + "')";
+		
+		ArrayList<Course> courses = new ArrayList<>();
+		ResultSet resultSet = databaseUtils.searchResultSet(sql);
+		try {
+			while (resultSet.next()) {
+				Course course = new Course(resultSet.getString(COLUMNS[0]),
+						resultSet.getString(COLUMNS[1]), resultSet.getInt(COLUMNS[2]), 
+						resultSet.getInt(COLUMNS[3]), resultSet.getString(COLUMNS[4]), 
+						resultSet.getString(COLUMNS[5]));
+				courses.add(course);
+			}
+			resultSet.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return courses;
+	}
 }

@@ -3,10 +3,6 @@ package emsystem.socket;
 public class CommandConstants {
 	
 	/**
-	 * 专业
-	 */
-	public final static String MAJOR = "major";
-	/**
 	 * 初始学生数据提交到总服务器
 	 */
 	public final static String STUDENT_DATA = "student_data";
@@ -21,7 +17,7 @@ public class CommandConstants {
 	/**
 	 * 共享课程
 	 */
-	public final static String SHARED_COURSE = "share_course";
+	public final static String SHARE_COURSE = "share_course";
 	
 	/**
 	 * 每个学生的选课信息
@@ -39,7 +35,4 @@ public class CommandConstants {
 	public final static String ELECTIVE_RECORD = "elective_record";
 	
 	public final static String GET_COURSE_INFORMATION_BY_ID = "get_course_information_by_id";
-	
-	
-	
 }

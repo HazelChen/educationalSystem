@@ -49,4 +49,16 @@ public class CourseService {
 		return course;
 	}
 	
+	public ArrayList<Course> notSelectedCourseA(String sid) {
+		return courseDAO.getNotSelectedCourse("1", sid);
+	}
+	
+	public ArrayList<Course> notSelectedCourseB(String sid) {
+		return courseDAO.getNotSelectedCourse("2", sid);
+	}
+	
+	public ArrayList<Course> notSelectedCourseC(String sid) {
+		return courseDAO.getNotSelectedCourse("3", sid);
+	}
+	
 }

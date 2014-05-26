@@ -25,15 +25,23 @@ public class ServiceFacade {
 		//TODO xml转换 return 之前也要转换
 		
 		switch (command) {
-		
-		case CommandConstants.ASK_FOR_COURSE_INFORMATION:
-			return askForCourse(xml);
-			
 		case CommandConstants.COURSE_WITHDRAWAL:
 			return courseWithdraw(xml);
-			
+		
 		case CommandConstants.ELECTIVE_RECORD:
 			return getElectiveRecord(major);
+			
+		case CommandConstants.GET_COURSE_INFORMATION_BY_ID:
+			return askForCourse(xml);
+			
+		case CommandConstants.NOT_SELECTED_COURSE_A:
+			return notSelectedCourseA(xml);
+			
+		case CommandConstants.NOT_SELECTED_COURSE_B:
+			return notSelectedCourseB(xml);
+			
+		case CommandConstants.NOT_SELECTED_COURSE_C:
+			return notSelectedCourseC(xml);
 			
 		case CommandConstants.SHARE_COURSE:
 			return addCourse(xml);
@@ -51,18 +59,52 @@ public class ServiceFacade {
 		
 	}
 	
+	private String notSelectedCourseA(String sid) {
+		ArrayList<Course> courses = courseService.notSelectedCourseA(sid);
+		
+		XMLGenerater generater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
+				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
+		for (Course course : courses) {
+			generater.addElement(course);
+		}
+		return generater.getXmlString();
+	}
+	
+	private String notSelectedCourseB(String sid) {
+		ArrayList<Course> courses = courseService.notSelectedCourseB(sid);
+		
+		XMLGenerater generater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
+				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
+		for (Course course : courses) {
+			generater.addElement(course);
+		}
+		return generater.getXmlString();
+	}
+	
+	private String notSelectedCourseC(String sid) {
+		ArrayList<Course> courses = courseService.notSelectedCourseC(sid);
+		
+		XMLGenerater generater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
+				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
+		for (Course course : courses) {
+			generater.addElement(course);
+		}
+		return generater.getXmlString();
+	}
+	
 	private String askForCourse(String cid) {
 		Course course = courseService.getCourse(cid);
 		
 		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
 				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
+		xmlGenerater.addElement(course);
 		return xmlGenerater.getXmlString();
 	}
 	
 	private String courseWithdraw(String electiveXml) {
 		ArrayList<Elective> electives = electiveService.getElectives(electiveXml);
-		electiveService.courseWithdraw(electives);
-		return "useless return";
+		boolean result = electiveService.courseWithdraw(electives);
+		return result + "";
 	}
 	
 	private String getElectiveRecord(String majorString) {
@@ -86,7 +128,7 @@ public class ServiceFacade {
 	
 	private String addElective(String electiveXml) {
 		ArrayList<Elective> electives = electiveService.getElectives(electiveXml);
-		electiveService.addElectives(electives);
-		return "useless return";
+		boolean result = electiveService.addElectives(electives);
+		return result + "";
 	}
 }

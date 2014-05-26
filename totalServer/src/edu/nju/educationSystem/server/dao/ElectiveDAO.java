@@ -30,20 +30,22 @@ public class ElectiveDAO {
 		return electives;
 	}
 
-	public void remove(Elective elective) {
+	public boolean remove(Elective elective) {
 		String order = "delete from " + TABLE_NAME + " where " + COLUMN[0]
 				+ " = '" + elective.getStudentId() + "' and " + COLUMN[1]
 				+ " = '" + elective.getCourseId() + "'";
 
-		databaseUtils.excute(order);
+		boolean result = databaseUtils.excute(order);
+		return result;
 	}
 
-	public void add(Elective elective) {
+	public boolean add(Elective elective) {
 		String order = "INSERT INTO " + TABLE_NAME + " VALUES ('"
 				+ elective.getStudentId() + "','" + elective.getCourseId()
 				+ "','" + elective.getScore() + "')";
 
-		databaseUtils.excute(order);
+		boolean result = databaseUtils.excute(order);
+		return result;
 	}
 
 	private ArrayList<Elective> getElectivesByResultSet(ResultSet resultSet) {

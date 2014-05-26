@@ -32,10 +32,12 @@ public class ElectiveService {
 		return courses;
 	}
 	
-	public void courseWithdraw(ArrayList<Elective> electives) {
+	public boolean courseWithdraw(ArrayList<Elective> electives) {
+		boolean result = false;
 		for (Elective elective : electives) {
-			electiveDAO.remove(elective);
+			result = electiveDAO.remove(elective);
 		}
+		return result;
 	}
 	
 	public ArrayList<Elective> getElectives(String electiveXml) {
@@ -69,9 +71,11 @@ public class ElectiveService {
 		return xmlGenerater.getXmlString();
 	}
 	
-	public void addElectives(ArrayList<Elective> electives) {
+	public boolean addElectives(ArrayList<Elective> electives) {
+		boolean result = false;
 		for (Elective elective : electives) {
-			electiveDAO.add(elective);
+			result = electiveDAO.add(elective);
 		}
+		return result;
 	}
 }

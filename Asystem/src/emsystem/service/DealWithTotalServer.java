@@ -13,25 +13,10 @@ import emsystem.xml.XMLGenerater;
 
 public class DealWithTotalServer {
 	
-	public ArrayList<Course> getShareCourses() {
-		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
-		String xml = communicationWithServer.communicate(CommandConstants.SHARE_COURSE);
-		
-		XMLAnalyzer analyzer = new XMLAnalyzer(xml);
-		ArrayList<Course> courses = new ArrayList<>();
-		while (analyzer.hasNext()) {
-			ArrayList<String> values = analyzer.next();
-			Course course = new Course(values.get(0), values.get(1), 
-					Integer.parseInt(values.get(2)), values.get(3), 
-					values.get(4), values.get(5), values.get(6));
-			courses.add(course);
-		}
-		return courses;
-	}
-	
 	public void choiceOtherMajor(Choice choice) {
 		XMLGenerater generater = new XMLGenerater(ConfigConstant.ELECTIVE_ROOT, 
 				ConfigConstant.ELECTIVE_ELEMENT, Choice.class, new Choice());
+		generater.addElement(choice);
 		String xml = generater.getXmlString();
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
 		communicationWithServer.communicate(CommandConstants.STUDENT_ELECTIVE, xml);
@@ -40,6 +25,7 @@ public class DealWithTotalServer {
 	public void dropOtherMajor(Choice choice) {
 		XMLGenerater generater = new XMLGenerater(ConfigConstant.ELECTIVE_ROOT, 
 				ConfigConstant.ELECTIVE_ELEMENT, Choice.class, new Choice());
+		generater.addElement(choice);
 		String xml = generater.getXmlString();
 		
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
@@ -48,7 +34,7 @@ public class DealWithTotalServer {
 	
 	public Course getOtherMajorCourse(String cid) {
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
-		String xml = communicationWithServer.communicate(CommandConstants.ASK_FOR_COURSE_INFORMATION, cid);
+		String xml = communicationWithServer.communicate(CommandConstants.GET_COURSE_INFORMATION_BY_ID, cid);
 		
 		XMLAnalyzer analyzer = new XMLAnalyzer(xml);
 		if (analyzer.hasNext()) {
@@ -91,10 +77,38 @@ public class DealWithTotalServer {
 	public void shareCourse(ArrayList<Course> courses) {
 		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
 				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
+		for(Course course : courses) {
+			xmlGenerater.addElement(course);
+		}
 		String xml = xmlGenerater.getXmlString();
 		
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
 		communicationWithServer.communicate(CommandConstants.SHARE_COURSE, xml);
+	}
+	
+	public ArrayList<Course> getNotSelectedInC(String sid) {
+		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
+		String xml = communicationWithServer.communicate(CommandConstants.NOT_SELECTED_COURSE_C, sid);
+		return manyCourseXmlAnalyze(xml);
+	}
+	
+	public ArrayList<Course> getNotSelectedInB(String sid) {
+		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
+		String xml = communicationWithServer.communicate(CommandConstants.NOT_SELECTED_COURSE_B, sid);
+		return manyCourseXmlAnalyze(xml);
+	}
+	
+	private ArrayList<Course> manyCourseXmlAnalyze(String xml) {
+		ArrayList<Course> courses = new ArrayList<>();
+		XMLAnalyzer analyzer = new XMLAnalyzer(xml);
+		while (analyzer.hasNext()) {
+			ArrayList<String> values = analyzer.next();
+			Course course = new Course(values.get(0), values.get(1), 
+					Integer.parseInt(values.get(2)), values.get(3), 
+					values.get(4), values.get(5), values.get(6));
+			courses.add(course);
+		}
+		return courses;
 	}
 	
 }
