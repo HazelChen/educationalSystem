@@ -59,7 +59,6 @@ public class ServerFrame extends JFrame{
 		serverRunner.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		serverRunner.setVisible(true);
 		serverRunner.setLocationRelativeTo(null);
-		serverRunner.setName("Voyager Server");
 	}
 	
 }
