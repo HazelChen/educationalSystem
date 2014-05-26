@@ -11,8 +11,10 @@ public class NetworkInit {
 	public void netWorkInit(){
 		try {
 			LocateRegistry.createRegistry(1099);
+			
 			StudentService studentService = new StudentServiceImp();
 			AdminService adminService = new AdminServiceImp();
+			
 			Naming.rebind("student", studentService);
 			Naming.rebind("admin", adminService);
 		} catch (Exception e) {
