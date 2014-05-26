@@ -22,8 +22,18 @@ public class ServerRun implements Runnable{
 		try {
 			while (true) {
 				String major = input.readLine();
+				System.out.println(major);
 				String command = input.readLine();
-				String xml = input.readLine();
+				System.out.println(command);
+				
+				StringBuffer xmlBuffer = new StringBuffer();
+				String tempString = "";
+				while (!(tempString = input.readLine()).equals("finish")) {
+					xmlBuffer.append(tempString);
+				}
+				String xml = xmlBuffer.toString();
+				System.out.println(xml);
+				
 				ServiceFacade serviceFacade = FacadeFactory.getInstance().getServiceFacade();
 				String returned = serviceFacade.networkCommandExecute(major, command, xml);
 				output.println(returned);

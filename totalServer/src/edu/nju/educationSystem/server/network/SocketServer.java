@@ -45,6 +45,7 @@ public class SocketServer extends TextArea{
 				PrintWriter output = new PrintWriter(socket.getOutputStream());
 				
 				ServerRun serverRun = new ServerRun(input, output);
+				serverRuns[acceptedIndex] = serverRun;
 				Thread thread = new Thread(serverRun);
 				thread.start();
 			}

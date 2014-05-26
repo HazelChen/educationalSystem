@@ -95,6 +95,7 @@ public class XMLGenerater {
 			column.setText(value);
 		}
 		for (int i = 0; i < attributeAndColumns.size(); i++) {
+			
 		}
 	}
 

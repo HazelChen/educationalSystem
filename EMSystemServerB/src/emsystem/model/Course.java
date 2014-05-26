@@ -1,7 +1,7 @@
 package emsystem.model;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Course implements Serializable, ModelSpecification{
@@ -75,7 +75,7 @@ public class Course implements Serializable, ModelSpecification{
 
 	@Override
 	public Map<String, String> getFieldCorrespondence() {
-		Map<String , String> maps = new HashMap<>();
+		Map<String , String> maps = new LinkedHashMap<>();
 		maps.put("id", "课程编号");
 		maps.put("name", "课程名称");
 		maps.put("credit", "学分");

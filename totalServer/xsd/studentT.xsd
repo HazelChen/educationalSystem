@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:element name="students">
-		<xs:complexType name="studentInfo">
+		<xs:complexType >
 			<xs:sequence>
 				<xs:element name="student" minOccurs="1">
 					<xs:complexType>
@@ -24,9 +24,9 @@
 							
 							<xs:element name="sex">
 								<xs:simpleType>
-									<xs restriction base="xs:string">
-										<xs:pattern value="male|female">
-									</xs restriction>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="male|female"/>
+									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
 
@@ -40,7 +40,7 @@
 							
 							<xs:element name="password">
 								<xs:simpleType>
-									<xs:restriction base="string">
+									<xs:restriction base="xs:string">
 										<xs:length value="6"/>
 									</xs:restriction>
 								</xs:simpleType>
@@ -50,7 +50,6 @@
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
-			<xs:attribute name="students" type="studentInfo" use="required"/>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

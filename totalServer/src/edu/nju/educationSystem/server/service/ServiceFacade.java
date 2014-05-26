@@ -156,7 +156,7 @@ public class ServiceFacade {
 	}
 	
 	private String tranformIn(String major, String source, String type) {
-		xmlValidate.validateXml(type + major, source);
+		//xmlValidate.validateXml(type + major, source);
 		String result = xmlTransform.transform(source, type + "ToT");
 		xmlValidate.validateXml(type + "T", result);
 		return result;

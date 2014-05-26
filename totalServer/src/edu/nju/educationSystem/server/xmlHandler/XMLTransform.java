@@ -18,7 +18,7 @@ public class XMLTransform {
 		try {
 			Document document = DocumentHelper.parseText(input);
 			TransformerFactory factory = TransformerFactory.newInstance();
-			StreamSource xsl = new StreamSource(new File("xsl/" + model));
+			StreamSource xsl = new StreamSource(new File("xsl/" + model + ".xsl"));
 
 			Transformer transform = factory.newTransformer(xsl);
 			DocumentSource source = new DocumentSource(document);

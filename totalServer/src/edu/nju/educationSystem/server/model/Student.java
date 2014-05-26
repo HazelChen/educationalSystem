@@ -1,6 +1,6 @@
 package edu.nju.educationSystem.server.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Student implements ModelSpecification{
@@ -43,7 +43,7 @@ public class Student implements ModelSpecification{
 
 	@Override
 	public Map<String, String> getFieldCorrespondence() {
-		Map<String, String> maps = new HashMap<String, String>();
+		Map<String, String> maps = new LinkedHashMap<>();
 		maps.put("id", "id");
 		maps.put("name", "name");
 		maps.put("sex", "sex");

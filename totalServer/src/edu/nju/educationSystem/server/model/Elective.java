@@ -1,6 +1,6 @@
 package edu.nju.educationSystem.server.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Elective implements ModelSpecification{
@@ -36,7 +36,7 @@ public class Elective implements ModelSpecification{
 
 	@Override
 	public Map<String, String> getFieldCorrespondence() {
-		Map<String, String> maps = new HashMap<String, String>();
+		Map<String, String> maps = new LinkedHashMap<>();
 		maps.put("studentId", "sid");
 		maps.put("courseId", "cid");
 		maps.put("score", "score");

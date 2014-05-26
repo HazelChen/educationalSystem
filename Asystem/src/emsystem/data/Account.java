@@ -1,7 +1,7 @@
 package emsystem.data;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Account implements Serializable,ModelSpecification{
@@ -49,7 +49,7 @@ public class Account implements Serializable,ModelSpecification{
 	}
 	@Override
 	public Map<String, String> getFieldCorrespondence() {
-		Map<String, String> map=new HashMap<String, String>();
+		Map<String, String> map=new LinkedHashMap<>();
 		map.put("name", "账户名");
 		map.put("password", "密码");
 		map.put("jibie", "级别");

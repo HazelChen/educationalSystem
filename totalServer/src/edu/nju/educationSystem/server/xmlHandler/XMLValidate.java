@@ -19,7 +19,7 @@ public class XMLValidate {
 		try {
 			SchemaFactory schemaFactory = SchemaFactory
 					.newInstance("http://www.w3.org/2001/XMLSchema");
-			File schemaFile = new File(xsdPath);
+			File schemaFile = new File("xsd/" + xsdPath + ".xsd");
 
 			InputStream in_withcode = new ByteArrayInputStream(
 					input.getBytes("UTF-8"));

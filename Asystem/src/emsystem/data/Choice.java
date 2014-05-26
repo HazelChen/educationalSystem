@@ -1,7 +1,7 @@
 package emsystem.data;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Choice implements Serializable,ModelSpecification{
@@ -50,7 +50,7 @@ public class Choice implements Serializable,ModelSpecification{
 
 	@Override
 	public Map<String, String> getFieldCorrespondence() {
-		Map<String,String> map=new HashMap<String, String>();
+		Map<String,String> map=new LinkedHashMap<>();
 		map.put("studentId","课程编号");
 		map.put("courseId", "学号");
 		map.put("score", "得分");
