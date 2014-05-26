@@ -42,4 +42,22 @@ public class AccountDAO {
 		}
 		return userAccount;
 	}
+	
+	public boolean add(Account account) {
+		try {
+			Connection connection = daoHelper.getConnection();
+			PreparedStatement statement = connection.prepareStatement("insert into ’Àªß±Ì values(?,?,?)");
+			statement.setString(1, account.getName());
+			statement.setString(2, account.getPassword());
+			statement.setInt(3, account.getCompetence());
+			statement.execute();
+		
+			daoHelper.closePreparedStatement(statement);
+			daoHelper.closeConnection(connection);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

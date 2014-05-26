@@ -20,6 +20,9 @@ public class AccountService {
 			}
 		}
 		return result;
-		
+	}
+	
+	public boolean add(Account account) {
+		return accountDAO.add(account);
 	}
 }

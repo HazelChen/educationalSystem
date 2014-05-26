@@ -14,7 +14,9 @@ public class CommandConstants {
 	/**
 	 * 共享课程
 	 */
-	public final static String SHARE_COURSE = "share_course";
+	public final static String NOT_SELECTED_COURSE_A = "not_selected_course_a";
+	public final static String NOT_SELECTED_COURSE_B = "not_selected_course_b";
+	public final static String NOT_SELECTED_COURSE_C = "not_selected_course_c";
 	
 	/**
 	 * 每个学生的选课信息

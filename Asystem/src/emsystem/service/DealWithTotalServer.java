@@ -79,6 +79,9 @@ public class DealWithTotalServer {
 	public void shareStudents(ArrayList<Student> students) {
 		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.STUDENT_ROOT, 
 				ConfigConstant.STUDENT_ELEMENT, Student.class, new Student());
+		for (Student student : students) {
+			xmlGenerater.addElement(student);
+		}
 		String xml = xmlGenerater.getXmlString();
 				
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();

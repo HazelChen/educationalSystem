@@ -16,14 +16,14 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 	private AccountService accountService;
 	private emsystem.service.StudentService studentService;
 	private ChoiceService choiceService;
-	private CourceService courceService;
+	private CourseService courceService;
 
 	public StudentServiceImp() throws RemoteException {
 		super();
 		accountService = new AccountService();
 		studentService = new emsystem.service.StudentService();
 		choiceService = new ChoiceService();
-		courceService = new CourceService();
+		courceService = new CourseService();
 	}
 
 	@Override
@@ -54,51 +54,51 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 
 	@Override
 	public ArrayList<Course> getCoursesFromA(String sid) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Course> courses = courceService.getCourseNotChoiceInA(sid);
+		return courses;
 	}
 
 	@Override
 	public ArrayList<Course> getCoursesFromB(String pId) throws RemoteException {
-		ArrayList<Course> result = new ArrayList<Course>();
-		ArrayList<Course> all = courceService.getAllCourse();
-		for (int i = 0; i < all.size(); i++) {
-			Course course = all.get(i);
-			boolean has = dwchoice.hasSelect(pId, course.getId());
-			if (!has) {
-				result.add(course);
-			}
-		}
-		return result;
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Course> courses = courceService.getCourseNotChoiceInB(pId);
+		return courses;
 	}
 
 	@Override
 	public ArrayList<Course> getCoursesFromC(String pId) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Course> cources = courceService.getCourseNotChoiceInC(pId);
+		return cources;
 	}
 
 	@Override
 	public boolean[] chooseCourses(String pId, ArrayList<String> pCourseId)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Choice> choices = new ArrayList<>();
+		for (int i = 0; i < pCourseId.size(); i++) {
+			Choice choice = new Choice(pCourseId.get(i), pId, 0);
+			choices.add(choice);
+		}
+		boolean[] result = choiceService.choice(choices);
+		return result;
 	}
 
 	@Override
 	public boolean[] dropCourses(String pStudentId, ArrayList<String> pCourseId)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Choice> choices = new ArrayList<>();
+		for (int i = 0; i < pCourseId.size(); i++) {
+			Choice choice = new Choice(pCourseId.get(i), pStudentId, 0);
+			choices.add(choice);
+		}
+		boolean[] result = choiceService.drop(choices);
+		return result;
 	}
 
 	@Override
 	public ArrayList<Course> getCoursesToDrop(String pStudentId)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Course> courses = courceService.getCanDropCources(pStudentId);
+		return courses;
 	}
 
 }

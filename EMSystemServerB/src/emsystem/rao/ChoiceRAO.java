@@ -1,0 +1,51 @@
+package emsystem.rao;
+
+import java.util.ArrayList;
+
+import emsystem.model.Choice;
+import emsystem.socket.CommandConstants;
+import emsystem.socket.CommunicationWithServer;
+import emsystem.xml.ConfigConstant;
+import emsystem.xml.XMLAnalyzer;
+import emsystem.xml.XMLGenerater;
+
+public class ChoiceRAO {
+
+	public boolean add(Choice choice) {
+		XMLGenerater generater = new XMLGenerater(ConfigConstant.ELECTIVE_ROOT, 
+				ConfigConstant.ELECTIVE_ELEMENT, Choice.class, new Choice());
+		generater.addElement(choice);
+		String xml = generater.getXmlString();
+		
+		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
+		String result = communicationWithServer.communicate(CommandConstants.STUDENT_ELECTIVE, xml);
+		Boolean resultBoolean = Boolean.valueOf(result);
+		return resultBoolean;
+	}
+	
+	public boolean remove(Choice choice) {
+		XMLGenerater generater = new XMLGenerater(ConfigConstant.ELECTIVE_ROOT, 
+				ConfigConstant.ELECTIVE_ELEMENT, Choice.class, new Choice());
+		generater.addElement(choice);
+		String xml = generater.getXmlString();
+		
+		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
+		String result = communicationWithServer.communicate(CommandConstants.COURSE_WITHDRAWAL, xml);
+		Boolean resultBoolean = Boolean.valueOf(result);
+		return resultBoolean;
+	}
+	
+	public ArrayList<Choice> getServerChoises() {
+		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
+		String xml = communicationWithServer.communicate(CommandConstants.ELECTIVE_RECORD);
+		
+		XMLAnalyzer analyzer = new XMLAnalyzer(xml);
+		ArrayList<Choice> choices = new ArrayList<>();
+		while (analyzer.hasNext()) {
+			ArrayList<String> values = analyzer.next();
+			Choice choice = new Choice(values.get(0), values.get(1), Integer.parseInt(values.get(2)));
+			choices.add(choice);
+		}
+		return choices;
+	}
+}
