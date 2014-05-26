@@ -69,7 +69,7 @@ public class StudentDAO {
 	public boolean add(Student student) {
 		try {
 			Connection connection = daoHelper.getConnection();
-			PreparedStatement statement = connection.prepareStatement("insert into 学生表 values(?,?,?,?,?)");
+			PreparedStatement statement = connection.prepareStatement("insert into student values(?,?,?,?,?)");
 			statement.setString(1, student.getId());
 			statement.setString(2, student.getName());
 			statement.setString(3, student.getSex());
@@ -107,7 +107,7 @@ public class StudentDAO {
 	public boolean remove(String sid) {
 		try {
 			Connection connection = daoHelper.getConnection();
-			PreparedStatement statement = connection.prepareStatement("delete from 学生表 where 学号 = ?");
+			PreparedStatement statement = connection.prepareStatement("delete from student where 学号 = ?");
 			statement.setString(1, sid);
 			statement.execute();
 			
@@ -124,7 +124,7 @@ public class StudentDAO {
 
 		Connection connection = daoHelper.getConnection();
 		String sql = "select * from student where 学号 in(" + 
-				"select 学生编号 from choise where 课程编号='" + cid + "')";
+				"select 学生编号 from choice where 课程编号='" + cid + "')";
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);

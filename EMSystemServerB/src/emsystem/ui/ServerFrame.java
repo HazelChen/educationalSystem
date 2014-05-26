@@ -18,6 +18,7 @@ public class ServerFrame extends JFrame{
 	private JButton endButton;//结束
 	
 	public ServerFrame() {
+		this.setTitle("服务器B");
 		this.setLayout(new FlowLayout());
 		
 		startButton = new JButton("启动服务器");

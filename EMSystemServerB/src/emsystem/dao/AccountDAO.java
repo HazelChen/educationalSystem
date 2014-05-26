@@ -32,7 +32,7 @@ public class AccountDAO {
 				userAccount = new Account();
 				userAccount.setName(id);
 				userAccount.setPassword(resultSet.getString(2));
-				userAccount.setCompetence(Integer.parseInt(resultSet.getString(3)));
+				userAccount.setCompetence(Integer.parseInt(resultSet.getString(3).trim()));
 			}
 
 			daoHelper.closePreparedStatement(statement);
@@ -45,7 +45,7 @@ public class AccountDAO {
 	public boolean add(Account account) {
 		try {
 			Connection connection = daoHelper.getConnection();
-			PreparedStatement statement = connection.prepareStatement("insert into ’Àªß±Ì values(?,?,?)");
+			PreparedStatement statement = connection.prepareStatement("insert into account values(?,?,?)");
 			statement.setString(1, account.getName());
 			statement.setString(2, account.getPassword());
 			statement.setInt(3, account.getCompetence());
