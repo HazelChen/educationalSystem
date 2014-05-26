@@ -7,29 +7,43 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DaoHelper {
-
+	private static DaoHelper daoHelper;
+	private Connection connection;
+	
+	private DaoHelper(){
+		createConnection();
+	}
+	
+	public static DaoHelper getInstance() {
+		if (daoHelper == null) {
+			daoHelper = new DaoHelper();
+		}
+		return daoHelper;
+	}
+	
 	public Connection getConnection() {
+		return connection;
+	}
+	
+	private void createConnection() {
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-		String dbURL = "jdbc:sqlserver://localhost:1433;DatabaseName=B院系Database";
+		String dbURL = "jdbc:sqlserver://localhost:1433;DatabaseName=educationSystemB";
 		String userName = "sa";
-		String userPwd = "361549286";
-		Connection dbConn = null;
+		String userPwd = "root";
 
 		try {
 			Class.forName(driverName);
-			dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
+			connection = DriverManager.getConnection(dbURL, userName, userPwd);
 			System.out.println("连接数据库成功！");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.print("SQL Server连接失败！");
 		}
-
-		return dbConn;
 	}
 
-	public void closeConnection(Connection con) {
+	public void closeConnection() {
 		try {
-			con.close();
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

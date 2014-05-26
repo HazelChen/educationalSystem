@@ -33,7 +33,6 @@ public class CourseDAO {
 			}
 
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -121,7 +120,6 @@ public class CourseDAO {
 			statement.execute();
 		
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,7 +140,6 @@ public class CourseDAO {
 			statement.execute();
 			
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -158,7 +155,6 @@ public class CourseDAO {
 			statement.execute();
 			
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

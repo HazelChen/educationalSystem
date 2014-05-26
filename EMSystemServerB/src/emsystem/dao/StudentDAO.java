@@ -15,7 +15,7 @@ public class StudentDAO {
 	private DaoHelper daoHelper;
 
 	public StudentDAO() {
-		daoHelper = new DaoHelper();
+		daoHelper = DaoHelper.getInstance();
 	}
 
 	public Student getStudent(String id) {
@@ -36,7 +36,6 @@ public class StudentDAO {
 			}
 
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,7 +60,6 @@ public class StudentDAO {
 				list.add(stu);
 			}
 
-			daoHelper.closeConnection(connection);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -80,7 +78,6 @@ public class StudentDAO {
 			statement.execute();
 		
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,7 +97,6 @@ public class StudentDAO {
 			statement.execute();
 			
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,7 +112,6 @@ public class StudentDAO {
 			statement.execute();
 			
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -143,7 +138,6 @@ public class StudentDAO {
 				list.add(stu);
 			}
 
-			daoHelper.closeConnection(connection);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

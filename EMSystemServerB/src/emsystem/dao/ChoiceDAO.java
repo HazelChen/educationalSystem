@@ -14,7 +14,7 @@ public class ChoiceDAO {
 	private DaoHelper daoHelper;
 
 	public ChoiceDAO() {
-		daoHelper = new DaoHelper();
+		daoHelper = DaoHelper.getInstance();
 	}
 
 	public ArrayList<Choice> getStudentChoice(String sid) {
@@ -47,11 +47,8 @@ public class ChoiceDAO {
 		try {
 			Statement statement = connection.createStatement();
 			statement.execute(sql);
-
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (SQLException e) {
-			daoHelper.closeConnection(connection);
 			return false;
 		}
 	}
@@ -63,11 +60,8 @@ public class ChoiceDAO {
 		try {
 			Statement statement = connection.createStatement();
 			statement.execute(sql);
-
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (SQLException e) {
-			daoHelper.closeConnection(connection);
 			return false;
 		}
 	}

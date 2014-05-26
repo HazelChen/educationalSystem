@@ -13,7 +13,7 @@ public class AccountDAO {
 	private DaoHelper daoHelper;
 
 	public AccountDAO() {
-		daoHelper = new DaoHelper();
+		daoHelper = DaoHelper.getInstance();
 	}
 
 	public Account getAccount(String id) {
@@ -36,7 +36,6 @@ public class AccountDAO {
 			}
 
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -53,7 +52,6 @@ public class AccountDAO {
 			statement.execute();
 		
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
