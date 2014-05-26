@@ -3,18 +3,15 @@ package emsystem.model;
 import java.io.Serializable;
 
 public class Choice implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
-	private String studentId;
+private static final long serialVersionUID = -6541266622375689831L;
+	
 	private String courseId;
+	private String studentId;
 	private int score;
 	
-	public Choice(String studentId, String courseId, int score){
+	public Choice(){}
+	
+	public Choice(String courseId, String studentId, int score){
 		this.studentId = studentId;
 		this.courseId = courseId;
 		this.score = score;

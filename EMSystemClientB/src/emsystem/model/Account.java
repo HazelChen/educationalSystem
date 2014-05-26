@@ -6,41 +6,41 @@ public class Account implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8308435385396962156L;
 	private String name;
 	private String password;
-	private int jibie;
-	private String keti;
+	private int competence;
 	
-	public Account(String name,String password,int jibie,String keti){
-		this.name=name;
-		this.password=password;
-		this.jibie=jibie;
-		this.keti=keti;
+	public Account() {}
+	
+	public Account(String name, String password, int competence) {
+		this.name = name;
+		this.password = password;
+		this.competence = competence;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getJibie() {
-		return jibie;
+
+	public int getCompetence() {
+		return competence;
 	}
-	public void setJibie(int jibie) {
-		this.jibie = jibie;
+
+	public void setCompetence(int competence) {
+		this.competence = competence;
 	}
-	public String getKeti() {
-		return keti;
-	}
-	public void setKeti(String keti) {
-		this.keti = keti;
-	}
-	
+
 }

@@ -4,11 +4,8 @@ import java.io.Serializable;
 
 public class Student implements Serializable{
 
+private static final long serialVersionUID = -511579054499558338L;
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4549192449721237752L;
 	private String id;
 	private String name;
 	private String sex;
@@ -64,6 +61,5 @@ public class Student implements Serializable{
 	public void setAccountId(String accountId) {
 		this.accountId = accountId;
 	}
-
 
 }

@@ -4,10 +4,8 @@ import java.io.Serializable;
 
 public class Course implements Serializable{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5809461650445787464L;
+private static final long serialVersionUID = -437165309238419702L;
+	
 	private String id;
 	private String name;
 	private int credit;
@@ -68,6 +66,10 @@ public class Course implements Serializable{
 
 	public String getShareFlag() {
 		return shareFlag;
+	}
+
+	public void setShareFlag(String shareFlag) {
+		this.shareFlag = shareFlag;
 	}
 
 
