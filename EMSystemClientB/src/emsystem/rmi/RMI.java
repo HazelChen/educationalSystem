@@ -1,11 +1,7 @@
 package emsystem.rmi;
 
-import java.rmi.RemoteException;
-
 import emsystem.rmi.mock.MockAdminService;
 import emsystem.rmi.mock.MockStudentService;
-import emsystem.service.AdminServiceImp;
-import emsystem.service.StudentServiceImp;
 
 
 
@@ -23,20 +19,23 @@ public class RMI {
 	}
 	
 	public static StudentService getStudentService() {
-			StudentService s = null;
-			try {
-				s= new StudentServiceImp();
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return s;
+//			StudentService s = null;
+//			try {
+//				s= new StudentServiceImp();
+//			} catch (RemoteException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			return s;
+		return new MockStudentService();
 	}
+	
 
 	public static AdminService getAdminService(){
-		AdminService as=null;
-		as=new AdminServiceImp();
-		return as;
+//		AdminService as=null;
+//		as=new AdminServiceImp();
+//		return as;
+		return new MockAdminService();
 	}
 	
 	public static void setIp(String pIp) {

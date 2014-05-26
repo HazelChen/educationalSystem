@@ -28,7 +28,7 @@ public class EditStudentInfoPanel extends JPanel {
 	private String backToMainString = "<html><u>返回操作界面</u></html>";
 	private String idString = "学生编号";
 	private String nameString = "学生姓名";
-	private String passwordString = "密码";
+	private String accountString = "关联账号";
 	private String sexString = "性别";
 	private String majorString = "专业";
 
@@ -44,7 +44,7 @@ public class EditStudentInfoPanel extends JPanel {
 
 	private JTextField idTextField;
 	private JTextField nameTextField;
-	private JTextField passwrodField;
+	private JTextField accountTextField;
 	private ButtonGroup sexButtonGroup;
 	private JRadioButton maleButton;
 	private JRadioButton femaleButton;
@@ -129,15 +129,15 @@ public class EditStudentInfoPanel extends JPanel {
 		sexButtonGroup.add(maleButton);
 		sexButtonGroup.add(femaleButton);
 
-		JLabel label_3 = new JLabel(passwordString);
+		JLabel label_3 = new JLabel(accountString);
 		label_3.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-		label_3.setBounds(214, 196, 103, 32);
+		label_3.setBounds(190, 196, 103, 32);
 		add(label_3);
 
-		passwrodField = new JTextField();
-		passwrodField.setColumns(10);
-		passwrodField.setBounds(303, 196, 206, 35);
-		add(passwrodField);
+		accountTextField = new JTextField();
+		accountTextField.setColumns(10);
+		accountTextField.setBounds(303, 196, 206, 35);
+		add(accountTextField);
 
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -182,7 +182,7 @@ public class EditStudentInfoPanel extends JPanel {
 
 		idTextField.setText(mStudent.getId());
 		nameTextField.setText(mStudent.getName());
-		passwrodField.setText(mStudent.getmPassword());
+		accountTextField.setText(mStudent.getAccountId());
 		if (mStudent.getSex().equals("男")) {
 			maleButton.setSelected(true);
 		} else {
@@ -190,6 +190,7 @@ public class EditStudentInfoPanel extends JPanel {
 		}
 		majorTextField.setText(mStudent.getMajor());
 
+		accountTextField.setEditable(false);
 		idTextField.setEditable(false);
 		okButton.addActionListener(new ActionListener() {
 
@@ -210,16 +211,16 @@ public class EditStudentInfoPanel extends JPanel {
 	private Student getNewInfo() {
 		Student student = null;
 		String newId = idTextField.getText();
-		String newPassword = passwrodField.getText();
+		String newAccount = accountTextField.getText();
 		String newName = nameTextField.getText();
 		String newSex = maleButton.isSelected() ? "男" : "女";
 		String newMajor = majorTextField.getText();
 
-		if (newId.equals("") || newName.equals("") || newPassword.equals("")
+		if (newId.equals("") || newName.equals("") || newAccount.equals("")
 				|| newMajor.equals("")) {
 			showAlertMessage();
 		} else
-			student = new Student(newId, newName, newSex, newMajor, newPassword);
+			student = new Student(newId, newName, newSex, newMajor, newAccount);
 
 		return student;
 
@@ -239,7 +240,7 @@ public class EditStudentInfoPanel extends JPanel {
 	
 	private void clear(){
 		idTextField.setText("");
-		passwrodField.setText("");
+		accountTextField.setText("");
 		maleButton.setSelected(true);
 		femaleButton.setSelected(false);
 	}
