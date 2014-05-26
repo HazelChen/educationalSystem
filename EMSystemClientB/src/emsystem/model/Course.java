@@ -3,89 +3,72 @@ package emsystem.model;
 import java.io.Serializable;
 
 public class Course implements Serializable{
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
-	private String mId;
-	private String mCourseName;
-	private int mCredit;
-	private String mCourseTime;//¿ÎÊ±
-	private String mTeacher;
-	private String mAddress;
-	private String mShareFlag;
+	private static final long serialVersionUID = 5809461650445787464L;
+	private String id;
+	private String name;
+	private int credit;
+	private String teacher;
+	private String address;
+	private String shareFlag;
 	
-	public Course(String pId, String pCourseName, int pCredit,String pCourseTime, String pTeacher, String pAddress, String pShareFlag){
-		mId = pId;
-		mCourseName = pCourseName;
-		mCredit = pCredit;
-		mCourseTime = pCourseTime;
-		mTeacher = pTeacher;
-		mAddress = pAddress;
-		mShareFlag = pShareFlag;
-	}
+	public Course(){}
 	
-	public String getId(){
-		return mId;
-	}
-	
-	public String getCourseName(){
-		return mCourseName;
-	}
-	
-	public int getCredit(){
-		return mCredit;
-	}
-	
-	public String getCourseTime(){
-		return mCourseTime;
-	}
-	
-	public String getTeacher(){
-		return mTeacher;
-	}
-	
-	public String getAddress(){
-		return mAddress;
-	}
-	
-	public String getShareFlag(){
-		return mShareFlag;
+	public Course(String id, String name, int credit, String teacher, String address, String shareFlag) {
+		this.id = id;
+		this.name = name;
+		this.credit = credit;
+		this.teacher = teacher;
+		this.address = address;
+		this.shareFlag = shareFlag;
 	}
 
-	public void setmId(String mId) {
-		this.mId = mId;
+	public String getId() {
+		return id;
 	}
 
-	public void setmCourseName(String mCourseName) {
-		this.mCourseName = mCourseName;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public void setmCredit(int mCredit) {
-		this.mCredit = mCredit;
+	public String getName() {
+		return name;
 	}
 
-	public void setmCourseTime(String mCourseTime) {
-		this.mCourseTime = mCourseTime;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setmTeacher(String mTeacher) {
-		this.mTeacher = mTeacher;
+	public int getCredit() {
+		return credit;
 	}
 
-	public void setmAddress(String mAddress) {
-		this.mAddress = mAddress;
+	public void setCredit(int credit) {
+		this.credit = credit;
 	}
 
-	public String getmShareFlag() {
-		return mShareFlag;
+	public String getTeacher() {
+		return teacher;
 	}
 
-	public void setmShareFlag(String mShareFlag) {
-		this.mShareFlag = mShareFlag;
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getShareFlag() {
+		return shareFlag;
+	}
+
 
 }

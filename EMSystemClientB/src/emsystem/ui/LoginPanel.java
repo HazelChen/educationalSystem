@@ -23,7 +23,7 @@ public class LoginPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 7651119794013460637L;
-	private static String systemName = "教务系统A"; 
+	private static String systemName = "教务系统B"; 
 	private String mTypeString = "身份";
 	private String mAccountString = "账号";
 	private String mPasswordString = "密码";

@@ -35,10 +35,10 @@ public class ManageStudentInfoPanel extends JPanel {
 	
 	private JScrollPane scrollPane;
 
-	private String[] infoColumnsName = new String[] { "学号", "姓名","密码", "性别", "院系" };
+	private String[] infoColumnsName = new String[] { "学号", "姓名", "性别", "院系","关联账号" };
 
 	private int columnNums = 5;
-	private int idIndex = 0, nameIndex =1, passwordIndex = 2, sexIndex = 3, majorIndex = 4 ;
+	private int idIndex = 0, nameIndex =1, sexIndex = 2, majorIndex = 3, accountIndex = 4 ;
 	
 	private MainFrame mFrame;
 	public ManageStudentInfoPanel(MainFrame pFrame) {
@@ -99,9 +99,9 @@ public class ManageStudentInfoPanel extends JPanel {
 				Student student = students.get(i);
 				data[i][idIndex] = student.getId();
 				data[i][nameIndex] = student.getName();
-				data[i][passwordIndex] = student.getmPassword();
 				data[i][sexIndex] = student.getSex();
 				data[i][majorIndex] = student.getMajor();
+				data[i][accountIndex] = student.getAccountId();
 			}
 		}
 		return data;
@@ -128,11 +128,11 @@ public class ManageStudentInfoPanel extends JPanel {
 					int row = mTable.getSelectedRow();
 					String id = (String) mTable.getValueAt(row, idIndex);
 					String name = (String) mTable.getValueAt(row, nameIndex);
-					String password = (String) mTable.getValueAt(row, passwordIndex);
+					String account = (String) mTable.getValueAt(row, accountIndex);
 					String sex = (String) mTable.getValueAt(row, sexIndex);
 					String major = (String) mTable.getValueAt(row, majorIndex);
 					
-					Student student = new Student(id, name, sex, major, password);
+					Student student = new Student(id, name, sex, major, account);
 					EditStudentInfoPanel editStudentInfoPanel = new EditStudentInfoPanel(mFrame,student);
 					mFrame.setContentPane(editStudentInfoPanel);
 					mFrame.validate();

@@ -4,64 +4,66 @@ import java.io.Serializable;
 
 public class Student implements Serializable{
 
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
+	private static final long serialVersionUID = -4549192449721237752L;
+	private String id;
+	private String name;
+	private String sex;
+	private String major;
+	private String accountId;
 	
-	private String mId;
-	private String mName;
-	private String mSex;
-	private String mMajor;
-	private String mPassword;
+	public Student(){}
 	
-	public Student(String pId, String PName, String pSex, String pMajor,String pPassword){
-		mId = pId;
-		mName = PName;
-		mSex = pSex;
-		mMajor = pMajor;
-		mPassword=pPassword;
-	}
-	
-	public String getId(){
-		return mId;
-	}
-	
-	public String getName(){
-		return mName;
-	}
-	
-	public String getSex(){
-		return mSex;
-	}
-	
-	public String getMajor(){
-		return mMajor;
+	public Student(String id, String name, String sex, String major, String accountId) {
+		this.id = id;
+		this.name = name;
+		this.sex = sex;
+		this.major = major;
+		this.accountId = accountId;
 	}
 
-	
-	public void setmName(String mName) {
-		this.mName = mName;
+	public String getId() {
+		return id;
 	}
 
-
-	public void setmSex(String mSex) {
-		this.mSex = mSex;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public void setmMajor(String mMajor) {
-		this.mMajor = mMajor;
+	public String getName() {
+		return name;
 	}
 
-	public String getmPassword() {
-		return mPassword;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setmPassword(String mPassword) {
-		this.mPassword = mPassword;
+	public String getSex() {
+		return sex;
 	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
+
 
 }

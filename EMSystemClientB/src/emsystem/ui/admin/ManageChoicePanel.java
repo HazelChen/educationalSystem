@@ -126,7 +126,7 @@ public class ManageChoicePanel extends JPanel {
 		
 		for (int i = 0; i < data.length; i++) {
 			data[i][0] = courses.get(i).getId();
-			data[i][1] = courses.get(i).getCourseName();
+			data[i][1] = courses.get(i).getName();
 		}
 		return data;
 	}

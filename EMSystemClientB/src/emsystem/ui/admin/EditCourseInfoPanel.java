@@ -26,7 +26,7 @@ public class EditCourseInfoPanel extends JPanel {
 	private static final long serialVersionUID = 4741102403219896539L;
 	private JTextField idTextField;
 	private JTextField nameTextField;
-	private JTextField timeTextField;
+//	private JTextField timeTextField;
 	private JTextField creditTextField;
 	private JTextField teacherTextField;
 	private JTextField addressTextField;
@@ -36,7 +36,7 @@ public class EditCourseInfoPanel extends JPanel {
 
 	private String idString = "¿Î³Ì±àºÅ";
 	private String nameString = "¿Î³ÌÃû³Æ";
-	private String timeString = "¿ÎÊ±";
+//	private String timeString = "¿ÎÊ±";
 	private String creditString = "Ñ§·Ö";
 	private String teacherString = "ÀÏÊ¦";
 	private String addressString = "µØµã";
@@ -76,13 +76,13 @@ public class EditCourseInfoPanel extends JPanel {
 
 		JLabel nameLabel = new JLabel(nameString);
 		nameLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		nameLabel.setBounds(428, 107, 89, 36);
+		nameLabel.setBounds(163, 170, 89, 36);
 		add(nameLabel);
 
-		JLabel timeLabel = new JLabel(timeString);
-		timeLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		timeLabel.setBounds(192, 170, 89, 36);
-		add(timeLabel);
+//		JLabel timeLabel = new JLabel(timeString);
+//		timeLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+//		timeLabel.setBounds(192, 170, 89, 36);
+//		add(timeLabel);
 
 		JLabel creditLabel = new JLabel(creditString);
 		creditLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
@@ -101,13 +101,13 @@ public class EditCourseInfoPanel extends JPanel {
 
 		nameTextField = new JTextField();
 		nameTextField.setColumns(10);
-		nameTextField.setBounds(514, 109, 136, 36);
+		nameTextField.setBounds(262, 172, 136, 36);
 		add(nameTextField);
 
-		timeTextField = new JTextField();
-		timeTextField.setColumns(10);
-		timeTextField.setBounds(262, 172, 136, 36);
-		add(timeTextField);
+//		timeTextField = new JTextField();
+//		timeTextField.setColumns(10);
+//		timeTextField.setBounds(262, 172, 136, 36);
+//		add(timeTextField);
 
 		creditTextField = new JTextField();
 		creditTextField.setColumns(10);
@@ -178,13 +178,13 @@ public class EditCourseInfoPanel extends JPanel {
 	private void initEdit() {
 		init();
 		idTextField.setEditable(false);
-		if (mCourse.getmShareFlag().equals("ÊÇ")) {
+		if (mCourse.getShareFlag().equals("ÊÇ")) {
 			shareCheck.setEnabled(false);
 		}
 
 		idTextField.setText(mCourse.getId());
-		nameTextField.setText(mCourse.getCourseName());
-		timeTextField.setText(mCourse.getCourseTime());
+		nameTextField.setText(mCourse.getName());
+//		timeTextField.setText(mCourse.g);
 		teacherTextField.setText(mCourse.getTeacher());
 		addressTextField.setText(mCourse.getAddress());
 		creditTextField.setText(mCourse.getCredit()+"");
@@ -210,12 +210,12 @@ public class EditCourseInfoPanel extends JPanel {
 		Course course = null;
 		String courseId = idTextField.getText().trim();
 		String courseName = nameTextField.getText().trim();
-		String time = timeTextField.getText().trim();
+//		String time = timeTextField.getText().trim();
 		String teacher = teacherTextField.getText().trim();
 		String address = addressTextField.getText().trim();
 		String creditString = creditTextField.getText().trim();
 
-		if (courseId.equals("") || courseName.equals("") || time.equals("")
+		if (courseId.equals("") || courseName.equals("")
 				|| teacher.equals("") || address.equals("")
 				|| creditString.equals("")) {
 			showAlertMessage();
@@ -225,10 +225,8 @@ public class EditCourseInfoPanel extends JPanel {
 			int credit;
 			credit = Integer.valueOf(creditString);
 
-//			String shareFlag = shareCheck.isSelected() ? "ÊÇ" : "·ñ";
-
-			course = new Course(courseId, courseName, credit, time, teacher,
-					address, "·ñ");
+			course = new Course(courseId, courseName, credit, teacher,
+					address, "0");
 		}
 		return course;
 	}
@@ -237,7 +235,7 @@ public class EditCourseInfoPanel extends JPanel {
 		idTextField.setText("");
 		nameTextField.setText("");
 		nameTextField.setText("");
-		timeTextField.setText("");
+//		timeTextField.setText("");
 		teacherTextField.setText("");
 		addressTextField.setText("");
 		creditTextField.setText("");

@@ -165,7 +165,7 @@ public class ManageCrossChoosePanel extends JPanel {
 			data = new Object[courses.size()][courseHeader.length];
 			for (int i = 0; i < data.length; i++) {
 				data[i][0] = courses.get(i).getId();
-				data[i][1] = courses.get(i).getCourseName();
+				data[i][1] = courses.get(i).getName();
 				data[i][2] = false;
 			}
 		}

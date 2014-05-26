@@ -25,10 +25,10 @@ public class StudentChooseCoursePanel extends JPanel {
 
 	private String chooseClassString = "确认选课";
 	private String[] chooseClassColumnName = new String[] { "课程编号", "课程名称",
-			"课时", "学分", "授课老师", "授课地点", "选课" };
-	private int columnNums = 7;
-	private int idIndex = 0, nameIndex = 1, timeIndex = 2, creditIndex = 3,
-			teacherIndex = 4, addressIndex = 5, chooseindex = 6;
+			"学分", "授课老师", "授课地点", "选课" };
+	private int columnNums = 6;
+	private int idIndex = 0, nameIndex = 1, creditIndex = 2,
+			teacherIndex = 3, addressIndex = 4, chooseindex = 5;
 	private String[] options = new String[] { "请选择院系", "院系A", "院系B", "院系C" };
 
 	private JComboBox<String> comboBox;
@@ -37,7 +37,7 @@ public class StudentChooseCoursePanel extends JPanel {
 	private CustomedTable mInfoTable;
 	private JButton chooseButton;
 
-	private static int checkPosition = 6;
+	private static int checkPosition = 5;
 
 	/**
 	 * Create the panel.
@@ -224,8 +224,7 @@ public class StudentChooseCoursePanel extends JPanel {
 			for (int i = 0; i < courses.size(); i++) {
 				Course course = courses.get(i);
 				data[i][idIndex] = course.getId();
-				data[i][nameIndex] = course.getCourseName();
-				data[i][timeIndex] = course.getCourseTime();
+				data[i][nameIndex] = course.getName();
 				data[i][creditIndex] = course.getCredit();
 				data[i][teacherIndex] = course.getTeacher();
 				data[i][addressIndex] = course.getAddress();

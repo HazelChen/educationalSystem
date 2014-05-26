@@ -27,17 +27,17 @@ public class StudentDropCoursePanel extends JPanel {
 	 * Create the panel.
 	 */
 	private String dropClassString = "确认退课";
-	private String[] dropClassColumnName = new String[] { "课程编号", "课程名称", "课时",
+	private String[] dropClassColumnName = new String[] { "课程编号", "课程名称",
 			"学分", "授课老师", "授课地点", "退课" };
-	private int columnNums = 7;
-	private int idIndex = 0, nameIndex = 1, timeIndex = 2, creditIndex = 3,
-			teacherIndex = 4, addressIndex = 5, dropIndex = 6;
+	private int columnNums = 6;
+	private int idIndex = 0, nameIndex = 1, creditIndex = 2,
+			teacherIndex = 3, addressIndex = 4, dropIndex = 5;
 
 	private JScrollPane scrollPane;
 	private CustomedTable mInfoTable;
 	private JButton dropButton;
 
-	private static int checkPosition = 6;
+	private static int checkPosition = 5;
 
 	/**
 	 * Create the panel.
@@ -115,8 +115,7 @@ public class StudentDropCoursePanel extends JPanel {
 			while (iterator.hasNext()) {
 				Course course = iterator.next();
 				data[i][idIndex] = course.getId();
-				data[i][nameIndex] = course.getCourseName();
-				data[i][timeIndex] = course.getCourseTime();
+				data[i][nameIndex] = course.getName();
 				data[i][creditIndex] = course.getCredit();
 				data[i][teacherIndex] = course.getTeacher();
 				data[i][addressIndex] = course.getAddress();

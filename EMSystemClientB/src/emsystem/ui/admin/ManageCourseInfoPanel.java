@@ -31,10 +31,10 @@ public class ManageCourseInfoPanel extends JPanel{
 	
 	private JScrollPane scrollPane;
 
-	String[] infoColumnsName = new String[]{"课程编号","课程名称","课时","学分","授课老师","授课地点"};
+	String[] infoColumnsName = new String[]{"课程编号","课程名称","学分","授课老师","授课地点"};
 
-	private int columnNums = 6;
-	private int idIndex = 0, nameIndex =1, timeIndex = 2, creditIndex = 3, teacherIndex = 4 , addressIndex = 5, shareIndex = 6;
+	private int columnNums = 5;
+	private int idIndex = 0, nameIndex =1, creditIndex = 2, teacherIndex = 3 , addressIndex = 4;
 	
 	private MainFrame mFrame;
 	public ManageCourseInfoPanel(MainFrame pFrame) {
@@ -87,8 +87,8 @@ public class ManageCourseInfoPanel extends JPanel{
 			for (int i = 0; i < data.length; i++) {
 				Course course = courses.get(i);
 				data[i][idIndex] = course.getId();
-				data[i][nameIndex] = course.getCourseName();
-				data[i][timeIndex] = course.getCourseTime();
+				data[i][nameIndex] = course.getName();
+//				data[i][timeIndex] = course.getCourseTime();
 				data[i][creditIndex] = course.getCredit();
 				data[i][teacherIndex] = course.getTeacher();
 				data[i][addressIndex] = course.getAddress();
@@ -122,10 +122,10 @@ public class ManageCourseInfoPanel extends JPanel{
 					String teacher = (String) mTable.getValueAt(row, teacherIndex);
 					String address = (String) mTable.getValueAt(row, addressIndex);
 					int credit = (int) mTable.getValueAt(row, creditIndex);
-					String time = (String) mTable.getValueAt(row, timeIndex);
+//					String time = (String) mTable.getValueAt(row, timeIndex);
 //					String shareFlag = (String)mTable.getValueAt(row, shareIndex);
 
-					Course course = new Course(id, name, credit, time, teacher, address, "否");
+					Course course = new Course(id, name, credit,teacher, address, "否");
 
 					EditCourseInfoPanel editCourseInfoPanel = new EditCourseInfoPanel(mFrame, course);
 					mFrame.setContentPane(editCourseInfoPanel);

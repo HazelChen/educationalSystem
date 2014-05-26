@@ -21,10 +21,10 @@ public class StudentCoursesPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	String[] classColumnName = new String[]{"课程编号","课程名称","课时","学分","授课老师","授课地点","课程成绩"};
+	String[] classColumnName = new String[]{"课程编号","课程名称","学分","授课老师","授课地点","课程成绩"};
 	
-	private int idIndex = 0, nameIndex =1, timeIndex = 2, creditIndex = 3, teacherIndex = 4, addressIndex = 5, scoreIndex = 6;
-	private int tableColumnNums = 7;
+	private int idIndex = 0, nameIndex =1, creditIndex = 2, teacherIndex = 3, addressIndex = 4, scoreIndex = 5;
+	private int tableColumnNums = 6;
 	private CustomedTable mInfoTable;
 	private String mAccount;
 	
@@ -50,8 +50,7 @@ public class StudentCoursesPanel extends JPanel {
 			while (iterator.hasNext()) {
 				Course course = iterator.next();
 				data[i][idIndex] = course.getId();
-				data[i][nameIndex] = course.getCourseName();
-				data[i][timeIndex] = course.getCourseTime();
+				data[i][nameIndex] = course.getName();
 				data[i][creditIndex] = course.getCredit();
 				data[i][teacherIndex] = course.getTeacher();
 				data[i][addressIndex] = course.getAddress();

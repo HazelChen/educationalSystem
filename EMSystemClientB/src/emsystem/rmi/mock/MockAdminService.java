@@ -46,9 +46,9 @@ public class MockAdminService implements AdminService {
 	@Override
 	public ArrayList<Course> getCourses() {
 		ArrayList<Course> courses = new ArrayList<>();
-		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china",
-				"ÊÇ");
-		Course course2 = new Course("002", "art", 2, "1-2", "Tom", "China", "·ñ");
+		Course course1 = new Course("001", "math", 3, "mike", "china",
+				"0");
+		Course course2 = new Course("002", "art", 2,  "Tom", "China", "1");
 
 		courses.add(course1);
 		courses.add(course2);
@@ -103,9 +103,9 @@ public class MockAdminService implements AdminService {
 	@Override
 	public ArrayList<Course> getUnsharedCourses(){
 		ArrayList<Course> courses = new ArrayList<>();
-		Course course1 = new Course("001", "math", 3, "5-6", "mike", "china",
-				"·ñ");
-		Course course2 = new Course("002", "art", 2, "1-2", "Tom", "China", "·ñ");
+		Course course1 = new Course("001", "math", 3,  "mike", "china",
+				"0");
+		Course course2 = new Course("002", "art", 2,  "Tom", "China", "0");
 
 		courses.add(course1);
 		courses.add(course2);
