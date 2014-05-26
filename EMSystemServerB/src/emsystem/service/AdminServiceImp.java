@@ -38,7 +38,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 
 	@Override
 	public boolean addStudent(Student pStudent) throws RemoteException {
-		Account account = new Account(pStudent.getId(), "0", 0);
+		Account account = new Account(pStudent.getId(), "1", 0);
 		boolean result = accountService.add(account);
 		studentService.add(pStudent);
 		return result;

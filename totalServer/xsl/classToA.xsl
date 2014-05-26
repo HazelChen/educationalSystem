@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stysheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:output method="xml" encoding="UTF-8">
-	<xsl:template match="Classes">
-		 <xsl:apply-templates/>
-	<Classes>
-		<xsl:for-each select="class">
-			<class>
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="courses">
+	<courses>
+		<xsl:for-each select="course">
+			<course>
 				<编号>
 					<xsl:value-of select="id"/>
 				</编号>
@@ -24,9 +22,8 @@
 				<地点>
 					<xsl:value-of select="location"/>
 				</地点>
-			</class>
+			</course>
 		</xsl:for-each>
-	</Classes>	
+	</courses>	
 	</xsl:template>
-	</xsl:output>
-</xsl:stysheet>
+</xsl:stylesheet>

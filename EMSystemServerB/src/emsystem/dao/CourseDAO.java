@@ -11,6 +11,10 @@ import emsystem.model.Course;
 
 public class CourseDAO {
 	private DaoHelper daoHelper;
+	
+	public CourseDAO() {
+		daoHelper = DaoHelper.getInstance();
+	}
 
 	public Course findCourse(String cid) {
 		PreparedStatement statement = null;
@@ -33,7 +37,6 @@ public class CourseDAO {
 			}
 
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -111,7 +114,7 @@ public class CourseDAO {
 	public boolean add(Course course) {
 		try {
 			Connection connection = daoHelper.getConnection();
-			PreparedStatement statement = connection.prepareStatement("insert into 课程表 values(?,?,?,?,?,?)");
+			PreparedStatement statement = connection.prepareStatement("insert into course values(?,?,?,?,?,?)");
 			statement.setString(1, course.getId());
 			statement.setString(2, course.getName());
 			statement.setInt(3, course.getCredit());
@@ -121,7 +124,6 @@ public class CourseDAO {
 			statement.execute();
 		
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,7 +144,6 @@ public class CourseDAO {
 			statement.execute();
 			
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -153,12 +154,11 @@ public class CourseDAO {
 	public boolean remove(String cid) {
 		try {
 			Connection connection = daoHelper.getConnection();
-			PreparedStatement statement = connection.prepareStatement("delete from 课程表 where 课程编号 = ?");
+			PreparedStatement statement = connection.prepareStatement("delete from course where 课程编号 = ?");
 			statement.setString(1, cid);
 			statement.execute();
 			
 			daoHelper.closePreparedStatement(statement);
-			daoHelper.closeConnection(connection);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

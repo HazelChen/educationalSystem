@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stysheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:output method="xml" encoding="UTF-8">
-	<xsl:template match="Choices">
+	<xsl:template match="/choices">
 	 <xsl:apply-templates/>
-	<Choices>
+	<choices>
 		<xsl:for-each select="choice">
 			<choice>
 				<学生编号>
@@ -17,7 +16,6 @@
 				</得分>
 			</choice>
 		</xsl:for-each>
-	</Choices>	
+	</choices>	
 	</xsl:template>
-	</xsl:output>
 </xsl:stysheet>

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stysheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:output method="xml" encoding="UTF-8">
-	<xsl:template match="Classes">
-		 <xsl:apply-templates/>
-	<Classes>
-		<xsl:for-each select="class">
-			<class>
+	<xsl:template match="/courses">
+	<courses>
+		<xsl:for-each select="course">
+			<course>
 				<Cno>
 					<xsl:value-of select="id"/>
 				</Cno>
@@ -24,9 +22,8 @@
 				<Pla>
 					<xsl:value-of select="location"/>
 				</Pla>
-			</class>
+			</course>
 		</xsl:for-each>
-	</Classes>	
+	</courses>	
 	</xsl:template>
-	</xsl:output>
 </xsl:stysheet>

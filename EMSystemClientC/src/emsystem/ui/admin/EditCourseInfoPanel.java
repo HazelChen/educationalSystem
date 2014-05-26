@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,7 +30,7 @@ public class EditCourseInfoPanel extends JPanel {
 	private JTextField teacherTextField;
 	private JTextField addressTextField;
 
-	private JCheckBox shareCheck;
+//	private JCheckBox shareCheck;
 	JButton okButton;
 
 	private String idString = "¿Î³Ì±àºÅ";
@@ -178,9 +177,9 @@ public class EditCourseInfoPanel extends JPanel {
 	private void initEdit() {
 		init();
 		idTextField.setEditable(false);
-		if (mCourse.getShareFlag().equals("ÊÇ")) {
-			shareCheck.setEnabled(false);
-		}
+//		.if (mCourse.getShareFlag().equals("ÊÇ")) {
+//			shareCheck.setEnabled(false);
+//		}
 
 		idTextField.setText(mCourse.getId());
 		nameTextField.setText(mCourse.getCourseName());
@@ -242,7 +241,7 @@ public class EditCourseInfoPanel extends JPanel {
 		teacherTextField.setText("");
 		addressTextField.setText("");
 		creditTextField.setText("");
-		shareCheck.setSelected(false);
+//		shareCheck.setSelected(false);
 
 	}
 

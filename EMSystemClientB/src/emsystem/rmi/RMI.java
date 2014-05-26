@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 
 
 
+
 public class RMI {
 	private static String ip = "172.17.128.2";
 	

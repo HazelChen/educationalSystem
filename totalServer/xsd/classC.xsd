@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="classes" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="class" minOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Cno">
+								<xs:simpleType>
+ 									<xs:restriction base="xs:string">
+    								  <xs:maxLength value="4"/>
+  									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							<xs:element name="Cnm">
+								<xs:simpleType>
+ 									<xs:restriction base="xs:string">
+										 <xs:maxLength value="10"></xs:maxLength>
+  									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							<xs:element name="Ctm">
+								<xs:simpleType>
+ 									<xs:restriction base="xs:integer">
+  									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							<xs:element name="Cpt">
+								<xs:simpleType>
+ 									<xs:restriction base="xs:integer">
+  									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							<xs:element name="Tec">
+								<xs:simpleType>
+ 									<xs:restriction base="xs:string">
+    								  <xs:maxLength value="20"/>
+  									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							<xs:element name="Pla">
+								<xs:simpleType>
+ 									<xs:restriction base="xs:string">
+    								  <xs:maxLength value="18"/>
+  									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							<xs:element name="Share">
+								<xs:simpleType>
+ 									<xs:restriction base="xs:string">
+    								  <xs:maxLength value="1"/>
+  									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import emsystem.rmi.RMI;
+
 public class MainFrame extends JFrame {
 
 	/**
@@ -24,6 +26,7 @@ public class MainFrame extends JFrame {
 				try {
 					MainFrame frame = new MainFrame();
 					frame.setVisible(true);
+					RMI.init();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

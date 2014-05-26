@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="choices">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="choice" minOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							
+							<xs:element name="Cno">
+								<xs:simpleType>
+ 									<xs:restriction base="xs:string">
+    								  <xs:maxLength value="4"/>
+  									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							<xs:element name="Sno">
+								<xs:simpleType>
+ 									<xs:restriction base="xs:string">
+    								  <xs:maxLength value="19"/>
+  									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							<xs:element name="Grd">
+								<xs:simpleType>
+ 									<xs:restriction base="xs:integer">
+  									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

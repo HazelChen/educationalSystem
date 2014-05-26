@@ -15,7 +15,10 @@ public class StudentServiceAdapter{
 		
 	}
 	public static StudentServiceAdapter getInstance(){
-		return mAdapter == null? new StudentServiceAdapter() : mAdapter;
+		if (mAdapter == null) {
+			mAdapter = new StudentServiceAdapter();
+		}
+		return mAdapter;
 	}
 	
 	

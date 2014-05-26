@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import edu.nju.educationSystem.server.xmlHandler.XMLAnalyzer;
+import edu.nju.educationSystem.server.xmlHandler.XMLTransform;
 
 public class XMLAnalyzeTest {
-	
 	@Test
 	public void test() {
-		String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<courses>\n<course>\n<id>0000000</id>\n<name>广告学</name>\n<time>37</time>\n<score>3</score>\n<teacher>刘峰</teacher>\n<location>仙一</location>" + 
-				"\n</course>\n<course>\n<id>0000001</id>\n<name>心理学</name>\n<time>40</time>\n<score>5</score>\n<teacher>赵志宏</teacher>\n<location>仙二</location>\n</course>\n</courses>";
+		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
+				"<choices><choice><sid>0000000</sid><cid>广告学</cid><score>37</score></choice></choices>";
 		
 		XMLAnalyzer xmlAnalyzer = new XMLAnalyzer(xml);
 		while (xmlAnalyzer.hasNext()) {
@@ -22,5 +22,12 @@ public class XMLAnalyzeTest {
 			}
 			System.out.println();
 		}
+	}
+	
+	public void transform() {
+		String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<choices>\n<choice>\n<学生编号>0000000</学生编号>\n<课程编号>广告学</课程编号>\n<得分>37</得分></choice>\n</choices>";
+		XMLTransform transform = new XMLTransform();
+		String a = transform.transform(xml, "formatChoice.xsl");
+		System.out.println(a);
 	}
 }
