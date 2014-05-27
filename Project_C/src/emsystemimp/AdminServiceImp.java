@@ -4,18 +4,23 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import emsystem.data.Choice;
 import emsystem.data.Course;
 import emsystem.data.Student;
 import emsystem.database.Account_logic;
+import emsystem.database.Choice_logic;
 import emsystem.database.Course_logic;
 import emsystem.database.Student_logic;
+import emsystem.rao.RAOFacade;
 import emsystem.rmi.AdminService;
 
-public class AdminServiceImp extends UnicastRemoteObject
-implements AdminService{
-
+public class AdminServiceImp extends UnicastRemoteObject implements
+		AdminService {
+	private RAOFacade raoFacade;
+	
 	public AdminServiceImp() throws RemoteException {
 		super();
+		raoFacade = new RAOFacade();
 	}
 
 	@Override
@@ -101,21 +106,31 @@ implements AdminService{
 
 	@Override
 	public void postFinishChooseAction() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		ArrayList<Choice> allChoicesFromTotalServer = raoFacade.getServerChoises();
+		Choice_logic logic = new Choice_logic();
+		for(Choice choice : allChoicesFromTotalServer) {
+			logic.addChoice(choice);
+		}
 	}
 
 	@Override
 	public void postShareStudentAction() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Student_logic logic = new Student_logic();
+		ArrayList<Student> students = logic.getAllStudent();
+		raoFacade.addStudents(students);
 	}
 
 	@Override
 	public void postShareCourseAction(ArrayList<String> pCourseIds)
 			throws RemoteException {
-		// TODO Auto-generated method stub
+		Course_logic logic = new Course_logic();
 		
+		ArrayList<Course> courses = new ArrayList<>();
+		for(String cid : pCourseIds) {
+			Course course = logic.queryCourseByCno(cid);
+			courses.add(course);
+		}
+		raoFacade.addCourses(courses);
 	}
 
 }

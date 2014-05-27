@@ -64,6 +64,20 @@ public class Choice_logic {
 		return false;
 	}
 	
+	public boolean addChoice(Choice choice){//增加一条选课
+		Connection conn = cm.getConnection();
+		String sql = "INSERT INTO choicec(Cno,Sno,Grd) VALUES('"+choice.getCourseId()+"','"+choice.getStudentId()+"',"+choice.getScore()+")";
+		try {
+			st = conn.createStatement();
+			st.executeUpdate(sql);
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public boolean deleteChoice(String cno,String sno){
 		boolean isdelete = false;
 		Connection conn = cm.getConnection();

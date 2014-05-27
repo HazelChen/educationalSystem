@@ -20,6 +20,8 @@ public class Student implements Serializable,ModelSpecification{
 	private String major;
 	private String password;
 	
+	public Student() {}
+	
 	public Student(String pId, String PName, String pSex, String pMajor,String pPassword){
 		id = pId;
 		name = PName;
