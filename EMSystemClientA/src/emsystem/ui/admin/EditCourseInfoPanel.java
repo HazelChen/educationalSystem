@@ -177,7 +177,7 @@ public class EditCourseInfoPanel extends JPanel {
 	private void initEdit() {
 		init();
 		idTextField.setEditable(false);
-		if (mCourse.getmShareFlag().equals("ÊÇ")) {
+		if (mCourse.getShareFlag().equals("ÊÇ")) {
 //			shareCheck.setEnabled(false);
 		}
 

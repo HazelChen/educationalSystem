@@ -1,8 +1,10 @@
 package emsystem.data;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-public class Student implements Serializable{
+public class Student implements Serializable,ModelSpecification{
 
 	/**
 	 * 
@@ -12,56 +14,72 @@ public class Student implements Serializable{
 	 * 
 	 */
 	
-	private String mId;
-	private String mName;
-	private String mSex;
-	private String mMajor;
-	private String mPassword;
+	private String id;
+	private String name;
+	private String sex;
+	private String major;
+	private String password;
+	
+	public Student(){}
 	
 	public Student(String pId, String PName, String pSex, String pMajor,String pPassword){
-		mId = pId;
-		mName = PName;
-		mSex = pSex;
-		mMajor = pMajor;
-		mPassword=pPassword;
+		id = pId;
+		name = PName;
+		sex = pSex;
+		major = pMajor;
+		password=pPassword;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public Map<String, String> getFieldCorrespondence() {
+		Map<String,String> map=new LinkedHashMap<>();
+		map.put("id", "学号");
+		map.put("name", "姓名");
+		map.put("sex", "性别");
+		map.put("major", "专业");
+		map.put("password", "密码");
+		return map;
 	}
 	
-	public String getId(){
-		return mId;
-	}
-	
-	public String getName(){
-		return mName;
-	}
-	
-	public String getSex(){
-		return mSex;
-	}
-	
-	public String getMajor(){
-		return mMajor;
-	}
-
-	
-	public void setmName(String mName) {
-		this.mName = mName;
-	}
-
-
-	public void setmSex(String mSex) {
-		this.mSex = mSex;
-	}
-
-	public void setmMajor(String mMajor) {
-		this.mMajor = mMajor;
-	}
-
-	public String getmPassword() {
-		return mPassword;
-	}
-
-	public void setmPassword(String mPassword) {
-		this.mPassword = mPassword;
-	}
 
 }

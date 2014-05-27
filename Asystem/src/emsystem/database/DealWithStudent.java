@@ -104,7 +104,7 @@ public class DealWithStudent {
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
 		String sql="update student set 姓名='"+stu.getName()
-				+"',性别='"+stu.getSex()+"',密码='"+stu.getPassword()+"' where 学号="+stu.getId();
+				+"',性别='"+stu.getSex()+"',密码='"+stu.getPassword()+"' where 学号='"+stu.getId()+"'";
 		try {
 			s=c.createStatement();
 			s.execute(sql);

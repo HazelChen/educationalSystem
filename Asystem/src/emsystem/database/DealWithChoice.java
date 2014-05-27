@@ -26,7 +26,7 @@ public class DealWithChoice {
 				String studentId=rs.getString("学号");
 				String courseId=rs.getString("课程编号");
 				int score=Integer.parseInt(rs.getString("得分"));
-				Choice choice=new Choice(studentId, courseId, score);
+				Choice choice=new Choice(courseId, studentId, score);
 				list.add(choice);
 			}
 			close();
@@ -57,7 +57,7 @@ public class DealWithChoice {
 	public boolean delete(String cid,String sid){
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
-		String sql="delete from choice where 学号="+sid +"and 课程编号="+cid;
+		String sql="delete from choice where 学号='"+sid +"'and 课程编号='"+cid+"'";
 		try {
 			s=c.createStatement();
 			s.execute(sql);
@@ -71,7 +71,7 @@ public class DealWithChoice {
 	}
 	public Choice search(String cid,String sid){
 		c=DatabaseHelper.getConnection();
-		String sql="select * from choice where 学号="+sid+" and 课程编号="+cid;
+		String sql="select * from choice where 学号='"+sid+"' and 课程编号='"+cid+"'";
 		Choice choice = null;
 		try {
 			s=c.createStatement();
@@ -80,7 +80,7 @@ public class DealWithChoice {
 				String studentId=rs.getString("学号");
 				String courseId=rs.getString("课程编号");
 				int score=Integer.parseInt(rs.getString("得分"));
-				choice=new Choice(studentId, courseId, score);
+				choice=new Choice(courseId,studentId, score);
 			}
 			close();
 		} catch (SQLException e) {
@@ -92,7 +92,7 @@ public class DealWithChoice {
 	public ArrayList<Choice> getMyChoice(String sid){
 		ArrayList<Choice> list=new ArrayList<Choice>();
 		c=DatabaseHelper.getConnection();
-		String sql="select * from choice where 学号="+sid;
+		String sql="select * from choice where 学号='"+sid+"'";
 		try {
 			s=c.createStatement();
 			rs=s.executeQuery(sql);
@@ -100,7 +100,7 @@ public class DealWithChoice {
 				String studentId=rs.getString("学号");
 				String courseId=rs.getString("课程编号");
 				int score=Integer.parseInt(rs.getString("得分"));
-				Choice choice=new Choice(studentId, courseId, score);
+				Choice choice=new Choice(courseId,studentId, score);
 				list.add(choice);
 			}
 			close();

@@ -1,8 +1,10 @@
 package emsystem.data;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-public class Course implements Serializable{
+public class Course implements Serializable,ModelSpecification{
 	/**
 	 * 
 	 */
@@ -10,82 +12,96 @@ public class Course implements Serializable{
 	/**
 	 * 
 	 */
-	private String mId;
-	private String mCourseName;
-	private int mCredit;
-	private String mCourseTime;//课时
-	private String mTeacher;
-	private String mAddress;
-	private String mShareFlag;
+	private String id;
+	private String courseName;
+	private int credit;
+	private String courseTime;//课时
+	private String teacher;
+	private String address;
+	private String shareFlag;
+	
+	public Course(){}
 	
 	public Course(String pId, String pCourseName, int pCredit,String pCourseTime, String pTeacher, String pAddress, String pShareFlag){
-		mId = pId;
-		mCourseName = pCourseName;
-		mCredit = pCredit;
-		mCourseTime = pCourseTime;
-		mTeacher = pTeacher;
-		mAddress = pAddress;
-		mShareFlag = pShareFlag;
+		id = pId;
+		courseName = pCourseName;
+		credit = pCredit;
+		courseTime = pCourseTime;
+		teacher = pTeacher;
+		address = pAddress;
+		shareFlag = pShareFlag;
 	}
 	
-	public String getId(){
-		return mId;
-	}
 	
-	public String getCourseName(){
-		return mCourseName;
-	}
-	
-	public int getCredit(){
-		return mCredit;
-	}
-	
-	public String getCourseTime(){
-		return mCourseTime;
-	}
-	
-	public String getTeacher(){
-		return mTeacher;
-	}
-	
-	public String getAddress(){
-		return mAddress;
-	}
-	
-	public String getShareFlag(){
-		return mShareFlag;
+
+	public String getId() {
+		return id;
 	}
 
-	public void setmId(String mId) {
-		this.mId = mId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public void setmCourseName(String mCourseName) {
-		this.mCourseName = mCourseName;
+	public String getCourseName() {
+		return courseName;
 	}
 
-	public void setmCredit(int mCredit) {
-		this.mCredit = mCredit;
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
 
-	public void setmCourseTime(String mCourseTime) {
-		this.mCourseTime = mCourseTime;
+	public int getCredit() {
+		return credit;
 	}
 
-	public void setmTeacher(String mTeacher) {
-		this.mTeacher = mTeacher;
+	public void setCredit(int credit) {
+		this.credit = credit;
 	}
 
-	public void setmAddress(String mAddress) {
-		this.mAddress = mAddress;
+	public String getCourseTime() {
+		return courseTime;
 	}
 
-	public String getmShareFlag() {
-		return mShareFlag;
+	public void setCourseTime(String courseTime) {
+		this.courseTime = courseTime;
 	}
 
-	public void setmShareFlag(String mShareFlag) {
-		this.mShareFlag = mShareFlag;
+	public String getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getShareFlag() {
+		return shareFlag;
+	}
+
+	public void setShareFlag(String shareFlag) {
+		this.shareFlag = shareFlag;
+	}
+
+
+	@Override
+	public Map<String, String> getFieldCorrespondence() {
+		Map<String,String> map=new LinkedHashMap<>();
+		map.put("id", "编号");
+		map.put("courseName","名称");
+		map.put("credit", "课时");
+		map.put("courseTime", "学分");
+		map.put("teacher", "老师");
+		map.put("address","地点");
+		map.put("shareFlag", "共享");
+		return map;
 	}
 
 }

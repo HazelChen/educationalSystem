@@ -69,7 +69,7 @@ public class DealWithCourse {
 	public boolean  delete(String cid){
 		boolean b=false;
 		c=DatabaseHelper.getConnection();
-		String sql="delete from course where 编号="+cid;
+		String sql="delete from course where 编号='"+cid+"'";
 		try {
 			s=c.createStatement();
 			s.execute(sql);
@@ -83,7 +83,7 @@ public class DealWithCourse {
 	}
 	public Course search(String cid){
 		c=DatabaseHelper.getConnection();
-		String sql="select * from course where 编号="+cid;
+		String sql="select * from course where 编号='"+cid+"'";
 		Course course = null;
 		try {
 			s=c.createStatement();
@@ -119,7 +119,7 @@ public class DealWithCourse {
 		}
 		String sql="update course set 名称='"+course.getCourseName()
 				+"',课时='"+course.getCourseTime()+"',学分="+course.getCredit()+",老师='"+course.getTeacher()
-				+"',地点='"+course.getAddress()+"',共享='"+flag+"' where 学号="+course.getId();
+				+"',地点='"+course.getAddress()+"',共享='"+flag+"' where 编号='"+course.getId()+"'";
 		try {
 			s=c.createStatement();
 			s.execute(sql);

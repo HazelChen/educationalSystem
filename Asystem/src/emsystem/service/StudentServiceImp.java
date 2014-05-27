@@ -101,12 +101,12 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 			String cid = pCourseIdlist.get(i);
 			if (cid.startsWith("1")) {
 				// 选A系统的课
-				Choice choice = new Choice(pId, cid, 0);
+				Choice choice = new Choice(cid, pId, 0);
 				boolean b = dwchoice.insert(choice);
 				result[i] = b;
 			} else {
 				// 选择外院的课
-				Choice choice = new Choice(pId, cid, 0);
+				Choice choice = new Choice(cid, pId, 0);
 				result[i] = raoFacade.add(choice);
 			}
 		}
@@ -125,7 +125,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 				result[i] = b;
 			} else {
 				// 退选外院的课
-				Choice choice = new Choice(pStudentId, cid, 0);
+				Choice choice = new Choice(cid,pStudentId, 0);
 				result[i] = raoFacade.remove(choice);
 			}
 		}
@@ -135,6 +135,8 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<Course> getCoursesToDrop(String pStudentId) {
 		ArrayList<Choice> list = dwchoice.getMyChoice(pStudentId);
+		ArrayList<Choice> myOtherMajorChoices = raoFacade.getStudentChoice(pStudentId);
+		list.addAll(myOtherMajorChoices);
 		ArrayList<Course> result = new ArrayList<Course>();
 		for (int i = 0; i < list.size(); i++) {
 			String cid = list.get(i).getCourseId();

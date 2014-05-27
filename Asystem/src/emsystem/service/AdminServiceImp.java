@@ -132,7 +132,9 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 		ArrayList<Course> courses = new ArrayList<>();
 		for(String cid : pCourseIds) {
 			Course course = dwcourse.search(cid);
+			course.setShareFlag("ÊÇ");
 			courses.add(course);
+			dwcourse.modify(course);
 		}
 		raoFacade.addCourses(courses);
 	}

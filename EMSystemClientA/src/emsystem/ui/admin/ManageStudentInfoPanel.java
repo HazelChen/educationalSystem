@@ -99,7 +99,7 @@ public class ManageStudentInfoPanel extends JPanel {
 				Student student = students.get(i);
 				data[i][idIndex] = student.getId();
 				data[i][nameIndex] = student.getName();
-				data[i][passwordIndex] = student.getmPassword();
+				data[i][passwordIndex] = student.getPassword();
 				data[i][sexIndex] = student.getSex();
 				data[i][majorIndex] = student.getMajor();
 			}

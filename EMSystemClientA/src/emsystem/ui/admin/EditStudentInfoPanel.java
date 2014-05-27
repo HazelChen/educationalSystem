@@ -182,7 +182,7 @@ public class EditStudentInfoPanel extends JPanel {
 
 		idTextField.setText(mStudent.getId());
 		nameTextField.setText(mStudent.getName());
-		passwrodField.setText(mStudent.getmPassword());
+		passwrodField.setText(mStudent.getPassword());
 		if (mStudent.getSex().equals("ÄÐ")) {
 			maleButton.setSelected(true);
 		} else {

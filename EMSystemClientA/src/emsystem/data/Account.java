@@ -1,12 +1,17 @@
 package emsystem.data;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-public class Account implements Serializable{
+public class Account implements Serializable,ModelSpecification{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private String name;
 	private String password;
 	private int jibie;
@@ -42,5 +47,16 @@ public class Account implements Serializable{
 	public void setKeti(String keti) {
 		this.keti = keti;
 	}
+	@Override
+	public Map<String, String> getFieldCorrespondence() {
+		Map<String, String> map=new LinkedHashMap<>();
+		map.put("name", "账户名");
+		map.put("password", "密码");
+		map.put("jibie", "级别");
+		map.put("keti", "客体");
+		return map;
+	}
+	
+	
 	
 }

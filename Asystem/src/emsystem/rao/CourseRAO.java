@@ -20,7 +20,7 @@ public class CourseRAO {
 			ArrayList<String> values = analyzer.next();
 			
 			Course course = new Course(values.get(0), values.get(1), 
-					Integer.parseInt(values.get(2)), values.get(3), 
+					Integer.parseInt(values.get(3)), values.get(2), 
 					values.get(4), values.get(5), values.get(6));
 			return course;
 		} else {
@@ -65,7 +65,7 @@ public class CourseRAO {
 		while (analyzer.hasNext()) {
 			ArrayList<String> values = analyzer.next();
 			Course course = new Course(values.get(0), values.get(1), 
-					Integer.parseInt(values.get(2)), values.get(3), 
+					Integer.parseInt(values.get(3)), values.get(2), 
 					values.get(4), values.get(5), values.get(6));
 			courses.add(course);
 		}

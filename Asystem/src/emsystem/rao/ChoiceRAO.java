@@ -57,7 +57,7 @@ public class ChoiceRAO {
 			if (!scoreString.equals("")) {
 				score = Integer.parseInt(scoreString);
 			}
-			Choice choice = new Choice(values.get(0), values.get(1), score);
+			Choice choice = new Choice(values.get(1), values.get(0), score);
 			choices.add(choice);
 		}
 		return choices;
