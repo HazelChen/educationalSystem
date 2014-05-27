@@ -104,8 +104,9 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 	@Override
 	public void postShareCourseAction(ArrayList<String> pCourseIds)
 			throws RemoteException {
+		courseService.shareInDB(pCourseIds);
 		ArrayList<Course> courses = courseService.getSharedCourses();
-		courseService.shareCourses(courses);
+		courseService.shareCoursesToServer(courses);
 	}
 
 }

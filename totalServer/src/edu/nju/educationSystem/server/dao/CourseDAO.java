@@ -80,8 +80,8 @@ public class CourseDAO {
 	}
 	
 	public ArrayList<Course> getNotSelectedCourse(String prefix, String sid) {
-		String sql = "select * from course where id like '" + prefix + "%'id not in("
-				+ "select cid from choice where sid='" + sid + "')";
+		String sql = "select * from course where id like '" + prefix + "%' and id not in("
+				+ "select cid from elective where sid='" + sid + "')";
 		
 		ArrayList<Course> courses = new ArrayList<>();
 		ResultSet resultSet = databaseUtils.searchResultSet(sql);

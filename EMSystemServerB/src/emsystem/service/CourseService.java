@@ -70,8 +70,14 @@ public class CourseService {
 		return courseDAO.getSharedCourses();
 	}
 	
-	public void shareCourses(ArrayList<Course> courses) {
+	public void shareCoursesToServer(ArrayList<Course> courses) {
 		courseRAO.add(courses);
+	}
+
+	public void shareInDB(ArrayList<String> pCourseIds) {
+		for (String cid : pCourseIds) {
+			courseDAO.shareCourse(cid);
+		}
 	}
 	
 }

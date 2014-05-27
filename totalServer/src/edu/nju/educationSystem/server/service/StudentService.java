@@ -28,6 +28,7 @@ public class StudentService {
 		XMLAnalyzer analyzer = new XMLAnalyzer(studentXml);
 		while (analyzer.hasNext()) {
 			ArrayList<String> values = analyzer.next();
+			System.out.println("major:" + values.get(3));
 			Student student = new Student(values.get(0), values.get(1), 
 					Sex.valueOf(values.get(2)), Major.valueOf(values.get(3)));
 			students.add(student);

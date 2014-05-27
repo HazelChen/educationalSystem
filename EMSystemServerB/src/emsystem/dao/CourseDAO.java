@@ -209,4 +209,18 @@ public class CourseDAO {
 		}
 		return courses;
 	}
+
+	public void shareCourse(String cid) {
+		try {
+			Connection connection  = daoHelper.getConnection();
+			PreparedStatement statement = connection.prepareStatement("update course set ¹²Ïí=1 where ¿Î³Ì±àºÅ=?");
+			statement.setString(1, cid);
+			statement.execute();
+			
+			daoHelper.closePreparedStatement(statement);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

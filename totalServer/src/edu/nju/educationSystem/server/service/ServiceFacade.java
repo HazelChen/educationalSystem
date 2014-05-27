@@ -158,14 +158,17 @@ public class ServiceFacade {
 	private String tranformIn(String major, String source, String type) {
 		//xmlValidate.validateXml(type + major, source);
 		String result = xmlTransform.transform(source, type + "ToT");
-		xmlValidate.validateXml(type + "T", result);
+		System.out.println("×ª»»½á¹û:");
+		System.out.println(result);
+		//xmlValidate.validateXml(type + "T", result);
 		return result;
 	}
 	
 	private String tranformOut(String major, String source, String type) {
-		xmlValidate.validateXml(type + "T", source);
+		//xmlValidate.validateXml(type + "T", source);
 		String result = xmlTransform.transform(source, type + "To" + major);
-		xmlValidate.validateXml(type + major, result);
+		
+		//xmlValidate.validateXml(type + major, result);
 		return result;
 	}
 }

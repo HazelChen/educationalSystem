@@ -32,11 +32,12 @@ public class ServerRun implements Runnable{
 					xmlBuffer.append(tempString);
 				}
 				String xml = xmlBuffer.toString();
-				System.out.println(xml);
 				
 				ServiceFacade serviceFacade = FacadeFactory.getInstance().getServiceFacade();
 				String returned = serviceFacade.networkCommandExecute(major, command, xml);
 				output.println(returned);
+				output.println("finish");
+				output.flush();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

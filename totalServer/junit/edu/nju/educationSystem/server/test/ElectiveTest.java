@@ -38,7 +38,7 @@ public class ElectiveTest {
 	@Test
 	public void testGetAllElective() {
 		ElectiveService electiveService = new ElectiveService();
-		ArrayList<Elective> electives = electiveService.getAllElective(Major.A);
+		ArrayList<Elective> electives = electiveService.getAllElective(Major.π„∏Ê—ß);
 		for (Elective elective : electives) {
 			System.out.println(elective.getCourseId());
 		}

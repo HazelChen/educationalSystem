@@ -33,7 +33,7 @@ public class CommunicationWithServer {
 
 		String resultXml = "";
 		try {
-			resultXml = input.readLine();
+			resultXml = read();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +46,7 @@ public class CommunicationWithServer {
 
 		String resultXml = "";
 		try {
-			resultXml = input.readLine();
+			resultXml = read();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -76,6 +76,16 @@ public class CommunicationWithServer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private String read() throws IOException {
+		StringBuffer xmlBuffer = new StringBuffer();
+		String tempString = "";
+		while (!(tempString = input.readLine()).equals("finish")) {
+			xmlBuffer.append(tempString);
+		}
+		String xml = xmlBuffer.toString();
+		return xml;
 	}
 
 }

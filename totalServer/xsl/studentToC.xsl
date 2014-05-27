@@ -11,7 +11,10 @@
 					<xsl:value-of select="name"/>
 				</Snm>
 				<Sex>
-					<xsl:value-of select="sex"/>
+					<xsl:choose>
+					<xsl:when test="sex='FEMALE'">f</xsl:when>
+					<xsl:when test="sex='MALE'">m</xsl:when>
+					</xsl:choose>
 				</Sex>
 				<Sde>
 					<xsl:value-of select="major"/>

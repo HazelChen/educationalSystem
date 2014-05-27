@@ -30,8 +30,12 @@ public class CourseService {
 		XMLAnalyzer analyzer = new XMLAnalyzer(courseXml);
 		while (analyzer.hasNext()) {
 			ArrayList<String> values = analyzer.next();
+			int time = 0;
+			if (!values.get(2).equals("")) {
+				time = Integer.parseInt(values.get(2));
+			}
 			Course course = new Course(values.get(0), values.get(1), 
-					Integer.parseInt(values.get(2)), Integer.parseInt(values.get(3)), 
+					time, Integer.parseInt(values.get(3)), 
 					values.get(4), values.get(5));
 			courses.add(course);
 		}

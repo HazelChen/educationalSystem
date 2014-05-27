@@ -15,8 +15,8 @@ public class StudentTest {
 	public void testAdd() {
 		ArrayList<Student> students = new ArrayList<>();
 		
-		Student student1 = new Student("00000000", "陈霖", Sex.FEMAILE, Major.A);
-		Student student2 = new Student("00000001", "啊啊", Sex.MALE, Major.B);
+		Student student1 = new Student("00000000", "陈霖", Sex.FEMALE, Major.广告学);
+		Student student2 = new Student("00000001", "啊啊", Sex.MALE, Major.物理);
 		students.add(student1);
 		students.add(student2);
 		

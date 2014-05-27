@@ -1,58 +1,57 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:element name="courses">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="courses" minOccurs="1">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="id">
-								<xs:simpleType>
- 									 <xs:restriction base="xs:string">
-    								  <xs:length value="9"/>
-  									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-							
-							<xs:element name="name">
-								<xs:simpleType>
-  									<xs:restriction base="xs:string">
-    									<xs:maxLength value="40"/>
-  									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-							
-							<xs:element name="time" type="xs:unsignedByte">
-							</xs:element>
-							
-							<xs:element name="score">
-								<xs:simpleType>
-  									<xs:restriction base="xs:unsignedByte">
-    									<xs:maxInclusive value="5"/>
-  									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-							
-							<xs:element name="teacher">
-								<xs:simpleType>
-									<xs:restriction base="xs:string">
-										<xs:maxLength value="20"/>
-									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-							
-							<xs:element name="location">
-								<xs:simpleType>
-									<xs:restriction base="xs:string">
-										<xs:maxLength value="40"/>
-									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
+	<xs:element name="classes" type="classesType"/>
+		<xs:complexType name="classesType">
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="class" minOccurs="1" type="classType"/>
 			</xs:sequence>
 		</xs:complexType>
-	</xs:element>
+		
+		<xs:complexType name="classType">
+			<xs:sequence>
+				<xs:element name="id">
+					<xs:simpleType>
+ 						<xs:restriction base="xs:string">
+    						<xs:length value="9"/>
+  						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+							
+				<xs:element name="name">
+					<xs:simpleType>
+  						<xs:restriction base="xs:string">
+    						<xs:maxLength value="40"/>
+  						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+							
+				<xs:element name="time" type="xs:unsignedByte">
+				</xs:element>
+							
+				<xs:element name="score">
+					<xs:simpleType>
+  						<xs:restriction base="xs:unsignedByte">
+    						<xs:maxInclusive value="5"/>
+  						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+							
+				<xs:element name="teacher">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+							
+				<xs:element name="location">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="40"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+			</xs:sequence>
+		</xs:complexType>
 </xs:schema>

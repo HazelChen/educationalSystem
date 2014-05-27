@@ -1,7 +1,7 @@
 package edu.nju.educationSystem.server.model;
 
 public enum Major {
-	A("1"), B("2"), C("3");
+	广告学("1"), 物理("2"), 软件工程("3");
 
 	private final String majorPrefix;
 

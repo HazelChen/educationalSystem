@@ -16,12 +16,17 @@
 						<xsl:value-of select="Snm" />
 					</name>
 					<sex>
-						<xsl:value-of select="性别" />
-						<xsl:value-of select="Sex" />
+					<xsl:choose>
+					<xsl:when test="性别='男'">MALE</xsl:when>
+					<xsl:when test="性别='女'">FEMALE</xsl:when>
+					<xsl:when test="Sex='m'">MALE</xsl:when>
+					<xsl:when test="Sex='f'">FEMALE</xsl:when>
+					</xsl:choose>
 					</sex>
 					<major>
 						<xsl:value-of select="专业" />
 						<xsl:value-of select="Sde" />
+						<xsl:value-of select="院系" />
 					</major>
 				</student>
 			</xsl:for-each>

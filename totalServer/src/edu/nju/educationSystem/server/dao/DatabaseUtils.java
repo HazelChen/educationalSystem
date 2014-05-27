@@ -67,6 +67,7 @@ public class DatabaseUtils {
 	 * ·µ»ØresultSetµÄsearch
 	 */
 	public ResultSet searchResultSet(String sql) {
+		System.out.println(sql);
 		ResultSet rs = null;
 		try {
 			Connection connection = ConnectionFactory.getInstance().getConnection();

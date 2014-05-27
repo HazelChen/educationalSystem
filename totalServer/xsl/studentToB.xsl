@@ -11,7 +11,10 @@
 					<xsl:value-of select="name"/>
 				</姓名>
 				<性别>
-					<xsl:value-of select="sex"/>
+					<xsl:choose>
+					<xsl:when test="sex='FEMALE'">女</xsl:when>
+					<xsl:when test="sex='MALE'">男</xsl:when>
+					</xsl:choose>
 				</性别>
 				<院系>
 					<xsl:value-of select="major"/>
