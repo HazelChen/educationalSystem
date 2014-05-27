@@ -3,7 +3,7 @@
 	<xs:element name="choices" type="choicesType"/>
 		<xs:complexType name="choicesType" >
 			<xs:sequence maxOccurs="unbounded">
-				<xs:element name="choice" minOccurs="1" type="choiceType"/>
+				<xs:element name="choice" minOccurs="0" type="choiceType"/>
 			</xs:sequence>
 		</xs:complexType>
 		
@@ -20,7 +20,7 @@
 				<xs:element name="cid">
 					<xs:simpleType>
   						<xs:restriction base="xs:string">
-    						<xs:length value="9"/>
+    						<xs:maxLength value="9"/>
   						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>

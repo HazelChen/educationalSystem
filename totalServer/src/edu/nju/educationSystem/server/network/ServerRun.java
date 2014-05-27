@@ -22,9 +22,9 @@ public class ServerRun implements Runnable{
 		try {
 			while (true) {
 				String major = input.readLine();
-				System.out.println(major);
+				System.out.println("in:" + major);
 				String command = input.readLine();
-				System.out.println(command);
+				System.out.println("in" + command);
 				
 				StringBuffer xmlBuffer = new StringBuffer();
 				String tempString = "";
@@ -32,10 +32,12 @@ public class ServerRun implements Runnable{
 					xmlBuffer.append(tempString);
 				}
 				String xml = xmlBuffer.toString();
+				System.out.println("in:" + xml);
 				
 				ServiceFacade serviceFacade = FacadeFactory.getInstance().getServiceFacade();
 				String returned = serviceFacade.networkCommandExecute(major, command, xml);
 				output.println(returned);
+				System.out.println("out:" + returned);
 				output.println("finish");
 				output.flush();
 			}

@@ -24,6 +24,14 @@ public class CourseService {
 		return xmlGenerater.getXmlString();
 	}
 	
+	public String toCourseXml(Course course) {
+		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
+				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
+		xmlGenerater.addElement(course);
+		String xml = xmlGenerater.getXmlString();
+		return xml;
+	}
+	
 	public ArrayList<Course> getCourses(String courseXml) {
 		ArrayList<Course> courses = new ArrayList<>();
 		

@@ -21,7 +21,7 @@ public class ChoiceDAO {
 		ArrayList<Choice> choices = new ArrayList<>();
 
 		Connection connection = daoHelper.getConnection();
-		String sql = "select * from " + TABLE_NAME + " where 学生编号=" + sid;
+		String sql = "select * from " + TABLE_NAME + " where 学生编号='" + sid + "'";
 
 		try {
 			Statement statement = connection.createStatement();
@@ -30,7 +30,7 @@ public class ChoiceDAO {
 				String studentId = resultSet.getString("学生编号");
 				String courseId = resultSet.getString("课程编号");
 				int score = Integer.parseInt(resultSet.getString("成绩"));
-				Choice choice = new Choice(studentId, courseId, score);
+				Choice choice = new Choice(courseId, studentId, score);
 				choices.add(choice);
 			}
 		} catch (SQLException e) {
@@ -49,6 +49,7 @@ public class ChoiceDAO {
 			statement.execute(sql);
 			return true;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

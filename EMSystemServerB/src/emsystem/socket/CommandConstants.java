@@ -20,7 +20,7 @@ public class CommandConstants {
 	public final static String SHARE_COURSE = "share_course";
 	
 	/**
-	 * 每个学生的选课信息
+	 * 学生选课
 	 */
 	public final static String STUDENT_ELECTIVE = "student_elective";
 	
@@ -35,4 +35,9 @@ public class CommandConstants {
 	public final static String ELECTIVE_RECORD = "elective_record";
 	
 	public final static String GET_COURSE_INFORMATION_BY_ID = "get_course_information_by_id";
+
+	/**
+	 * 获得每个学生的选课信息
+	 */
+	public static final String GET_STUDENT_ELECTIVES = "get_student_electives";
 }

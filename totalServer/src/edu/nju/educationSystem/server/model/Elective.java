@@ -9,6 +9,8 @@ public class Elective implements ModelSpecification{
 	private String courseId = "";
 	private int score;
 	
+	public Elective() {}
+	
 	public Elective(String sid, String cid, int score) {
 		this.studentId = sid;
 		this.courseId = cid;

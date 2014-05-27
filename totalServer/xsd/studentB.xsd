@@ -5,7 +5,7 @@
 	
 	<xs:complexType   name="studentsType">   
       	<xs:sequence   maxOccurs="unbounded">   
-        	<xs:element   name="student"   minOccurs="1" type="studentType"/>   
+        	<xs:element   name="student"   minOccurs="0" type="studentType"/>   
       	</xs:sequence>   
     </xs:complexType>
      

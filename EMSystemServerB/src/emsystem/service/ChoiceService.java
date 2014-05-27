@@ -16,7 +16,11 @@ public class ChoiceService {
 	}
 	
 	public ArrayList<Choice> getMyChoice(String sid) {
-		return choiceDAO.getStudentChoice(sid);
+		ArrayList<Choice> result =  choiceDAO.getStudentChoice(sid);
+		ArrayList<Choice> remoteChoices = choiceRAO.getStudentChoice(sid);
+		result.addAll(remoteChoices);
+		return result;
+		
 	}
 	
 	public boolean[] choice(ArrayList<Choice> choices) {

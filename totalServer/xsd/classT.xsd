@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:element name="classes" type="classesType"/>
-		<xs:complexType name="classesType">
+	<xs:element name="courses" type="coursesType"/>
+		<xs:complexType name="coursesType">
 			<xs:sequence maxOccurs="unbounded">
-				<xs:element name="class" minOccurs="1" type="classType"/>
+				<xs:element name="course" minOccurs="0" type="courseType"/>
 			</xs:sequence>
 		</xs:complexType>
 		
-		<xs:complexType name="classType">
+		<xs:complexType name="courseType">
 			<xs:sequence>
 				<xs:element name="id">
 					<xs:simpleType>
  						<xs:restriction base="xs:string">
-    						<xs:length value="9"/>
+    						<xs:maxLength value="9"/>
   						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -25,7 +25,7 @@
 					</xs:simpleType>
 				</xs:element>
 							
-				<xs:element name="time" type="xs:unsignedByte">
+				<xs:element name="time">
 				</xs:element>
 							
 				<xs:element name="score">

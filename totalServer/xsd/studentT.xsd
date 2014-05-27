@@ -4,7 +4,7 @@
 	
 	<xs:complexType  name="studentsType">
 		<xs:sequence  maxOccurs="unbounded">
-			<xs:element name="student" minOccurs="1" type="studentType"/>
+			<xs:element name="student" minOccurs="0" type="studentType"/>
 		</xs:sequence>
 	</xs:complexType>
 	
@@ -29,7 +29,7 @@
 			<xs:element name="sex">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<xs:pattern value="male|female"/>
+						<xs:pattern value="MALE|FEMALE"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -41,15 +41,6 @@
   					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-							
-			<xs:element name="password">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:length value="6"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-							
 		</xs:sequence>
 	</xs:complexType>
 	

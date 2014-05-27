@@ -41,16 +41,7 @@ public class CommunicationWithServer {
 	}
 
 	public String communicate(String command) {
-		output.println("B");
-		output.println(command);
-
-		String resultXml = "";
-		try {
-			resultXml = read();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return resultXml;
+		return communicate(command, "useless xml");
 	}
 
 	public void close() {

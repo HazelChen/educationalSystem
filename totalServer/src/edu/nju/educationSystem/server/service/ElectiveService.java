@@ -64,11 +64,13 @@ public class ElectiveService {
 	}
 	
 	public String getElectivesXml(ArrayList<Elective> electives) {
-		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.ELECTIVE_ROOT, ConfigConstant.ELECTIVE_ELEMENT);
+		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.ELECTIVE_ROOT, 
+				ConfigConstant.ELECTIVE_ELEMENT, Elective.class, new Elective());
 		for (Elective elective : electives) {
 			xmlGenerater.addElement(elective);
 		}
-		return xmlGenerater.getXmlString();
+		String xml =  xmlGenerater.getXmlString();
+		return xml;
 	}
 	
 	public boolean addElectives(ArrayList<Elective> electives) {
@@ -77,5 +79,9 @@ public class ElectiveService {
 			result = electiveDAO.add(elective);
 		}
 		return result;
+	}
+
+	public ArrayList<Elective> getStudentsChoise(String sid) {
+		return electiveDAO.getElectiveByStudentId(sid);
 	}
 }

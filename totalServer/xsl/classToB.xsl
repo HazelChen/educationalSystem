@@ -19,6 +19,7 @@
 				<授课地点>
 					<xsl:value-of select="location"/>
 				</授课地点>
+				<共享>1</共享>
 			</course>
 		</xsl:for-each>
 	</courses>	

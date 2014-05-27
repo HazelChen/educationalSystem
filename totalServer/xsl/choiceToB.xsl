@@ -4,9 +4,9 @@
 	<choices>
 		<xsl:for-each select="choice"/>
 			<choice>
-				<学号>
+				<学生编号>
 					<xsl:value-of select="sid"/>
-				</学号>
+				</学生编号>
 				<课程编号>
 					<xsl:value-of select="cid"/>
 				</课程编号>

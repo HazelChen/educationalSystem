@@ -38,12 +38,26 @@ public class ChoiceRAO {
 	public ArrayList<Choice> getServerChoises() {
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
 		String xml = communicationWithServer.communicate(CommandConstants.ELECTIVE_RECORD);
-		
+		return getChoices(xml);
+	}
+
+	public ArrayList<Choice> getStudentChoice(String sid) {
+		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
+		String xml = communicationWithServer.communicate(CommandConstants.GET_STUDENT_ELECTIVES, sid);
+		return getChoices(xml);
+	}
+	 
+	private ArrayList<Choice> getChoices(String xml) {
 		XMLAnalyzer analyzer = new XMLAnalyzer(xml);
 		ArrayList<Choice> choices = new ArrayList<>();
 		while (analyzer.hasNext()) {
 			ArrayList<String> values = analyzer.next();
-			Choice choice = new Choice(values.get(0), values.get(1), Integer.parseInt(values.get(2)));
+			int score = 0;
+			String scoreString = values.get(2);
+			if (!scoreString.equals("")) {
+				score = Integer.parseInt(scoreString);
+			}
+			Choice choice = new Choice(values.get(0), values.get(1), score);
 			choices.add(choice);
 		}
 		return choices;

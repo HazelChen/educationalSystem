@@ -7,8 +7,6 @@ import edu.nju.educationSystem.server.model.Elective;
 import edu.nju.educationSystem.server.model.Major;
 import edu.nju.educationSystem.server.model.Student;
 import edu.nju.educationSystem.server.network.CommandConstants;
-import edu.nju.educationSystem.server.xmlHandler.ConfigConstant;
-import edu.nju.educationSystem.server.xmlHandler.XMLGenerater;
 import edu.nju.educationSystem.server.xmlHandler.XMLTransform;
 import edu.nju.educationSystem.server.xmlHandler.XMLValidate;
 
@@ -58,6 +56,9 @@ public class ServiceFacade {
 		case CommandConstants.STUDENT_ELECTIVE:
 			return addElective(major, xml);
 			
+		case CommandConstants.GET_STUDENT_ELECTIVES:
+			return getStudentElectives(major, xml);
+			
 		default:
 			System.err.println("error:wrong command:" + command);
 			return "useless return";
@@ -65,56 +66,37 @@ public class ServiceFacade {
 		
 	}
 	
+	private String getStudentElectives(String major, String sid) {
+		ArrayList<Elective> electives = electiveService.getStudentsChoise(sid);
+		String electiveXML = electiveService.getElectivesXml(electives);
+		String out = tranformOut(major, electiveXML, "choice");
+		return out;
+	}
+
 	private String notSelectedCourseA(String major, String sid) {
 		ArrayList<Course> courses = courseService.notSelectedCourseA(sid);
-		
-		XMLGenerater generater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
-				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
-		for (Course course : courses) {
-			generater.addElement(course);
-		}
-		String xml =  generater.getXmlString();
-		
+		String xml = courseService.toCourseXml(courses);
 		String out = tranformOut(major, xml, "class");
 		return out;
 	}
 	
 	private String notSelectedCourseB(String major, String sid) {
 		ArrayList<Course> courses = courseService.notSelectedCourseB(sid);
-		
-		XMLGenerater generater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
-				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
-		for (Course course : courses) {
-			generater.addElement(course);
-		}
-		String xml =  generater.getXmlString();
-		
+		String xml = courseService.toCourseXml(courses);
 		String out = tranformOut(major, xml, "class");
 		return out;
 	}
 	
 	private String notSelectedCourseC(String major, String sid) {
 		ArrayList<Course> courses = courseService.notSelectedCourseC(sid);
-		
-		XMLGenerater generater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
-				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
-		for (Course course : courses) {
-			generater.addElement(course);
-		}
-		String xml =  generater.getXmlString();
-		
+		String xml = courseService.toCourseXml(courses);
 		String out = tranformOut(major, xml, "class");
 		return out;
 	}
 	
 	private String askForCourse(String major, String cid) {
 		Course course = courseService.getCourse(cid);
-		
-		XMLGenerater xmlGenerater = new XMLGenerater(ConfigConstant.COURSE_ROOT, 
-				ConfigConstant.COURSE_ELEMENT, Course.class, new Course());
-		xmlGenerater.addElement(course);
-		String xml = xmlGenerater.getXmlString();
-		
+		String xml = courseService.toCourseXml(course);
 		String out = tranformOut(major, xml, "class");
 		return out;
 	}
@@ -127,7 +109,15 @@ public class ServiceFacade {
 	}
 	
 	private String getElectiveRecord(String majorString) {
-		Major major = Major.valueOf(majorString);
+		Major major = Major.广告学;
+		switch (majorString) {
+		case "B":
+			major = Major.物理;
+			break;
+		case "C":
+			major = Major.软件工程;
+		}
+		
 		ArrayList<Elective> electives = electiveService.getAllElective(major);
 		String electivesXml = electiveService.getElectivesXml(electives);
 		String out = tranformOut(majorString, electivesXml, "choice");
@@ -156,19 +146,17 @@ public class ServiceFacade {
 	}
 	
 	private String tranformIn(String major, String source, String type) {
-		//xmlValidate.validateXml(type + major, source);
+		xmlValidate.validateXml(type + major, source);
 		String result = xmlTransform.transform(source, type + "ToT");
-		System.out.println("转换结果:");
-		System.out.println(result);
-		//xmlValidate.validateXml(type + "T", result);
+		xmlValidate.validateXml(type + "T", result);
 		return result;
 	}
 	
 	private String tranformOut(String major, String source, String type) {
-		//xmlValidate.validateXml(type + "T", source);
+		xmlValidate.validateXml(type + "T", source);
 		String result = xmlTransform.transform(source, type + "To" + major);
 		
-		//xmlValidate.validateXml(type + major, result);
+		xmlValidate.validateXml(type + major, result);
 		return result;
 	}
 }
