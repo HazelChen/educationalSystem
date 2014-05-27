@@ -13,6 +13,7 @@ import emsystem.database.DealWithAccount;
 import emsystem.database.DealWithChoice;
 import emsystem.database.DealWithCourse;
 import emsystem.database.DealWithStudent;
+import emsystem.rao.RAOFacade;
 import emsystem.rmi.StudentService;
 
 @SuppressWarnings("serial")
@@ -23,7 +24,8 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 	DealWithChoice dwchoice = new DealWithChoice();
 	DealWithCourse dwcourse = new DealWithCourse();
 	DealWithAccount dwaccount = new DealWithAccount();
-	DealWithTotalServer dwTotalServer = new DealWithTotalServer();
+	
+	RAOFacade raoFacade = new RAOFacade();
 
 	public StudentServiceImp() throws RemoteException {
 		super();
@@ -50,6 +52,9 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 	public HashMap<Course, Integer> getMyCourses(String pStudentId) {
 		HashMap<Course, Integer> map = new HashMap<Course, Integer>();
 		ArrayList<Choice> list = dwchoice.getMyChoice(pStudentId);
+		ArrayList<Choice> myOtherMajorChoices = raoFacade.getStudentChoice(pStudentId);
+		list.addAll(myOtherMajorChoices);
+		
 		for (int i = 0; i < list.size(); i++) {
 			Choice choice = list.get(i);
 			Course c = null;
@@ -57,7 +62,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 				c = dwcourse.search(choice.getCourseId());
 			} else {
 				// 外院课程
-				c = dwTotalServer.getOtherMajorCourse(choice.getCourseId());
+				c = raoFacade.findCourse(choice.getCourseId());
 			}
 			map.put(c, choice.getScore());
 
@@ -81,12 +86,12 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 
 	@Override
 	public ArrayList<Course> getCoursesFromB(String pId) {
-		return dwTotalServer.getNotSelectedInB(pId);
+		return raoFacade.getNotSelectedCoursesInB(pId);
 	}
 
 	@Override
 	public ArrayList<Course> getCoursesFromC(String pId) {
-		return dwTotalServer.getNotSelectedInC(pId);
+		return raoFacade.getNotSelectedCoursesInB(pId);
 	}
 
 	@Override
@@ -102,7 +107,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 			} else {
 				// 选择外院的课
 				Choice choice = new Choice(pId, cid, 0);
-				dwTotalServer.choiceOtherMajor(choice);
+				result[i] = raoFacade.add(choice);
 			}
 		}
 		return result;
@@ -121,7 +126,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 			} else {
 				// 退选外院的课
 				Choice choice = new Choice(pStudentId, cid, 0);
-				dwTotalServer.dropOtherMajor(choice);
+				result[i] = raoFacade.remove(choice);
 			}
 		}
 		return result;
@@ -139,7 +144,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 					c = dwcourse.search(cid);
 				} else {
 					// 外院的课程
-					c = dwTotalServer.getOtherMajorCourse(cid);
+					c = raoFacade.findCourse(cid);
 				}
 				result.add(c);
 			}

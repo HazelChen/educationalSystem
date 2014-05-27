@@ -12,6 +12,7 @@ import emsystem.database.DealWithAccount;
 import emsystem.database.DealWithChoice;
 import emsystem.database.DealWithCourse;
 import emsystem.database.DealWithStudent;
+import emsystem.rao.RAOFacade;
 import emsystem.rmi.AdminService;
 
 public class AdminServiceImp extends UnicastRemoteObject implements AdminService{
@@ -20,7 +21,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 	DealWithChoice dwchoice=new DealWithChoice();
 	DealWithCourse dwcourse=new DealWithCourse();
 	DealWithAccount dwaccount=new DealWithAccount();
-	DealWithTotalServer dwTotalServer = new DealWithTotalServer();
+	RAOFacade raoFacade = new RAOFacade();
 	
 	public AdminServiceImp() throws RemoteException {
 		super();
@@ -112,7 +113,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 
 	@Override
 	public void postFinishChooseAction(){
-		ArrayList<Choice> choices = dwTotalServer.getAllChoices();
+		ArrayList<Choice> choices = raoFacade.getServerChoises();
 		
 		for(int i=0;i<choices.size();i++){
 			Choice c=choices.get(i);
@@ -123,13 +124,17 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 	@Override
 	public void postShareStudentAction(){
 		ArrayList<Student> students = dwstudent.getAllStudent();
-		dwTotalServer.shareStudents(students);
+		raoFacade.addStudents(students);
 	}
 
 	@Override
 	public void postShareCourseAction(ArrayList<String> pCourseIds){
-		ArrayList<Course> courses = dwcourse.getAllCourse();
-		dwTotalServer.shareCourse(courses);
+		ArrayList<Course> courses = new ArrayList<>();
+		for(String cid : pCourseIds) {
+			Course course = dwcourse.search(cid);
+			courses.add(course);
+		}
+		raoFacade.addCourses(courses);
 	}
 
 }
