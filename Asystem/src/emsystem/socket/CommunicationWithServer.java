@@ -25,7 +25,7 @@ public class CommunicationWithServer {
 	}
 
 	public String communicate(String command, String xml) {
-		output.println("B");
+		output.println("A");
 		output.println(command);
 		output.println(xml);
 		output.println("finish");
