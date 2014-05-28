@@ -9,6 +9,8 @@ public class Student implements ModelSpecification{
 	private Sex sex;
 	private Major major;
 	
+	public Student() {}
+	
 	public Student(String id, String name, Sex sex, Major major) {
 		this.id = id;
 		this.name = name;

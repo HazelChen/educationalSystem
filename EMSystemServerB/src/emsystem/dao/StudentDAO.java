@@ -143,4 +143,24 @@ public class StudentDAO {
 		}
 		return list;
 	}
+	
+	public ArrayList<String> getRemoteChoosedStudentIds(String cid) {
+		ArrayList<String> list = new ArrayList<>();
+
+		Connection connection = daoHelper.getConnection();
+		String sql = "select 学生编号 from choice where 课程编号='" + cid + "' and 学生编号 not in("
+				+ "select 学号 from student)";
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+				String id = resultSet.getString("学生编号");
+				list.add(id);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

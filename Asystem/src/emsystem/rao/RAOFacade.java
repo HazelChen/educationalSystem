@@ -56,4 +56,8 @@ public class RAOFacade {
 	public void addStudents(ArrayList<Student> students) {
 		studentRAO.add(students);
 	}
+	
+	public Student getStudent(String sid) {
+		return studentRAO.getStudent(sid);
+	}
 }

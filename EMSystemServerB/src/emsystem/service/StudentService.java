@@ -43,4 +43,12 @@ public class StudentService {
 		studentRAO.add(students);
 	}
 	
+	public ArrayList<String> getRemoteChoosedStudentIds(String cid) {
+		return studentDAO.getRemoteChoosedStudentIds(cid);
+	}
+
+	public Student getRemoteStudent(String sid) {
+		return studentRAO.getStudent(sid);
+	}
+	
 }

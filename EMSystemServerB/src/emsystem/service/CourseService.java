@@ -3,16 +3,21 @@ package emsystem.service;
 import java.util.ArrayList;
 
 import emsystem.dao.CourseDAO;
+import emsystem.model.Choice;
 import emsystem.model.Course;
+import emsystem.rao.ChoiceRAO;
 import emsystem.rao.CourseRAO;
 
 public class CourseService {
 	private CourseDAO courseDAO;
 	private CourseRAO courseRAO;
 	
+	private ChoiceRAO choiceRAO;
+	
 	public CourseService() {
 		courseDAO = new CourseDAO();
 		courseRAO = new CourseRAO();
+		choiceRAO = new ChoiceRAO();
 	}
 	
 	public Course findCourse(String id) {
@@ -43,7 +48,19 @@ public class CourseService {
 	}
 	
 	public ArrayList<Course> getCanDropCources(String sid) {
-		return courseDAO.getScoreZeroCourses(sid);
+		ArrayList<Course> myMajorCanDropCources = courseDAO.getScoreZeroCourses(sid);
+		
+		ArrayList<Choice> myOtherMajorChoices = choiceRAO.getStudentChoice(sid);
+		ArrayList<Course> result = new ArrayList<Course>();
+		for (Choice choice : myOtherMajorChoices) {
+			String cid = choice.getCourseId();
+			if (choice.getScore() == 0) {
+				Course course = courseRAO.find(cid);
+				result.add(course);
+			}
+		}
+		result.addAll(myMajorCanDropCources);
+		return result;
 	}
 	
 	public ArrayList<Course> getThisMajorCourses() {

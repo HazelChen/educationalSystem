@@ -96,7 +96,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 				if(sid.startsWith("1")){
 				stu=dwstudent.search(sid);
 				}else{
-					//TODO
+					stu = raoFacade.getStudent(sid);
 				}
 				result.add(stu);
 			}

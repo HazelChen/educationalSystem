@@ -19,6 +19,7 @@
 				<院系>
 					<xsl:value-of select="major"/>
 				</院系>
+				<关联账户>0</关联账户>
 				
 			</student>
 		</xsl:for-each>

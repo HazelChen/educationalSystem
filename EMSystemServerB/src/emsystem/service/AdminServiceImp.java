@@ -82,7 +82,14 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 	@Override
 	public ArrayList<Student> getChoosedStudents(String pCourseId)
 			throws RemoteException {
-		return studentService.getChoosedStudents(pCourseId);
+		ArrayList<Student> result =  studentService.getChoosedStudents(pCourseId);
+		ArrayList<String> remoteStudentId = studentService.getRemoteChoosedStudentIds(pCourseId); 
+		for(String sid : remoteStudentId) {
+			Student student = studentService.getRemoteStudent(sid);
+			result.add(student);
+		}
+		return result;
+		
 	}
 
 	@Override

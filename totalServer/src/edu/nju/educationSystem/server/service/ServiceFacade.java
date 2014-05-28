@@ -58,6 +58,9 @@ public class ServiceFacade {
 			
 		case CommandConstants.GET_STUDENT_ELECTIVES:
 			return getStudentElectives(major, xml);
+		
+		case CommandConstants.GET_STUDENT_INFORMATION_BY_ID:
+			return getStudentInfo(major, xml);
 			
 		default:
 			System.err.println("error:wrong command:" + command);
@@ -98,6 +101,13 @@ public class ServiceFacade {
 		Course course = courseService.getCourse(cid);
 		String xml = courseService.toCourseXml(course);
 		String out = tranformOut(major, xml, "class");
+		return out;
+	}
+	
+	private String getStudentInfo(String major, String sid) {
+		Student student = studentService.getStudent(sid);
+		String xml = studentService.toStudentXML(student);
+		String out = tranformOut(major, xml, "student");
 		return out;
 	}
 	
@@ -146,17 +156,17 @@ public class ServiceFacade {
 	}
 	
 	private String tranformIn(String major, String source, String type) {
-		//xmlValidate.validateXml(type + major, source);
+		xmlValidate.validateXml(type + major, source);
 		String result = xmlTransform.transform(source, type + "ToT");
-		//xmlValidate.validateXml(type + "T", result);
+		xmlValidate.validateXml(type + "T", result);
 		return result;
 	}
 	
 	private String tranformOut(String major, String source, String type) {
-		//xmlValidate.validateXml(type + "T", source);
+		xmlValidate.validateXml(type + "T", source);
 		String result = xmlTransform.transform(source, type + "To" + major);
 		
-		//xmlValidate.validateXml(type + major, result);
+		xmlValidate.validateXml(type + major, result);
 		return result;
 	}
 }

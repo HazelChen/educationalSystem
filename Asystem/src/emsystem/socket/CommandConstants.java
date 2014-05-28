@@ -36,6 +36,8 @@ public class CommandConstants {
 	
 	public final static String GET_COURSE_INFORMATION_BY_ID = "get_course_information_by_id";
 
+	public final static String GET_STUDENT_INFORMATION_BY_ID = "get_student_information_by_id";
+	
 	/**
 	 * 获得每个学生的选课信息
 	 */
