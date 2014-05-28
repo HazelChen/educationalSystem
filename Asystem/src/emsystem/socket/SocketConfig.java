@@ -1,7 +1,9 @@
 package emsystem.socket;
 
+import emsystem.rmi.Config;
+
 public class SocketConfig {
-	/*package*/ static final String IP = "172.17.147.192";
+	/*package*/ static final String IP =Config.getTotalIP();
 	/*package*/ static final int PORT = 8000;
 	
 }

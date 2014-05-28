@@ -36,7 +36,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 		Account account = dwaccount.search(pId);
 		boolean b = false;
 		if (account != null) {
-			if (account.getPassword().equals(pPassword)) {
+			if (account.getPassword().equals(pPassword)&&account.getJibie()==0) {
 				b = true;
 			}
 		}

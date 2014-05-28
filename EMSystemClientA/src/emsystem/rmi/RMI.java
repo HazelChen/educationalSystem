@@ -15,7 +15,7 @@ public class RMI {
 	
 	static{
 		// TODO 从配置文件中读取IP.初始化ip
-		ip = "rmi://localhost";
+		ip = "rmi://"+Config.getADataIP();
 	}
 
 	public static String getIp() {

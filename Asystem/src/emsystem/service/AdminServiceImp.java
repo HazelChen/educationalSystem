@@ -32,7 +32,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 		Account account=dwaccount.search(pAccount);
 		boolean b=false;
 		if(account!=null){
-			if(account.getPassword().equals(pPassword)){
+			if(account.getPassword().equals(pPassword)&&account.getJibie()==1){
 				b=true;
 			}
 		}
