@@ -97,7 +97,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 		Choice_logic cl = new Choice_logic();
 		Student_logic sl  =  new Student_logic();
 		ArrayList<Student> slist = new ArrayList<Student>();
-		ArrayList<Choice> clist = cl.getChoice();
+		ArrayList<Choice> clist = cl.getChoiceByCno(pCourseId);
 		Student s = new Student();
 		for(int i =0;i<clist.size();i++){
 			Choice c = clist.get(i);
@@ -106,12 +106,12 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 				if(sno.startsWith("3")){
 					s = sl.queryStudentBySno(sno);
 				}else{
-					
-					//TODO
+					s = raoFacade.getStudent(sno);
 				}
 			}
 			slist.add(s);
 		}
+		System.out.println(slist.size());
 		
 		return slist;
 	}

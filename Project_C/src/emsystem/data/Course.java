@@ -2,6 +2,7 @@ package emsystem.data;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Course implements Serializable,ModelSpecification{
@@ -93,7 +94,7 @@ public class Course implements Serializable,ModelSpecification{
 
 	@Override
 	public Map<String, String> getFieldCorrespondence() {
-		Map<String,String> map=new HashMap<String, String>();
+		Map<String,String> map=new LinkedHashMap<String, String>();
 		map.put("id", "Cno");
 		map.put("courseName","Cnm");
 		map.put("credit", "Ctm");

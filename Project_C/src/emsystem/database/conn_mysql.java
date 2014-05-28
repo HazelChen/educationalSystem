@@ -12,6 +12,13 @@ import java.util.Date;
 
 
 public class conn_mysql {
+//	public static void main(String[] a){
+//		insertChoice();
+//		Choice_logic cl = new Choice_logic();
+//		System.out.println(cl.getChoiceByCno("3002"));
+//		System.out.println(cl.getChoiceBySno("321250001"));
+		
+//	}
 	static Connection conn;
 	
 	static Statement st;

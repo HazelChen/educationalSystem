@@ -116,7 +116,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 				lc.addChoice(pCourseId.get(i), pId);
 				b[i] = true;
 			} else {
-				Choice choice = new Choice(pId, pCourseId.get(i), 0);
+				Choice choice = new Choice(pCourseId.get(i),pId, 0);
 				b[i] = raoFacade.add(choice);
 			}
 		}
@@ -147,7 +147,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 				boolean b = cl.deleteChoice(cid, pStudentId);
 				result[i] = b;
 			} else {
-				Choice choice = new Choice(pStudentId, cid, 0);
+				Choice choice = new Choice(cid,pStudentId, 0);
 				result[i] = raoFacade.remove(choice);
 			}
 		}
@@ -161,14 +161,20 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 		ArrayList<Choice> list = new ArrayList<Choice>();
 		ArrayList<Course> result = new ArrayList<Course>();
 		list = cl.getChoiceBySno(pStudentId);
+		
+		ArrayList<Choice> myOtherMajorChoices = raoFacade.getStudentChoice(pStudentId);
+    	list.addAll(myOtherMajorChoices);
+		
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getScore() == 0) {
+				if(list.get(i).getCourseId().startsWith("3")){
 				Course course = c.queryCourseByCno(list.get(i).getCourseId());
 				result.add(course);
-			} else {
-				Course course = raoFacade.findCourse(list.get(i).getCourseId());
-				result.add(course);
-			}
+				}else {
+					Course course = raoFacade.findCourse(list.get(i).getCourseId());
+					result.add(course);
+				}
+			} 
 		}
 		return result;
 	}

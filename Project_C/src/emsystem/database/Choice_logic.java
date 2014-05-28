@@ -52,11 +52,13 @@ public class Choice_logic {
 	}
 	
 	public ArrayList<Choice> getChoiceByCno(String cno){
+		System.out.println("cno:"+cno);
 		ArrayList<Choice> list = new ArrayList<Choice>();
 		Connection conn = cm.getConnection();
 		Choice choice;
 		String sql = "SELECT * FROM choicec WHERE Cno = "+cno;
 		try {
+			st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()){
 				choice = new Choice(rs.getString("Cno"), rs.getString("Sno"), rs.getInt("Grd"));

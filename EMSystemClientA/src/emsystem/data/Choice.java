@@ -18,9 +18,9 @@ public class Choice implements Serializable,ModelSpecification{
 	
 	public Choice(){}
 	
-	public Choice(String studentId, String courseId, int score){
-		this.studentId = studentId;
+	public Choice(String courseId, String studentId, int score){
 		this.courseId = courseId;
+		this.studentId = studentId;
 		this.score = score;
 	}
 
@@ -51,8 +51,8 @@ public class Choice implements Serializable,ModelSpecification{
 	@Override
 	public Map<String, String> getFieldCorrespondence() {
 		Map<String,String> map=new LinkedHashMap<>();
-		map.put("studentId","课程编号");
-		map.put("courseId", "学号");
+		map.put("courseId","课程编号");
+		map.put("studentId", "学号");
 		map.put("score", "得分");
 		return map;
 	}

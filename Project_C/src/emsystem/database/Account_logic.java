@@ -18,6 +18,7 @@ public class Account_logic {
 	}
 	
 	private String queryAccount(String acc){//根据account来查询密码
+		System.out.println(acc);
 			Connection conn = cm.getConnection();
 			String ps = null;
 			String sql = "SELECT * from accountc WHERE acc = "+acc;
