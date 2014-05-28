@@ -46,7 +46,7 @@
 			<xs:element name="Pwd">
 				<xs:simpleType>
   					<xs:restriction base="xs:string">
-    					<xs:length value="6"/>
+    					<xs:maxLength value="6"/>
   					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
