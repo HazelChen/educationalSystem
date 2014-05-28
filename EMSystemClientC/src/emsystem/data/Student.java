@@ -9,40 +9,62 @@ public class Student implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3965165557955422153L;
+//	private static final long serialVersionUID = 3965165557955422153L;
+	private static final long serialVersionUID = 1L;
 	
-	private String mId;//学号
-	private String mName;//姓名
-	private String mSex;//性别
-	private String mMajor;//专业
+	private String id;
+	private String name;
+	private String sex;
+	private String major;
+	private String password;
 	
-	private String mPwd;//密码
+	public Student() {}
 	
-	public Student(String pId, String PName, String pSex, String pMajor,String pPwd){
-		mId = pId;
-		mName = PName;
-		mSex = pSex;
-		mMajor = pMajor;
-		mPwd = pPwd;
+	public Student(String pId, String PName, String pSex, String pMajor,String pPassword){
+		id = pId;
+		name = PName;
+		sex = pSex;
+		major = pMajor;
+		password=pPassword;
 	}
-	
-	public String getId(){
-		return mId;
+
+	public String getId() {
+		return id;
 	}
-	
-	public String getName(){
-		return mName;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	
-	public String getSex(){
-		return mSex;
+
+	public String getName() {
+		return name;
 	}
-	
-	public String getMajor(){
-		return mMajor;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	public String getPwd(){
-		return mPwd;
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

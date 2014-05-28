@@ -10,10 +10,11 @@ import emsystemimp.StudentServiceImp;
 
 public class Main {
 	public static void main(String[] a)throws RemoteException{
+		Config c = new Config();
 		LocateRegistry.createRegistry(1099);
 		AdminServiceImp asi = new AdminServiceImp();
 		StudentServiceImp aai = new StudentServiceImp();
-		String s="rmi://localhost";
+		String s="rmi://"+c.getADataIP();
 		try {
 			Naming.rebind(s+":1099/student", aai);
 			Naming.rebind(s+":1099/admin", asi);

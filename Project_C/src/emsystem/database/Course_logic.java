@@ -36,6 +36,21 @@ public class Course_logic {
 		}
 		return false;
 	}
+	
+	public void setShareState(String cno){
+		Connection conn = cm.getConnection();
+		String sql = "UPDATE classc set Share = 'y' WHERE Cno='"+cno+"'";
+		try {
+			st = conn.createStatement();
+			st.executeUpdate(sql);
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public boolean addCourse(Course c){
 		boolean l = false;
 		String sql=null;

@@ -42,7 +42,6 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 	public Student getStudentInfo(String pId) {
 		Student_logic sl = new Student_logic();
 		Student s = sl.queryStudentBySno(pId);
-		// System.out.println("pid:"+pId);
 		return s;
 	}
 
@@ -52,6 +51,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 		Course_logic coursel = new Course_logic();
 		Choice_logic cl = new Choice_logic();
 		ArrayList<Choice> courselist = cl.getChoiceBySno(pStudentId);
+		
 		ArrayList<Choice> myOtherMajorChoices = raoFacade.getStudentChoice(pStudentId);
 		courselist.addAll(myOtherMajorChoices);
 
@@ -89,6 +89,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements
 			Course course = l.queryCourseByCno(list.get(i).getCourseId());
 			listA.add(course);
 		}
+		
 
 		ArrayList<Course> listB = l.listCourse();// 在该listb中而不在上面的lista中的course
 		for (int i = 0; i < listB.size(); i++) {

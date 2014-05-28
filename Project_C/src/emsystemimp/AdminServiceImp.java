@@ -95,6 +95,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 	public ArrayList<Student> getChoosedStudents(String pCourseId)
 			throws RemoteException {
 		Course_logic cl = new Course_logic();
+		//TODO
 		return cl.getStudentByCno(pCourseId);
 	}
 
@@ -116,7 +117,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 	@Override
 	public void postShareStudentAction() throws RemoteException {
 		Student_logic logic = new Student_logic();
-		ArrayList<Student> students = logic.getAllStudent();
+		ArrayList<Student> students = logic.listStudent();
 		raoFacade.addStudents(students);
 	}
 
@@ -128,6 +129,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 		ArrayList<Course> courses = new ArrayList<>();
 		for(String cid : pCourseIds) {
 			Course course = logic.queryCourseByCno(cid);
+			logic.setShareState(cid);
 			courses.add(course);
 		}
 		raoFacade.addCourses(courses);
