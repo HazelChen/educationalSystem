@@ -114,7 +114,6 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 			slist.add(s);
 		}
 		
-		//TODO
 		return slist;
 	}
 
