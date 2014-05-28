@@ -212,6 +212,7 @@ public class Course_logic {
 			st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()){
+				
 				Student s = sl.queryStudentBySno(rs.getString("Sno"));
 				list.add(s);
 			}

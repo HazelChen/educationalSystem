@@ -94,6 +94,9 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<Student> getChoosedStudents(String pCourseId)
 			throws RemoteException {
+		//choices
+		//sid
+		
 		Course_logic cl = new Course_logic();
 		//TODO
 		return cl.getStudentByCno(pCourseId);
