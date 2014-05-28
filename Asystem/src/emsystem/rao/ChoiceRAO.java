@@ -17,11 +17,10 @@ public class ChoiceRAO {
 		generater.addElement(choice);
 		String xml = generater.getXmlString();
 		System.out.println(xml);
-//		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
-//		String result = communicationWithServer.communicate(CommandConstants.STUDENT_ELECTIVE, xml);
-//		Boolean resultBoolean = Boolean.valueOf(result);
-//		return resultBoolean;
-		return true;
+		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
+		String result = communicationWithServer.communicate(CommandConstants.STUDENT_ELECTIVE, xml);
+		Boolean resultBoolean = Boolean.valueOf(result);
+		return resultBoolean;
 	}
 	
 	public boolean remove(Choice choice) {
@@ -30,12 +29,11 @@ public class ChoiceRAO {
 		generater.addElement(choice);
 		String xml = generater.getXmlString();
 		System.out.println(xml);
-//		
-//		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
-//		String result = communicationWithServer.communicate(CommandConstants.COURSE_WITHDRAWAL, xml);
-//		Boolean resultBoolean = Boolean.valueOf(result);
-		return false;
-//		return resultBoolean;
+		
+		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
+		String result = communicationWithServer.communicate(CommandConstants.COURSE_WITHDRAWAL, xml);
+		Boolean resultBoolean = Boolean.valueOf(result);
+		return resultBoolean;
 	}
 	
 	public ArrayList<Choice> getServerChoises() {
