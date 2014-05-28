@@ -88,10 +88,16 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 	public ArrayList<Student> getChoosedStudents(String pCourseId){
 		ArrayList<Student> result=new ArrayList<Student>();
 		ArrayList<Choice> list=dwchoice.getAllChoice();
+		Student stu=null;
 		for(int i=0;i<list.size();i++){
 			Choice choice=list.get(i);
 			if(choice.getCourseId().equals(pCourseId)){
-				Student stu=dwstudent.search(choice.getStudentId());
+				String sid=choice.getStudentId();
+				if(sid.startsWith("1")){
+				stu=dwstudent.search(sid);
+				}else{
+					//TODO
+				}
 				result.add(stu);
 			}
 		}
