@@ -8,6 +8,7 @@ import edu.nju.educationSystem.server.model.Course;
 import edu.nju.educationSystem.server.model.Elective;
 import edu.nju.educationSystem.server.model.Major;
 import edu.nju.educationSystem.server.service.ElectiveService;
+import edu.nju.educationSystem.server.xmlHandler.XMLTransform;
 
 public class ElectiveTest {
 	
@@ -35,13 +36,27 @@ public class ElectiveTest {
 		}
 	}
 	
-	@Test
 	public void testGetAllElective() {
 		ElectiveService electiveService = new ElectiveService();
 		ArrayList<Elective> electives = electiveService.getAllElective(Major.广告学);
 		for (Elective elective : electives) {
 			System.out.println(elective.getCourseId());
 		}
+	}
+	
+	public void testGenerateXML() {
+		ArrayList<Elective> electives = new ArrayList<>();
+		Elective elective = new Elective("cid","sid", 0);
+		electives.add(elective);
+		ElectiveService electiveService = new ElectiveService();
+		System.out.println(electiveService.getElectivesXml(electives));
+	}
+	
+	@Test
+	public void testChange() {
+		String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><choices>  <choice>    <学号>100250001</学号>    <课程编号>20140201</课程编号>    <得分>0</得分>  </choice></choices>";
+		XMLTransform transform = new XMLTransform();
+		transform.transform(xml, "choiceToT");
 	}
 	
 	

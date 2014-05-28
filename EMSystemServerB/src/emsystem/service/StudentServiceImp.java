@@ -29,7 +29,7 @@ public class StudentServiceImp extends UnicastRemoteObject implements StudentSer
 	@Override
 	public boolean studentLogin(String pId, String pPassword)
 			throws RemoteException {
-		return accountService.login(pId, pPassword);
+		return accountService.studentLogin(pId, pPassword);
 	}
 
 	@Override

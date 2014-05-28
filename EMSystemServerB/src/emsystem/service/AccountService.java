@@ -11,11 +11,19 @@ public class AccountService {
 		accountDAO = new AccountDAO();
 	}
 	
-	public boolean login(String pId, String pPassword) {
+	public boolean studentLogin(String id, String password) {
+		return login(id, password, 0);
+	}
+	
+	public boolean adminLogin(String id, String password) {
+		return login(id, password, 1);
+	}
+	
+	private boolean login(String pId, String pPassword, int competence) {
 		Account account = accountDAO.getAccount(pId);
 		boolean result = false;
 		if (account != null) {
-			if (account.getPassword().equals(pPassword)) {
+			if (account.getPassword().equals(pPassword) && account.getCompetence() == competence) {
 				result = true;
 			}
 		}

@@ -14,8 +14,6 @@ import org.dom4j.io.DocumentSource;
 public class XMLTransform {
 
 	public String transform(String input, String model) {
-		System.out.println("=============from============");
-		System.out.println(input);
 		String re = null;
 		try {
 			Document document = DocumentHelper.parseText(input);
@@ -28,8 +26,6 @@ public class XMLTransform {
 			transform.transform(source, result);
 			Document transformDoc = result.getDocument();
 			re = transformDoc.asXML();
-			System.out.println("=============to===========");
-			System.out.println(re);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

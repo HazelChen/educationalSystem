@@ -24,7 +24,7 @@ public class ServerRun implements Runnable{
 				String major = input.readLine();
 				System.out.println("in:" + major);
 				String command = input.readLine();
-				System.out.println("in" + command);
+				System.out.println("in:" + command);
 				
 				StringBuffer xmlBuffer = new StringBuffer();
 				String tempString = "";

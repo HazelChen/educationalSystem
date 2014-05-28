@@ -16,6 +16,7 @@ import org.xml.sax.SAXException;
 public class XMLValidate {
 
 	public void validateXml(String xsdPath, String input) {
+		System.err.println(input);
 		try {
 			SchemaFactory schemaFactory = SchemaFactory
 					.newInstance("http://www.w3.org/2001/XMLSchema");

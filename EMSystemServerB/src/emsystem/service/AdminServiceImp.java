@@ -28,7 +28,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements AdminService
 	@Override
 	public boolean adminLogin(String pAccount, String pPassword)
 			throws RemoteException {
-		return accountService.login(pAccount, pPassword);
+		return accountService.adminLogin(pAccount, pPassword);
 	}
 
 	@Override
