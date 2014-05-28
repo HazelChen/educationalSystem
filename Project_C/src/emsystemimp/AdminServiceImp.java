@@ -94,8 +94,6 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<Student> getChoosedStudents(String pCourseId)
 			throws RemoteException {
-		//choices
-		//sid
 		Choice_logic cl = new Choice_logic();
 		Student_logic sl  =  new Student_logic();
 		ArrayList<Student> slist = new ArrayList<Student>();
@@ -108,6 +106,7 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 				if(sno.startsWith("3")){
 					s = sl.queryStudentBySno(sno);
 				}else{
+					
 					//TODO
 				}
 			}
