@@ -12,10 +12,11 @@ import emsystem.service.StudentServiceImp;
 public class RMI {
 	static String ip;
 	static boolean isDirty;
+	static Config c=new Config();
 	
 	static{
 		// TODO 从配置文件中读取IP.初始化ip
-		ip = "rmi://"+Config.getADataIP();
+		ip = "rmi://"+c.getADataIP();
 	}
 
 	public static String getIp() {

@@ -15,7 +15,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args)throws RemoteException {
-		String s="rmi://"+Config.getADataIP();
+		Config c=new Config();
+		String s="rmi://"+c.getADataIP();
 		 try  
 	        {  //服务器端注册远程对象   
 			    StudentServiceImp student=new StudentServiceImp();

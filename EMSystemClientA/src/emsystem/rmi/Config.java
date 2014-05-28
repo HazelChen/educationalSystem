@@ -19,12 +19,12 @@ public class Config {
 	      }   
 	 }
 	 
-  public static String getADataIP(){
+  public String getADataIP(){
    String s=properties.getProperty("AdatabaseIP");
    return s;
 }
 
-  public static String getTotalIP(){
+  public String getTotalIP(){
 	  String s=properties.getProperty("totalIP");
 	   return s;
   }
