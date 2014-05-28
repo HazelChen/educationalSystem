@@ -96,10 +96,26 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 			throws RemoteException {
 		//choices
 		//sid
+		Choice_logic cl = new Choice_logic();
+		Student_logic sl  =  new Student_logic();
+		ArrayList<Student> slist = new ArrayList<Student>();
+		ArrayList<Choice> clist = cl.getChoice();
+		Student s = new Student();
+		for(int i =0;i<clist.size();i++){
+			Choice c = clist.get(i);
+			if(c.getCourseId().equals(pCourseId)){
+				String sno = c.getStudentId();
+				if(sno.startsWith("3")){
+					s = sl.queryStudentBySno(sno);
+				}else{
+					//TODO
+				}
+			}
+			slist.add(s);
+		}
 		
-		Course_logic cl = new Course_logic();
 		//TODO
-		return cl.getStudentByCno(pCourseId);
+		return slist;
 	}
 
 	@Override

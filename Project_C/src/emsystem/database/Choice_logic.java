@@ -12,6 +12,25 @@ public class Choice_logic {
 	conn_mysql cm = new conn_mysql();
 	Statement st;
 	
+	public ArrayList<Choice> getChoice(){
+		ArrayList<Choice> list = new ArrayList<Choice>();
+		Connection conn = cm.getConnection();
+		Choice choice;
+		String sql = "SELECT * FROM choicec";
+		try {
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()){
+				choice = new Choice(rs.getString("Cno"), rs.getString("Sno"), rs.getInt("Grd"));
+				list.add(choice);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public ArrayList<Choice> getChoiceBySno(String sno){
 		ArrayList<Choice> list = new ArrayList<Choice>();
 		Connection conn = cm.getConnection();
