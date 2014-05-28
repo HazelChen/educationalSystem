@@ -130,7 +130,7 @@ public class StudentDropCoursePanel extends JPanel {
 
 	private ArrayList<String> getCheckedIds() {
 		ArrayList<String> indexes = new ArrayList<>();
-		for (int i = 0; i < getData().length; i++) {
+		for (int i = 0; i < mInfoTable.getRowCount(); i++) {
 			if (((Boolean) mInfoTable.getValueAt(i, checkPosition))
 					.booleanValue()) {// бЁжа
 				indexes.add((String) mInfoTable.getValueAt(i, idIndex));
@@ -143,7 +143,7 @@ public class StudentDropCoursePanel extends JPanel {
 		StudentServiceAdapter adapter = StudentServiceAdapter.getInstance();
 		adapter.dropCourses(mAccount, getCheckedIds());
 		
-		//refresh
+//		refresh
 		showTable();
 	}
 }
