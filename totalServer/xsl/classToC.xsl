@@ -22,6 +22,7 @@
 				<Pla>
 					<xsl:value-of select="location"/>
 				</Pla>
+				<Share>1</Share>
 			</course>
 		</xsl:for-each>
 	</courses>	

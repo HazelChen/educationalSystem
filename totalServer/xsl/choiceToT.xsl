@@ -5,15 +5,15 @@
 		<choices>
 			<xsl:for-each select="choice">
 				<choice>
+					<cid>
+						<xsl:value-of select="课程编号" />
+						<xsl:value-of select="Cno" />
+					</cid>
 					<sid>
 						<xsl:value-of select="学生编号" />
 						<xsl:value-of select="学号" />
 						<xsl:value-of select="Sno" />
 					</sid>
-					<cid>
-						<xsl:value-of select="课程编号" />
-						<xsl:value-of select="Cno" />
-					</cid>
 					<score>
 						<xsl:value-of select="得分" />
 						<xsl:value-of select="成绩" />

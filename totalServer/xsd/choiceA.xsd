@@ -3,22 +3,12 @@
 	<xs:element name="choices" type="choicesType" />
 	<xs:complexType name="choicesType">
 		<xs:sequence maxOccurs="unbounded">
-			<xs:element name="choice" minOccurs="0" type="choiceType" />
+			<xs:element name="choice" minOccurs="1" type="choiceType" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="choiceType">
 		<xs:sequence>
-
-
-			<xs:element name="课程编号">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="5" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-
 			<xs:element name="学号">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -26,6 +16,16 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+
+			<xs:element name="课程编号">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			
 
 			<xs:element name="得分">
 				<xs:simpleType>

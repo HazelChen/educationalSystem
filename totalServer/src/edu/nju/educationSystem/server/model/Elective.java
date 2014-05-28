@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class Elective implements ModelSpecification{
 	
-	private String studentId = "";
 	private String courseId = "";
+	private String studentId = "";
 	private int score;
 	
 	public Elective() {}
 	
-	public Elective(String sid, String cid, int score) {
+	public Elective(String cid, String sid, int score) {
 		this.studentId = sid;
 		this.courseId = cid;
 		this.score = score;
@@ -39,8 +39,8 @@ public class Elective implements ModelSpecification{
 	@Override
 	public Map<String, String> getFieldCorrespondence() {
 		Map<String, String> maps = new LinkedHashMap<>();
-		maps.put("studentId", "sid");
 		maps.put("courseId", "cid");
+		maps.put("studentId", "sid");
 		maps.put("score", "score");
 		return maps;
 	}

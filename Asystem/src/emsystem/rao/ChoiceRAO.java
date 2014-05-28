@@ -16,7 +16,7 @@ public class ChoiceRAO {
 				ConfigConstant.ELECTIVE_ELEMENT, Choice.class, new Choice());
 		generater.addElement(choice);
 		String xml = generater.getXmlString();
-		
+		System.out.println(xml);
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
 		String result = communicationWithServer.communicate(CommandConstants.STUDENT_ELECTIVE, xml);
 		Boolean resultBoolean = Boolean.valueOf(result);
@@ -28,6 +28,7 @@ public class ChoiceRAO {
 				ConfigConstant.ELECTIVE_ELEMENT, Choice.class, new Choice());
 		generater.addElement(choice);
 		String xml = generater.getXmlString();
+		System.out.println(xml);
 		
 		CommunicationWithServer communicationWithServer = CommunicationWithServer.getInstance();
 		String result = communicationWithServer.communicate(CommandConstants.COURSE_WITHDRAWAL, xml);

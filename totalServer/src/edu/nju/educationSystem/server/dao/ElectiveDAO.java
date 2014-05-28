@@ -55,7 +55,7 @@ public class ElectiveDAO {
 				String studentId = resultSet.getString(COLUMN[0]);
 				String courseId = resultSet.getString(COLUMN[1]);
 				int score = resultSet.getInt(COLUMN[2]);
-				Elective elective = new Elective(studentId, courseId, score);
+				Elective elective = new Elective(courseId, studentId, score);
 				electives.add(elective);
 			}
 			resultSet.close();
