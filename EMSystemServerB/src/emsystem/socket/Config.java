@@ -1,4 +1,4 @@
-package emsystem.rmi;
+package emsystem.socket;
 
 import java.io.FileInputStream;
 import java.io.IOException;

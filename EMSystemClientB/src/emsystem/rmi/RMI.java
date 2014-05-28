@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 
 
 public class RMI {
-	private static String ip = "127.0.0.1";
+	private static String ip = new Config().getADataIP();
 	
 	private static StudentService studentService;
 	private static AdminService adminService;

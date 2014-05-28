@@ -7,9 +7,9 @@
 				<学号>
 					<xsl:value-of select="id"/>
 				</学号>
-				<名称>
+				<姓名>
 					<xsl:value-of select="name"/>
-				</名称>
+				</姓名>
 				<性别>
 					<xsl:choose>
 					<xsl:when test="sex='FEMALE'">女</xsl:when>
@@ -19,6 +19,7 @@
 				<专业>
 					<xsl:value-of select="major"/>
 				</专业>
+				<密码>0</密码>
 				
 			</student>
 		</xsl:for-each>
