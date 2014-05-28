@@ -111,7 +111,6 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 			}
 			slist.add(s);
 		}
-		System.out.println(slist.size());
 		
 		return slist;
 	}
