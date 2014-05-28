@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	
-	<xs:element name="choices" type="choicesType"/>
-	<xs:complexType   name="choicesType">   
-      	<xs:sequence   maxOccurs="unbounded">   
-        	<xs:element   name="choice"   minOccurs="0" type="choiceType"/>   
-      	</xs:sequence>   
-    </xs:complexType>
-	
-		<xs:complexType name="choiceType">
-			<xs:sequence>
-				
-							
-							<xs:element name="Cno">
-								<xs:simpleType>
- 									<xs:restriction base="xs:string">
-    								  <xs:maxLength value="4"/>
-  									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-							
-							<xs:element name="Sno">
-								<xs:simpleType>
- 									<xs:restriction base="xs:string">
-    								  <xs:maxLength value="19"/>
-  									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-							
-							<xs:element name="Grd">
-								<xs:simpleType>
- 									<xs:restriction base="xs:integer">
-  									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-							
-						</xs:sequence>
-					</xs:complexType>
-				
-	
+
+	<xs:element name="choices" type="choicesType" />
+	<xs:complexType name="choicesType">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="choice" minOccurs="0" type="choiceType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="choiceType">
+		<xs:sequence>
+
+
+			<xs:element name="Cno">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="9" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="Sno">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="19" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="Grd">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+
 </xs:schema>

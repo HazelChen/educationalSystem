@@ -31,7 +31,6 @@
 				<xs:element name="score">
 					<xs:simpleType>
   						<xs:restriction base="xs:unsignedByte">
-    						<xs:maxInclusive value="5"/>
   						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>

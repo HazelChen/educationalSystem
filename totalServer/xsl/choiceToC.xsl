@@ -4,12 +4,12 @@
 	<choices>
 		<xsl:for-each select="choice">
 			<choice>
-				<Sno>
-					<xsl:value-of select="sid"/>
-				</Sno>
 				<Cno>
 					<xsl:value-of select="cid"/>
 				</Cno>
+				<Sno>
+					<xsl:value-of select="sid"/>
+				</Sno>
 				<Grd>
 					<xsl:value-of select="score"/>
 				</Grd>

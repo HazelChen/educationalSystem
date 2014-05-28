@@ -18,7 +18,8 @@
 				</Sex>
 				<Sde>
 					<xsl:value-of select="major"/>
-				</Sde>	
+				</Sde>
+				<Pwd>0</Pwd>	
 			</student>
 		</xsl:for-each>
 	</students>	
