@@ -106,14 +106,11 @@ public class AdminServiceImp extends UnicastRemoteObject implements
 				if(sno.startsWith("3")){
 					s = sl.queryStudentBySno(sno);
 				}else{
-					
-					//TODO
+					s = raoFacade.getStudent(sno);
 				}
 			}
 			slist.add(s);
 		}
-		
-		//TODO
 		return slist;
 	}
 
