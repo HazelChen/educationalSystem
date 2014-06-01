@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.educationSystem.server.model.Course;
 import edu.nju.educationSystem.server.model.Major;
+import edu.nju.educationSystem.server.model.Student;
 
 public class CourseDAO {
 	private static final String TABLE_NAME = "course";
@@ -73,12 +74,31 @@ public class CourseDAO {
 		return courseIds;
 	}
 	
-	public ResultSet getAllCourseResultSet () {
+	public ResultSet getAllCourseResultSet(){
 		String order = "SELECT * FROM " + TABLE_NAME;
 		ResultSet resultSet = databaseUtils.searchResultSet(order);
 		return resultSet;
 	}
 	
+	public ArrayList<Course> getAllCourses () {
+		String order = "SELECT * FROM " + TABLE_NAME;
+		ResultSet resultSet = databaseUtils.searchResultSet(order);
+		ArrayList<Course> courses = new ArrayList<>();
+		try {
+			while (resultSet.next()) {
+				Course course = new Course(resultSet.getString(COLUMNS[0]),
+						resultSet.getString(COLUMNS[1]), resultSet.getInt(COLUMNS[2]), 
+						resultSet.getInt(COLUMNS[3]), resultSet.getString(COLUMNS[4]), 
+						resultSet.getString(COLUMNS[5]));
+				courses.add(course);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return courses;
+	}
+
+
 	public ArrayList<Course> getNotSelectedCourse(String prefix, String sid) {
 		String sql = "select * from course where id like '" + prefix + "%' and id not in("
 				+ "select cid from elective where sid='" + sid + "')";

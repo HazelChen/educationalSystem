@@ -73,4 +73,7 @@ public class CourseService {
 		return courseDAO.getNotSelectedCourse("3", sid);
 	}
 	
+	public ArrayList<Course> getAll(){
+		return courseDAO.getAllCourses();
+	}
 }

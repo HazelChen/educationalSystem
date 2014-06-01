@@ -64,4 +64,23 @@ public class ElectiveDAO {
 		}
 		return electives;
 	}
+	
+	public ArrayList<Elective> getAllElectives() {
+		String order = "SELECT * FROM " + TABLE_NAME;
+		ResultSet resultSet = databaseUtils.searchResultSet(order);
+		ArrayList<Elective> electives = new ArrayList<>();
+		try {
+			while (resultSet.next()) {
+				String studentId = resultSet.getString(COLUMN[0]);
+				String courseId = resultSet.getString(COLUMN[1]);
+				int score = resultSet.getInt(COLUMN[2]);
+				Elective elective = new Elective(courseId, studentId, score);
+				electives.add(elective);
+			}
+			resultSet.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return electives;
+	}
 }

@@ -41,7 +41,7 @@ public class StudentDAO {
 	}
 
 	public ArrayList<Student> getAll() {
-		ResultSet resultSet = databaseUtils.searchResultSet("select * form " + TABLE_NAME);
+		ResultSet resultSet = databaseUtils.searchResultSet("select * from " + TABLE_NAME);
 		ArrayList<Student> students = new ArrayList<>();
 		try {
 			while (resultSet.next()) {

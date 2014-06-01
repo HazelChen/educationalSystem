@@ -40,6 +40,10 @@ public class ElectiveService {
 		return result;
 	}
 	
+	public ArrayList<Elective> getAll(){
+		return electiveDAO.getAllElectives();
+	}
+	
 	public ArrayList<Elective> getElectives(String electiveXml) {
 		ArrayList<Elective> electives = new ArrayList<>();
 		
