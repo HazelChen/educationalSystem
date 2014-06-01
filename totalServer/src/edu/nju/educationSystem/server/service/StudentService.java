@@ -48,6 +48,10 @@ public class StudentService {
 		return students;
 	}
 	
+	public ArrayList<Student> getAll() {
+		return studentDAO.getAll();
+	}
+	
 	public void addStudents(ArrayList<Student> students) {
 		for (Student student : students) {
 			studentDAO.add(student);
