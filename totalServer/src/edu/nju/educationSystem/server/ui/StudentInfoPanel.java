@@ -48,4 +48,11 @@ public class StudentInfoPanel extends JPanel{
 		}
 		return data;
 	}
+	
+	public static void main(String[] args){
+		JFrame frame = new JFrame();
+		frame.add(new StudentInfoPanel());
+		frame.setSize(600, 500);
+		frame.setVisible(true);
+	}
 }

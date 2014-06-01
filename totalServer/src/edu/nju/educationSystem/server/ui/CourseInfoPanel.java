@@ -50,4 +50,11 @@ public class CourseInfoPanel extends JPanel{
 		}
 		return data;
 	}
+	
+	public static void main(String[] args){
+		JFrame frame = new JFrame();
+		frame.add(new CourseInfoPanel());
+		frame.setSize(600, 500);
+		frame.setVisible(true);
+	}
 }
