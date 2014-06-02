@@ -21,7 +21,7 @@ public class ServerFrame extends JFrame {
 		this.setLayout(new FlowLayout());
 
 		socketServer = new SocketServer();
-		this.add(new JScrollPane(socketServer));
+//		this.add(new JScrollPane(socketServer));
 		this.setSize(500, 300);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -42,9 +42,8 @@ public class ServerFrame extends JFrame {
 		socketServer.run();
 	}
 
-	public static void main(String[] a) {
-		ServerFrame serverRunner = new ServerFrame();
-		
-	}
+//	public static void main(String[] a) {
+//		ServerFrame serverRunner = new ServerFrame();	
+//	}
 
 }

@@ -3,7 +3,7 @@ package edu.nju.educationSystem.server.ui;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -20,7 +20,7 @@ public class StudentInfoPanel extends JPanel{
 	 * create the panel
 	 */
 	String[] infoColumnsName = new String[]{"学号","姓名","性别","院系"};	
-	
+
 	private CustomedTable table;
 	private int idIndex = 0, nameIndex =1, sexIndex = 2, majorIndex = 3;
 	
@@ -28,7 +28,7 @@ public class StudentInfoPanel extends JPanel{
 		table = new CustomedTable(getData(), infoColumnsName);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setPreferredSize(new Dimension(500, 350));
+		scrollPane.setPreferredSize(new Dimension(500, 300));
 		add(scrollPane);
 	}
 	
@@ -49,10 +49,4 @@ public class StudentInfoPanel extends JPanel{
 		return data;
 	}
 	
-	public static void main(String[] args){
-		JFrame frame = new JFrame();
-		frame.add(new StudentInfoPanel());
-		frame.setSize(600, 500);
-		frame.setVisible(true);
-	}
 }

@@ -28,7 +28,7 @@ public class ElectiveInfoPanel extends JPanel{
 		table = new CustomedTable(getData(), infoColumnsName);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setPreferredSize(new Dimension(500, 350));
+		scrollPane.setPreferredSize(new Dimension(500, 300));
 		add(scrollPane);
 	}
 
