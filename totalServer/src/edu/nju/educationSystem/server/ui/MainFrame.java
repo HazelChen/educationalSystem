@@ -27,7 +27,6 @@ public class MainFrame extends JFrame {
 //			public void run() {
 //				try {
 					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
 //				} catch (Exception e) {
 //					e.printStackTrace();
 //				}
@@ -48,9 +47,10 @@ public class MainFrame extends JFrame {
 		startPanel.add(startButton, BorderLayout.NORTH);
 
 		socketServer = new SocketServer();
-//		socketServer.run();
 		MainPanel mainPanel = new MainPanel(socketServer);
 		setContentPane(mainPanel);
+		this.setVisible(true);
+		socketServer.run();
 	}
 
 	

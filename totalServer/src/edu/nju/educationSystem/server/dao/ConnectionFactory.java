@@ -29,7 +29,7 @@ public class ConnectionFactory {
 		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://127.0.0.1:3306/educationsystem?useUnicode=true&characterEncoding=utf-8";
 		String user = "root";
-		String password = "361549286";
+		String password = "root";
 
 		try {
 			Class.forName(driver);
