@@ -1,8 +1,12 @@
 package edu.nju.educationSystem.server.ui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,14 +26,29 @@ public class ElectiveInfoPanel extends JPanel{
 	String[] infoColumnsName = new String[]{"学号","课程编号","分数"};	
 	
 	private CustomedTable table;
+	private JScrollPane scrollPane;
 	private int sidIndex = 0, cidIndex = 1, scoreIndex = 2;
 	
 	public ElectiveInfoPanel(){
+		JButton button = new JButton("刷新");
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				table = new CustomedTable(getData(), infoColumnsName);
+				scrollPane.setViewportView(table);
+				scrollPane.invalidate();
+				scrollPane.repaint();
+				ElectiveInfoPanel.this.repaint();
+			}
+		});
+		this.setLayout(new BorderLayout());
+		this.add(button, BorderLayout.NORTH);
 		table = new CustomedTable(getData(), infoColumnsName);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(500, 300));
-		add(scrollPane);
+		add(scrollPane, BorderLayout.CENTER);
 	}
 
 	private String[][] getData() {

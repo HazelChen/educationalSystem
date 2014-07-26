@@ -1,9 +1,12 @@
 package edu.nju.educationSystem.server.ui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -22,14 +25,29 @@ public class StudentInfoPanel extends JPanel{
 	String[] infoColumnsName = new String[]{"学号","姓名","性别","院系"};	
 
 	private CustomedTable table;
+	private JScrollPane scrollPane;
 	private int idIndex = 0, nameIndex =1, sexIndex = 2, majorIndex = 3;
 	
 	public StudentInfoPanel(){
+		JButton button = new JButton("刷新");
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				table = new CustomedTable(getData(), infoColumnsName);
+				scrollPane.setViewportView(table);
+				scrollPane.invalidate();
+				scrollPane.repaint();
+				StudentInfoPanel.this.repaint();
+			}
+		});
+		this.setLayout(new BorderLayout());
+		this.add(button, BorderLayout.NORTH);
 		table = new CustomedTable(getData(), infoColumnsName);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(500, 300));
-		add(scrollPane);
+		add(scrollPane, BorderLayout.CENTER);
 	}
 	
 	private String[][] getData(){

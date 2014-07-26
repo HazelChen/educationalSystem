@@ -1,7 +1,5 @@
 package edu.nju.educationSystem.server.ui;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -41,10 +39,10 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 
-		startPanel = new JPanel();
-		startButton = new JButton("开启服务器");
+//		startPanel = new JPanel();
+//		startButton = new JButton("开启服务器");
 //		startButton.addActionListener(this);
-		startPanel.add(startButton, BorderLayout.NORTH);
+//		startPanel.add(startButton, BorderLayout.NORTH);
 
 		socketServer = new SocketServer();
 		MainPanel mainPanel = new MainPanel(socketServer);
